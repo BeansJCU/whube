@@ -13,6 +13,14 @@
 	include( $app_root . "libs/php/easter.php" );
 	include( $app_root . "libs/php/core.php" );
 
+	requireLogin();
+
+
+	if ( ! isset ( $_SESSION['cwd'] ) ) {
+		$_SESSION['cwd'] = "/";
+	}
+
+
 	if ($handle = opendir( $app_root . "model/" )) {
 		while (false !== ($file = readdir($handle))) {
 			// The "i" after the pattern delimiter indicates a case-insensitive search
@@ -27,11 +35,39 @@
 
 	$SHELL = "WHUBIX";
 
-	$commands = array(
-		"help"         => "Welcome to $SHELL, version $VERSION.\nHelp menu is forthcoming.",
-		"syntax_error" => "Syntax Error! Type `help` for Help!",
-		"exit"         => "There is no escape!",
 
+	function help() {
+		global $SHELL;	
+		global $VERSION;
+		echo "Welcome to $SHELL, version $VERSION.\nHelp menu is forthcoming.";
+	}
+
+	function syntax_error() {
+		echo "Syntax Error! Type `help` for Help!";
+	}
+
+	function f_exit() {
+		echo "there is no escape!";
+	}
+
+	function pwd() {
+		echo $_SESSION['cwd'];
+	}
+
+	function whoami() {
+		if ( isset ( $_SESSION['username'] ) ) {
+			echo $_SESSION['username'];
+		} else {
+			echo "You're not logged in!";
+		}
+	}
+
+	$commands = array(
+		"help"         => "help",
+		"syntax_error" => "syntax_error",
+		"exit"         => "f_exit",
+		"whoami"       => "whoami",
+		"pwd"          => "pwd",
 	);
 
 
@@ -39,9 +75,9 @@
 		$cmd = htmlentities( $_POST['input'], ENT_QUOTES );
 
 		if ( isset ( $commands[$cmd] ) ) {
-			echo $commands[$cmd];
+			$commands[$cmd]();
 		} else {
-			echo $commands["syntax_error"];
+			$commands["syntax_error"]();
 		}
 	}
 ?>

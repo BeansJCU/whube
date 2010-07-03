@@ -10,5 +10,7 @@
 	// in localcallback.php.
 	$MY_IP         =   "127.0.0.1";
 
+	$DEBUG         =   true;
+
 	include( dirname(__FILE__) . "/add-salt.php" ); // add salt to taste
 ?>

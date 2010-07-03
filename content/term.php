@@ -1,4 +1,6 @@
 <?php
+	requireLogin();
+
 	useScript("jQuery-terminal.js");
 	useScript("term.php");
 
