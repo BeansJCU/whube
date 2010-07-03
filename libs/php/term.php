@@ -15,7 +15,6 @@
 
 	requireLogin();
 
-
 	if ( ! isset ( $_SESSION['cwd'] ) ) {
 		$_SESSION['cwd'] = "/";
 	}
@@ -34,42 +33,33 @@
 
 	$SHELL = "WHUBIX";
 
+	$commands = array();
 
-	function help() {
-		global $SHELL;	
-		global $VERSION;
-		echo "Welcome to $SHELL, version $VERSION.";
-		// echo "ಠ_ಠ";
-	}
-
-	function syntax_error() { echo "Syntax Error! Type `help` for Help!"; }
-	function f_exit()       { echo "there is no escape!";                 }
-	function pwd()          { echo $_SESSION['cwd'];                      }
-
-	function whoami() {
-		if ( isset ( $_SESSION['username'] ) ) {
-			echo $_SESSION['username'];
-		} else {
-			echo "You're not logged in!";
+	if ($handle = opendir( dirname(__FILE__) . "/" . "term-commands/" )) {
+		while (false !== ($file = readdir($handle))) {
+			// The "i" after the pattern delimiter indicates a case-insensitive search
+			if ( $file != "." && $file != ".." ) {
+				$ftest = $file;
+				if (preg_match("/.*\.php$/i", $ftest)) {
+					include( dirname(__FILE__) . "/" . "term-commands/" . $file );
+				}
+			}
 		}
 	}
-
-	$commands = array(
-		"help"         => "help",
-		"syntax_error" => "syntax_error",
-		"exit"         => "f_exit",
-		"whoami"       => "whoami",
-		"pwd"          => "pwd",
-	);
 
 
 	if ( isset ( $_POST['input'] ) ) {
 		$cmd = htmlentities( $_POST['input'], ENT_QUOTES );
 
-		if ( isset ( $commands[$cmd] ) ) {
-			$commands[$cmd]();
+		$toks = explode( " ", $_POST['input'] );
+
+		$argv = $toks;
+		$argc = sizeof( $toks );
+
+		if ( isset ( $commands[$argv[0]] ) ) {
+			$commands[$argv[0]]( $argv );
 		} else {
-			$commands["syntax_error"]();
+			$commands["syntax_error"]( $argv );
 		}
 	}
 ?>
