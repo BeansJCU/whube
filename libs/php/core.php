@@ -8,7 +8,7 @@
      */
 
 
-$VERSION         = "3.141";
+$VERSION         = "3.14";
 $VERSION_STRING  = "v$VERSION";
 
 $WHUBE_PROJECT_LEAD   =  "Paul Tagliamonte";
