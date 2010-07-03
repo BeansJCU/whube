@@ -20,7 +20,6 @@
 		$_SESSION['cwd'] = "/";
 	}
 
-
 	if ($handle = opendir( $app_root . "model/" )) {
 		while (false !== ($file = readdir($handle))) {
 			// The "i" after the pattern delimiter indicates a case-insensitive search
@@ -39,20 +38,13 @@
 	function help() {
 		global $SHELL;	
 		global $VERSION;
-		echo "Welcome to $SHELL, version $VERSION.\nHelp menu is forthcoming.";
+		echo "Welcome to $SHELL, version $VERSION.";
+		// echo "ಠ_ಠ";
 	}
 
-	function syntax_error() {
-		echo "Syntax Error! Type `help` for Help!";
-	}
-
-	function f_exit() {
-		echo "there is no escape!";
-	}
-
-	function pwd() {
-		echo $_SESSION['cwd'];
-	}
+	function syntax_error() { echo "Syntax Error! Type `help` for Help!"; }
+	function f_exit()       { echo "there is no escape!";                 }
+	function pwd()          { echo $_SESSION['cwd'];                      }
 
 	function whoami() {
 		if ( isset ( $_SESSION['username'] ) ) {

@@ -12,7 +12,7 @@ $TERMSTRING .= "/$VERSION";
 		"<?php echo $SITE_PREFIX; ?>libs/php/term.php",
 		{
 			'hello_message'    : "<?php echo $TERMSTRING; ?> LOADED",
-			'custom_prompt'    : "> ",
+			'custom_prompt'    : "$ ",
 		}
 	);
 });
