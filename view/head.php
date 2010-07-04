@@ -38,14 +38,16 @@ $view_root        = dirname(  __FILE__ ) . "/";
 include( $view_root . "../model/twitter.php" );
 $twit = new twitter();
 $notices = $twit->showUpdates();
-
+$owner = explode(":", $notices);  // Messy but goody
+$owner = $owner[0].':';
 
 ?>
 		<div class = "tweet-tweet" ><!-- I do love my tweeter -->
 			<div class = "tweet-text" >
 				<div class = "shim" >
 <?php
-	echo ltrim( $notices[0]['descr'], $notices[0]['owner'] . ":" ); // hackasauris rex
+	//echo ltrim( $notices[0]['descr'], $notices[0]['owner'] . ":" ); // hackasauris rex
+  echo ltrim($notices, $owner );
 ?>
 				</div>
 			</div>

@@ -1,28 +1,47 @@
 <?php
     /*
-     *  License:     GPLv3
+     *  License:     AGPLv3
      *  Author:      Paul Tagliamonte <paultag@whube.com>
+     *  Author:      Thomas Martin <tenach@whube.com>
      *  Description:
      *    Twitter Module
      */
 
+if ( ! class_exists( "cacheobj" ) ) {
+  // last ditch...
+  $model_root = dirname(  __FILE__ ) . "/";
+  include( $model_root . "cacheobj.php" );
+}
 
 if ( ! class_exists( "twitter" ) ) {
-class twitter {
+class twitter extends cacheobj {
+  var $count;
+  var $friend_count;
+  var $id;
 
-	var $count;
-	var $friend_count;
-	var $id;
+  function twitter( $count = 1, $friend_count = 10 ) {
+		cacheobj::cacheobj("cache", "cache_id");
+	  $this->count = $count;
+	  $this->friend_count = $friend_count;
+	  $model_root = basename( __FILE__ ) . "/";
+	  include( $model_root . "../conf/twitter.php" );
+	  $this->id = $id;
+  }
 
-	function twitter( $count = 1, $friend_count = 10 ) {
-		$this->count = $count;
-		$this->friend_count = $friend_count;
-		$model_root = basename( __FILE__ ) . "/";
-		include( $model_root . "../conf/twitter.php" );
-		$this->id = $id;
-	}
-
-	function showUpdates() {
+  function showUpdates() {
+    $age = $this->checkAge( "tweeter", 5 );
+    if( $age <= 0 ) {
+      $this->gatherTweet();
+    }
+    
+    $this->getAllByID( "tweeter" );
+    $cached = $this->sql->getNextRow();
+    
+    $ret = $cached["cached_contents"];
+    return $ret;
+  }
+  
+  	function gatherTweet() {
 		$id     = $this->id;
 		$count  = $this->count;
 		$url = "http://twitter.com/statuses/user_timeline/" . $this->id;
@@ -56,7 +75,8 @@ class twitter {
 			$ret[$i] = $retItem;
 			++$i;
 		}
-		return $ret;
+		$this->updateStamp( "tweeter" );
+		$this->updateCached( "tweeter", $ret[0]['descr'] );
 	}
 }
 }
