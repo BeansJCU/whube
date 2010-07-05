@@ -43,8 +43,5 @@ Do you see the big red scary text above? No? w00t. That's a good thing.
 Peace, Love and PHP<br />
 EOF;
 
-// $ABOUT_WHUBE .= "&nbsp;&nbsp;" . $WHUBE_PROJECT_LEAD;
-// $ABOUT_WHUBE .= "<br />&nbsp;&nbsp;Project Lead, Whube";
-
 
 ?>
