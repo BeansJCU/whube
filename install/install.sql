@@ -3,7 +3,8 @@ CREATE DATABASE whube;
 use whube;
 
 CREATE TABLE users (
-	uID            INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+	uID      ay
+	      INTEGER NOT NULL AUTO_INCREMENT, /* PK */
 	real_name      VARCHAR(255),
 	username       VARCHAR(255) UNIQUE,
 	email          VARCHAR(255),
@@ -117,3 +118,11 @@ CREATE TABLE bugs (
 	PRIMARY KEY ( bID )
 );
 
+CREATE TABLE cache (
+  cache_id      VARCHAR(25),
+  timestamp     LONG,
+  cached_contents TEXT,
+  PRIMARY KEY ( cache_id )
+);
+
+INSERT INTO cache VALUES ( 'tweeter', '', '' );
