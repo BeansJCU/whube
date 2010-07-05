@@ -68,6 +68,7 @@ if ( isset ( $GUILT_ME ) && $GUILT_ME ) {
 <?php
 if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
 ?>
+	<a href = "<?php echo $SITE_PREFIX; ?>t/term" >Terminal</a> | 
 	<a href = "<?php echo $SITE_PREFIX; ?>t/new-bug" >New Bug</a> | 
 	<a href = "<?php echo $SITE_PREFIX; ?>t/logout" >Logout</a>
     ( You're <span class = 'itsme' ><?php echo $_SESSION['real_name']; ?></span>, Right? )

@@ -27,7 +27,7 @@ $CONTENT .= "<h1>Last $Count bugs filed</h1>";
 $CONTENT .= "
 <table class = 'sortable' >
 	<tr class = 'nobg' >
-		<th>ID</th> <th>Owner</th> <th>Project</th> <th>Private</th> <th>Title</th>
+		<th>ID</th> <th> Status </th> <th> Severity </th> <th>Owner</th> <th>Project</th> <th>Private</th> <th>Title</th>
 	</tr>
 ";
 
@@ -61,13 +61,17 @@ while ( $row = $b->getNext() ) {
 	if ( ! $privacy[0] ) {
 
 		if ( $i < $Count ) {
-			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "</td><td>Unknown</td><td>Private</td><td>" . $picon  . "</td><td>Private</td>\n\t</tr>\n";
+			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "<td>Unknown</td><td>Unknown</td></td><td>Unknown</td><td>Private</td><td>" . $picon  . "</td><td>Private</td>\n\t</tr>\n";
 		} else {
 			break;
 		}
 	} else {
 		if ( $i < $Count ) {
-			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "</td><td>" . $owner['real_name'] . "</td><td>" . $package['project_name'] . "</td><td>" . $picon  . "</td><td><a href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "' >" . $row['title'] . "</a></td>\n\t</tr>\n";
+		
+			$status   = getStatus(   $row['bug_status']   );
+			$severity = getSeverity( $row['bug_severity'] );
+		
+			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "</td><td>" . $status['status_name'] . "</td><td>" . $severity['severity_name'] . "</td><td>" . $owner['real_name'] . "</td><td>" . $package['project_name'] . "</td><td>" . $picon  . "</td><td><a href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "' >" . $row['title'] . "</a></td>\n\t</tr>\n";
 		} else {
 			break;
 		}
