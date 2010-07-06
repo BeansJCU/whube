@@ -228,7 +228,7 @@ $severityIcon = "";
 if ( $status['critical'] ) {
 $statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
 } else {
-$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/hapy.png' alt = 'Non-Critical' />";
+$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
 }
 
 if ( $severity['critical'] ) {

@@ -79,12 +79,12 @@ CREATE TABLE status (
 	PRIMARY KEY( statusID )
 );
 
-INSERT INTO status VALUES ( '', 'New', FALSE ); /* status 1 ftw */
-INSERT INTO status VALUES ( '', 'Bullcrap', FALSE );
-INSERT INTO status VALUES ( '', 'Triaged', FALSE );
-INSERT INTO status VALUES ( '', 'Reproduced', TRUE );
+INSERT INTO status VALUES ( '', 'New',          TRUE  ); /* status 1 ftw */
+INSERT INTO status VALUES ( '', 'Bullcrap',     FALSE );
+INSERT INTO status VALUES ( '', 'Triaged',      FALSE );
+INSERT INTO status VALUES ( '', 'Reproduced',   TRUE  );
 INSERT INTO status VALUES ( '', 'Something to Look at', TRUE );
-INSERT INTO status VALUES ( '', 'In Progress', TRUE );
+INSERT INTO status VALUES ( '', 'In Progress',  TRUE  );
 INSERT INTO status VALUES ( '', 'Fix Commited', FALSE );
 INSERT INTO status VALUES ( '', 'Fix Released', FALSE );
 
@@ -95,12 +95,12 @@ CREATE TABLE severity (
 	PRIMARY KEY( severityID )
 );
 
-INSERT INTO severity VALUES ( '', 'New', FALSE );
-INSERT INTO severity VALUES ( '', 'Wishlist', FALSE );
-INSERT INTO severity VALUES ( '', 'Low', FALSE );
-INSERT INTO severity VALUES ( '', 'Medium', TRUE );
-INSERT INTO severity VALUES ( '', 'High', TRUE );
-INSERT INTO severity VALUES ( '', 'Critical', TRUE );
+INSERT INTO severity VALUES ( '', 'New',       TRUE );
+INSERT INTO severity VALUES ( '', 'Wishlist',  FALSE );
+INSERT INTO severity VALUES ( '', 'Low',       FALSE );
+INSERT INTO severity VALUES ( '', 'Medium',    TRUE );
+INSERT INTO severity VALUES ( '', 'High',      TRUE );
+INSERT INTO severity VALUES ( '', 'Critical',  TRUE );
 INSERT INTO severity VALUES ( '', 'OMGWTFBBQ', TRUE );
 
 CREATE TABLE bugs ( 
@@ -119,10 +119,11 @@ CREATE TABLE bugs (
 );
 
 CREATE TABLE cache (
-  cache_id      VARCHAR(25),
-  timestamp     LONG,
-  cached_contents TEXT,
+  cache_id           VARCHAR(25),
+  timestamp          LONG /* DONG */,
+  cached_contents    TEXT,
   PRIMARY KEY ( cache_id )
 );
 
 INSERT INTO cache VALUES ( 'tweeter', '', '' );
+
