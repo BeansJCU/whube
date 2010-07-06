@@ -46,6 +46,15 @@ $sever   = clean($_POST['severity']);   /* New severity of the bug ( perhaps ) *
 $owner   = clean($_POST['owner']);      /* New owner of the bug ( perhaps )    */
 $descr   = clean($_POST['descr']);      /* New descr of the bug ( perhaps )    */
 
+
+if ( isset( $_POST['noassign'] ) ) {
+	$noassign  = clean($_POST['noassign']); /* Fricken magnets */
+} else {
+	$noassign  = NULL;
+}
+
+
+
 $priv = false;
 
 if ( isset( $_POST['private'] ) ) {
@@ -70,12 +79,17 @@ $posted_data = array(
 	"bug_severity" => $sever,
 	"bug_status"   => $status,
 	"package"      => $projectID,
-	"owner"        => $ownerID,
 	"title"        => $title,
 	"private"      => $priv,
 	"descr"        => $descr
 );
 
+
+if ( ! isset( $noassign ) ) {
+	$posted_data['owner'] = $owner;
+} else {
+	$posted_data['owner'] = NULL;
+}
 
 // print_r( $posted_data );
 

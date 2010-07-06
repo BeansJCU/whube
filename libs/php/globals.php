@@ -23,7 +23,11 @@ function useScript( $id ) {
 }
 
 function clean( $ret ) {
-	return htmlentities( $ret, ENT_QUOTES);
+	if ( isset( $ret ) ) {
+		return htmlentities( $ret, ENT_QUOTES);
+	} else {
+		return NULL;
+	}
 }
 
 function preload( $l, $w, $src ) {

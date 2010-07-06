@@ -137,9 +137,18 @@ $CONTENT .= "</select></td>
 		<td><input type = 'text' value = '" . $owner['username'] . "' id = 'user' name = 'owner' size = '20' /></td>
 	</tr>
 	<tr>
-		<td></td>
-		<td></td>
-		<td><div id = 'user-descr' >&nbsp;</div></td>
+		<td>Don't Assign Anyone</td>
+		<td><input type = 'checkbox' value = 'true' name = 'noassign' ";
+
+
+	if ( isset( $owner['username'] ) ) {
+		$CONTENT .= " ";
+	} else {
+		$CONTENT .= " checked='true' ";
+	}
+
+$CONTENT .= "/></td>
+		<td>Currently Assigned: <div id = 'user-descr' >&nbsp;</div></td>
 	</tr>
 	<tr>
 		<td>Description</td>
@@ -219,7 +228,7 @@ $severityIcon = "";
 if ( $status['critical'] ) {
 $statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
 } else {
-$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
+$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/hapy.png' alt = 'Non-Critical' />";
 }
 
 if ( $severity['critical'] ) {
