@@ -251,6 +251,13 @@ a img {
 	color:                #5af477;
 }
 
+.goodthings {
+	color:                #007304;
+}
+
+.badthings {
+	color:                #FF0000;
+}
 
 .term {
 	min-height:           400px;

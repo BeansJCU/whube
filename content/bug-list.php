@@ -61,7 +61,9 @@ while ( $row = $b->getNext() ) {
 	if ( ! $privacy[0] ) {
 
 		if ( $i < $Count ) {
-			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "<td>Unknown</td><td>Unknown</td></td><td>Unknown</td><td>Private</td><td>" . $picon  . "</td><td>Private</td>\n\t</tr>\n";
+			$CONTENT .= "\t<tr>\n<td>" .
+				$row['bID'] . "<td>Unknown</td><td>Unknown</td></td><td>Unknown</td><td>Private</td><td>" .
+				$picon  . "</td><td>Private</td>\n\t</tr>\n";
 		} else {
 			break;
 		}
@@ -70,8 +72,27 @@ while ( $row = $b->getNext() ) {
 		
 			$status   = getStatus(   $row['bug_status']   );
 			$severity = getSeverity( $row['bug_severity'] );
-		
-			$CONTENT .= "\t<tr>\n<td>" . $row['bID'] . "</td><td>" . $status['status_name'] . "</td><td>" . $severity['severity_name'] . "</td><td>" . $owner['real_name'] . "</td><td>" . $package['project_name'] . "</td><td>" . $picon  . "</td><td><a href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "' >" . $row['title'] . "</a></td>\n\t</tr>\n";
+
+			$statusClass   = "goodthings";
+			$severityClass = "goodthings";
+
+			if ( $status['critical'] ) {
+				$statusClass = "badthings";
+			}
+
+			if ( $severity['critical'] ) {
+				$severityClass = "badthings";
+			}
+
+			$CONTENT .= "\t<tr>\n<td>" .
+				$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
+				"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
+				"</td><td>" . $owner['real_name'] . "</td><td>" .
+				$package['project_name'] .
+				"</td><td>" . $picon  .
+				"</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
+					. $row['bID'] . "' >" . $row['title'] .
+				"</a></td>\n\t</tr>\n";
 		} else {
 			break;
 		}
