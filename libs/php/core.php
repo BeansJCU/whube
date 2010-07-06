@@ -1,7 +1,7 @@
 <?php
 
     /*
-     *  License:     GPLv3
+     *  License:     AGPLv3
      *  Author:      Paul Tagliamonte <paultag@whube.com>
      *  Description:
      *    Core app data

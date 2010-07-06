@@ -1,6 +1,6 @@
 <?php
     /*
-     *  License:     GPLv3
+     *  License:     AGPLv3
      *  Author:      Paul Tagliamonte <paultag@whube.com>
      *  Description:
      *    You POST against this file

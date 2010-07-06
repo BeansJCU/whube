@@ -1,6 +1,6 @@
 <?php
     /*
-     *  License:     GPLv3
+     *  License:     AGPLv3
      *  Author:      Tenach M. <tenach@whube.com>
      *  Description:
      *    This is where you POST a new registration

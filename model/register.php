@@ -1,6 +1,6 @@
 <?php
     /*
-     *  License:     GPLv3
+     *  License:     AGPLv3
      *  Author:      Tenach M. <tenach@whube.com>
      *  Description:
      *    Register Module
