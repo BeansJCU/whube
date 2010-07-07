@@ -47,7 +47,7 @@ $owner   = clean($_POST['owner']);      /* New owner of the bug ( perhaps )    *
 $descr   = clean($_POST['descr']);      /* New descr of the bug ( perhaps )    */
 
 
-if ( isset( $_POST['noassign'] ) ) {
+if ( isset( $_POST['noassign'] ) && $_POST['noassign'] != "" ) {
 	$noassign  = clean($_POST['noassign']); /* Fricken magnets */
 } else {
 	$noassign  = NULL;
@@ -67,6 +67,11 @@ $o = new user();
 $p = new project();
 
 $o->getByCol( "username",     $owner );
+
+//if ( $owner['uID'] ) {
+//	$noassign = NULL;
+//}
+
 $p->getByCol( "project_name", $project );
 
 $own = $o->getNext();
@@ -86,7 +91,7 @@ $posted_data = array(
 
 
 if ( ! isset( $noassign ) ) {
-	$posted_data['owner'] = $owner;
+	$posted_data['owner'] = $ownerID;
 } else {
 	$posted_data['owner'] = NULL;
 }
