@@ -84,7 +84,7 @@ while ( $row = $b->getNext() ) {
 				$severityClass = "badthings";
 			}
 
-			$CONTENT .= "\t<tr>\n<td>" .
+			$CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
 				$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
 				"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
 				"</td><td>" . $owner['real_name'] . "</td><td>" .
