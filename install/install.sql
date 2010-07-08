@@ -139,10 +139,10 @@ CREATE TABLE bugs (
 );
 
 CREATE TABLE cache (
-  cache_id           VARCHAR(25),
-  timestamp          LONG /* DONG */,
-  cached_contents    TEXT,
-  PRIMARY KEY ( cache_id )
+	cache_id           VARCHAR(25),
+	timestamp          LONG /* DONG */,
+	cached_contents    TEXT,
+	PRIMARY KEY ( cache_id )
 );
 
 INSERT INTO cache VALUES ( 'tweeter', '', '' );
