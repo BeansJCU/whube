@@ -101,11 +101,11 @@ CREATE TABLE status (
 
 INSERT INTO status VALUES ( '', 'New',          TRUE  ); /* status 1 ftw */
 INSERT INTO status VALUES ( '', 'Bullcrap',     FALSE );
-INSERT INTO status VALUES ( '', 'Triaged',      FALSE );
+INSERT INTO status VALUES ( '', 'Ass is awaiting a kicking',      FALSE );
 INSERT INTO status VALUES ( '', 'Reproduced',   TRUE  );
 INSERT INTO status VALUES ( '', 'Something to Look at', TRUE );
-INSERT INTO status VALUES ( '', 'In Progress',  TRUE  );
-INSERT INTO status VALUES ( '', 'Fix Commited', FALSE );
+INSERT INTO status VALUES ( '', 'KICKING BUG ASS',  TRUE  );
+INSERT INTO status VALUES ( '', 'Ass kicked', FALSE );
 INSERT INTO status VALUES ( '', 'Fix Released', FALSE );
 
 CREATE TABLE severity (
