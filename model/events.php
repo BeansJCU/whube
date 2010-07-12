@@ -1,7 +1,7 @@
 <?php
     /*
      *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
+     *  Author:      Paul Tagliamonte <paultag@whube.com>
      *  Description:
      *    DB OBJ class
      */

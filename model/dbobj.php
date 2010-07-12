@@ -1,7 +1,7 @@
 <?php
     /*
      *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
+     *  Author:      Paul Tagliamonte <paultag@whube.com>
      *  Description:
      *    DB OBJ class
      */
@@ -55,22 +55,23 @@ class dbobj {
 		return $ID;
 	}
 
-    function updateStamp( $ID ) {
-        $this->sql->query( "UPDATE " . $this->table . " SET trampstamp=" . time() . " WHERE " . $this->pk_field . "=" . $ID . " ;" );
-    }
+	function updateStamp( $ID ) {
+		$this->sql->query( "UPDATE " . $this->table . " SET trampstamp=" . time() . " WHERE " . $this->pk_field . "=" . $ID . " ;" );
+	}
 
-    function updateEvent( $STATUS, $ID ) {
+	function updateEvent( $STATUS, $ID ) {
 		$u = new events();
 		$this->getAllByPK( $ID );
 		$row = $this->getNext();
 		$ret[$this->table] = $row;
+		$ret['status']     = $STATUS;
 		$u->broadcast( json_encode($ret) );
-    }
+	}
 
-    function updateRoutine( $action, $id ) {
-        $this->updateStamp( $id );
-        $this->updateEvent( $action, $id );
-    }
+	function updateRoutine( $action, $id ) {
+		$this->updateStamp( $id );
+		$this->updateEvent( $action, $id );
+	}
 
 	function updateByPK( $PK, $tables ) {
 		$QUERY = "UPDATE " . $this->table . " SET ";
@@ -88,7 +89,7 @@ class dbobj {
 		}
 		$QUERY .= " WHERE " . $this->pk_field . " = '" . $PK . "';";
 		$this->sql->query( $QUERY );
-        $this->updateRoutine( "update", $PK );
+		$this->updateRoutine( "update", $PK );
 	}
 
 	function specialSelect($query ) {
