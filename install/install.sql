@@ -10,6 +10,7 @@ CREATE TABLE users (
 	locale         VARCHAR(8),
 	timezone       VARCHAR(8),
 	password       VARCHAR(255), /* HASHED, DUH */
+	remotepw       VARCHAR(255), /* NOT HASHED! */
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
@@ -24,6 +25,7 @@ INSERT INTO users VALUES (
 	'EN',
 	'-0500',
 	'ae2b1fca515949e5d54fb22b8ed95575',
+	'foo',
 	1234567890,
 	1234567890,
 	FALSE
@@ -60,7 +62,6 @@ CREATE TABLE projects (
 	PRIMARY KEY( pID )
 );
 
-
 INSERT INTO projects VALUES (
 	'',
 	'whube',
@@ -72,6 +73,25 @@ INSERT INTO projects VALUES (
 	FALSE
 );
 
+CREATE TABLE project_members (
+	membershipID   INTEGER NOT NULL AUTO_INCREMENT,
+	projectID      INTEGER NOT NULL,
+	userID         INTEGER NOT NULL,
+	active         BOOL,
+	startstamp     LONG,
+	trampstamp     LONG,
+	PRIMARY KEY( membershipID )
+);
+
+INSERT INTO project_members VALUES (
+	'',
+	'1',
+	'1',
+	1234567890,
+	1234567890,
+	TRUE
+);
+
 CREATE TABLE status (
 	statusID       INTEGER NOT NULL AUTO_INCREMENT, /* PK */
 	status_name    VARCHAR(255),
@@ -81,11 +101,11 @@ CREATE TABLE status (
 
 INSERT INTO status VALUES ( '', 'New',          TRUE  ); /* status 1 ftw */
 INSERT INTO status VALUES ( '', 'Bullcrap',     FALSE );
-INSERT INTO status VALUES ( '', 'Triaged',      FALSE );
+INSERT INTO status VALUES ( '', 'Ass is awaiting a kicking',      FALSE );
 INSERT INTO status VALUES ( '', 'Reproduced',   TRUE  );
 INSERT INTO status VALUES ( '', 'Something to Look at', TRUE );
-INSERT INTO status VALUES ( '', 'In Progress',  TRUE  );
-INSERT INTO status VALUES ( '', 'Fix Commited', FALSE );
+INSERT INTO status VALUES ( '', 'KICKING BUG ASS',  TRUE  );
+INSERT INTO status VALUES ( '', 'Ass kicked', FALSE );
 INSERT INTO status VALUES ( '', 'Fix Released', FALSE );
 
 CREATE TABLE severity (
@@ -119,10 +139,10 @@ CREATE TABLE bugs (
 );
 
 CREATE TABLE cache (
-  cache_id           VARCHAR(25),
-  timestamp          LONG /* DONG */,
-  cached_contents    TEXT,
-  PRIMARY KEY ( cache_id )
+	cache_id           VARCHAR(25),
+	timestamp          LONG /* DONG */,
+	cached_contents    TEXT,
+	PRIMARY KEY ( cache_id )
 );
 
 INSERT INTO cache VALUES ( 'tweeter', '', '' );
