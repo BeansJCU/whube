@@ -269,8 +269,8 @@ a img {
 
 .message {
 	position:             fixed;
-	bottom:               0px;
-	right:                0px;
+	top:                  10px;
+	right:                10px;
 
 	width:                300px;
 	height:               70px;
