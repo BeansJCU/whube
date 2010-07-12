@@ -3,6 +3,7 @@
 useScript( "validate-user.php" );
 useScript( "validate-project.php" );
 useScript( "edit-menu.js" );
+useScript( "uncheck-check.js" );
 
 $b = $BUG_OBJECT;
 $u = $USER_OBJECT;
@@ -138,7 +139,7 @@ $CONTENT .= "</select></td>
 	</tr>
 	<tr>
 		<td>Don't Assign Anyone</td>
-		<td><input type = 'checkbox' value = 'true' name = 'noassign' ";
+		<td><input id = 'noassign' type = 'checkbox' value = 'true' name = 'noassign' ";
 
 
 	if ( isset( $owner['username'] ) ) {
