@@ -13,7 +13,7 @@
 	include( "conf/site.php" );
 	include( "libs/php/globals.php" );
 
-	if ( $ip == $MY_IP ) { // check list
+	if ( requireLocalIP() ) { // check list
 
 		include( "model/bug.php" );
 		include( "model/user.php" );

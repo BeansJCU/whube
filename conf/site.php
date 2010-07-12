@@ -8,7 +8,13 @@
 	// Most of the time you can get away with localhost or 127.0.0.1
 	// but sometimes you might have to tweek me. See how it's used over
 	// in localcallback.php.
-	$MY_IP         =   "127.0.0.1";
+	$MY_IP         =
+
+	array(
+		"127.0.0.1", /* IPv4 */
+		"localhost", /* Internal /etc/hosts */
+		"::1",       /* IPv6 */
+	);
 
 	$DEBUG         =   true;
 

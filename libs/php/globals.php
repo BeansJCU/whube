@@ -66,6 +66,29 @@ function requireLogin() {
 	}
 }
 
+function requireLocalIP() {
+	global $SITE_PREFIX;
+	global $MY_IP;
+
+	$LOCAL = false;
+
+	foreach ( $MY_IP as $KEY ) {
+		if ( $_SERVER['REMOTE_ADDR'] == $KEY ) {
+			$LOCAL = true;
+		}
+	}
+
+	if ( $LOCAL ) {
+		return true;
+	} else {
+		$_SESSION['err'] = "You're not local. Error.";
+		header("Location: " . $SITE_PREFIX . "t/home" );
+		exit(0);
+	}
+
+
+}
+
 function checkBugViewAuth( $bugID, $requester ) {
 
 $b = new bug();
