@@ -133,11 +133,6 @@ foreach ( $severity as $key ) {
 $CONTENT .= "</select></td>
 	</tr>
 	<tr>
-		<td>Owner</td>
-		<td><div id = 'user-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
-		<td><input type = 'text' value = '" . $owner['username'] . "' id = 'user' name = 'owner' size = '20' /></td>
-	</tr>
-	<tr>
 		<td>Don't Assign Anyone</td>
 		<td><input id = 'noassign' type = 'checkbox' value = 'true' name = 'noassign' ";
 
@@ -150,6 +145,11 @@ $CONTENT .= "</select></td>
 
 $CONTENT .= "/></td>
 		<td>Currently Assigned: <div id = 'user-descr' >&nbsp;</div></td>
+	</tr>
+	<tr>
+		<td>Owner</td>
+		<td><div id = 'user-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
+		<td><input type = 'text' value = '" . $owner['username'] . "' id = 'user' name = 'owner' size = '20' /></td>
 	</tr>
 	<tr>
 		<td>Description</td>
