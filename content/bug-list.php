@@ -69,12 +69,14 @@ while ( $row = $b->getNext() ) {
 		}
 	} else {
 		if ( $i < $Count ) {
-		
 			$status   = getStatus(   $row['bug_status']   );
 			$severity = getSeverity( $row['bug_severity'] );
 
 			$statusClass   = "goodthings";
 			$severityClass = "goodthings";
+
+			$overrideOne = False;
+			$overrideTwo = False;
 
 			if ( $status['critical'] ) {
 				$statusClass = "badthings";
@@ -84,20 +86,23 @@ while ( $row = $b->getNext() ) {
 				$severityClass = "badthings";
 			}
 
-			$CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
-				$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
-				"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
-				"</td><td>" . $owner['real_name'] . "</td><td>" .
-				$package['project_name'] .
-				"</td><td>" . $picon  .
-				"</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
-					. $row['bID'] . "' >" . $row['title'] .
-				"</a></td>\n\t</tr>\n";
+
+			if ( $status['critical'] ) {
+				$CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
+					$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
+					"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
+					"</td><td>" . $owner['real_name'] . "</td><td>" .
+					$package['project_name'] .
+					"</td><td>" . $picon  .
+					"</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
+						. $row['bID'] . "' >" . $row['title'] .
+					"</a></td>\n\t</tr>\n";
+			}
+			$i++;
 		} else {
 			break;
 		}
 	}
-	$i++;
 }
 
 $CONTENT .= "

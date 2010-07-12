@@ -99,14 +99,14 @@ CREATE TABLE status (
 	PRIMARY KEY( statusID )
 );
 
-INSERT INTO status VALUES ( '', 'New',          TRUE  ); /* status 1 ftw */
-INSERT INTO status VALUES ( '', 'Bullcrap',     FALSE );
-INSERT INTO status VALUES ( '', 'Ass is awaiting a kicking',      FALSE );
-INSERT INTO status VALUES ( '', 'Reproduced',   TRUE  );
-INSERT INTO status VALUES ( '', 'Something to Look at', TRUE );
-INSERT INTO status VALUES ( '', 'KICKING BUG ASS',  TRUE  );
-INSERT INTO status VALUES ( '', 'Ass kicked', FALSE );
-INSERT INTO status VALUES ( '', 'Fix Released', FALSE );
+INSERT INTO status VALUES ( '', 'New',                       TRUE  ); /* status 1 ftw */
+INSERT INTO status VALUES ( '', 'Bullcrap',                  FALSE );
+INSERT INTO status VALUES ( '', 'Ass is awaiting a kicking', TRUE );
+INSERT INTO status VALUES ( '', 'Reproduced',                TRUE  );
+INSERT INTO status VALUES ( '', 'Something to Look at',      TRUE );
+INSERT INTO status VALUES ( '', 'KICKING BUG ASS',           TRUE  );
+INSERT INTO status VALUES ( '', 'Ass kicked',                FALSE );
+INSERT INTO status VALUES ( '', 'Fix Released',              FALSE );
 
 CREATE TABLE severity (
 	severityID     INTEGER NOT NULL AUTO_INCREMENT, /* PK */
