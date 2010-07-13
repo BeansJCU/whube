@@ -8,14 +8,16 @@
 
 session_start();
 
-include( "conf/site.php" );
-include( "libs/php/globals.php" );
+$app_root = dirname(  __FILE__ ) . "/../../";
+
+include( $app_root . "conf/site.php" );
+include( $app_root . "libs/php/globals.php" );
 
 requireLogin();
 
-include( "model/bug.php" );
-include( "model/user.php" );
-include( "model/project.php" );
+include( $app_root . "model/bug.php" );
+include( $app_root . "model/user.php" );
+include( $app_root . "model/project.php" );
 
 $b = new bug();
 

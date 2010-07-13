@@ -66,7 +66,7 @@ if ( loggedIn() ) {
 			<div class = 'content' >
 <img id = 'edit-close' src = '" . $SITE_PREFIX . "imgs/close.png' alt = 'Close' />
 <h1>Edit this bug: </h1>
-	<form action = '" . $SITE_PREFIX . "bug-callback.php' method = 'post' >
+	<form action = '" . $SITE_PREFIX . ";/bug-callback' method = 'post' >
 		<p><input type = 'hidden' value = '" . $row['bID'] . "' name = 'bID' /></p>
 
 <table>

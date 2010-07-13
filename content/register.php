@@ -3,7 +3,7 @@ useScript('timezone.js');
 $TITLE    = "Register for Whube!";
 $CONTENT  = "
 <h1>So, you want an account, eh?</h1>
-<form action = '" . $SITE_PREFIX . "submit-register.php' method = 'post' >
+<form action = '" . $SITE_PREFIX . "l/submit-register' method = 'post' >
 <table>
 	<tr>
 		<td>Desired Username</td>

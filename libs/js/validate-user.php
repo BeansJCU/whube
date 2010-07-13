@@ -8,7 +8,7 @@ include( $js_root . "../../libs/php/globals.php" );
 
 header( "Content-type: text/javascript" );
 
-$PROJECT_FINDER = $SITE_PREFIX . "validate-user.php";
+$PROJECT_FINDER = $SITE_PREFIX . "libs/php/validate-user.php";
 
 $SCRIPT= <<<EOF
 var userLastPressed = new Date();

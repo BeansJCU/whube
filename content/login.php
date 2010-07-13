@@ -22,7 +22,7 @@ $CONTENT = "
 <script type = 'text/javascript' >
 	$('#remove-me').hide();
 </script>
-<form action = '" . $SITE_PREFIX . "gate.php' method = 'post' >
+<form action = '" . $SITE_PREFIX . "l/gate' method = 'post' >
 <p>
 	<input type = 'hidden' name = 'token' value = '" . $TOKEN . "' />
 	<input type = 'hidden' name = 'pass' />

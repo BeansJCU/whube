@@ -7,9 +7,11 @@
      */
 session_start();
 
-include( "conf/site.php" );
-include( "model/user.php" );
-include( "model/events.php" );
+$app_root        = dirname(  __FILE__ ) . "/../../";
+
+include( $app_root . "conf/site.php" );
+include( $app_root . "model/user.php" );
+include( $app_root . "model/events.php" );
 
 if (
 	isset ( $_POST['username'] ) &&

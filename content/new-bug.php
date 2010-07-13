@@ -14,7 +14,7 @@ $CONTENT .= "
 <br />
 <br />
 <div id = 'images' ></div>
-<form action = '" . $SITE_PREFIX . "submit-bug.php' method = 'post' >
+<form action = '" . $SITE_PREFIX . "l/submit-bug' method = 'post' >
 	<table>
 <tr>
 	<td>What project is giving you crap?</td>

@@ -7,8 +7,10 @@
      */
 session_start();
 
-include( "conf/site.php" );
-include( "libs/php/globals.php" );
+$app_root        = dirname(  __FILE__ ) . "/../../";
+
+include( $app_root . "conf/site.php" );
+include( $app_root . "libs/php/globals.php" );
 
 requireLogin();
 
