@@ -9,6 +9,9 @@ $b = $BUG_OBJECT;
 $u = $USER_OBJECT;
 $p = $PROJECT_OBJECT;
 
+$app_root = dirname( __FILE__ ) . "/../";
+
+include( $app_root . "libs/php/markdown.php" );
 
 $b->getAllByPK( $argv[1] );
 $row = $b->getNext();
@@ -254,9 +257,13 @@ $CONTENT .= "
 
 
 </table>
-<br />
+<br />";
+
+$descr = Markdown( $row['descr'] );
+
+$CONTENT .= "
 <h1>Bug Description</h1>
-<pre>" . $row['descr'] . "</pre>
+" . $descr . "
 ";
 
 } else {
