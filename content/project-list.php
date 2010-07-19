@@ -24,11 +24,32 @@ $CONTENT .= "
 ";
 
 $p = new project();
+$u = new user();
+$b = new bug();
 $p->getAll();
+$u->getAll();
+$b->getAll();
 
 while ( $row = $p->getNext() ) {
+  $p->getAllByPK( $row['pID'] );
+  $u->getAllByPK( $row['uID'] );
+  $project = $p->getNext();  
+  $b->getByCol( 'package', $project['pID'] );
+  $bug = $b->getNext();
+  $u->getByCol( 'uID', $project['owner'] );
+  $user = $u->getNext();
+  
+  $bugCount = $b->numRows();
+    
+  if ( $project['private'] == 1 ) {
+    $private = "Yes";
+  } else {
+    $private = "No";
+  }
 
-
+  $CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "'\" ><td>" .
+  $project['project_name'] . "</td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
+  \n\t</tr>\n";
 	$i++;
 }
 
