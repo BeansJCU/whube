@@ -26,6 +26,7 @@ $CONTENT .= "
 $p = new project();
 $u = new user();
 $b = new bug();
+
 $p->getAll();
 $u->getAll();
 $b->getAll();
@@ -34,13 +35,20 @@ while ( $row = $p->getNext() ) {
   $p->getAllByPK( $row['pID'] );
   $u->getAllByPK( $row['uID'] );
   $project = $p->getNext();  
-  $b->getByCol( 'package', $project['pID'] );
-  $bug = $b->getNext();
   $u->getByCol( 'uID', $project['owner'] );
   $user = $u->getNext();
   
-  $bugCount = $b->numRows();
-    
+  $bugs = $b->numRows();
+  $bugCount = 0;
+  $i = 0;
+  
+  while ( $i < $bugs ) {
+    $bug = $b->getNext();   
+    if ( $bug['bug_status'] != 8 ) $bugCount++;
+    $i++;
+  }
+  
+  
   if ( $project['private'] == 1 ) {
     $private = "Yes";
   } else {
