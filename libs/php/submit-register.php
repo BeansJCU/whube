@@ -19,7 +19,7 @@ if (
 	isset ( $_POST['email']	) &&
 	isset ( $_POST['pass1']	)
 ) {
-	include( "model/register.php" );
+	include( $app_root . "model/register.php" );
 	
 	$r = new register();
 	$u = new user();
