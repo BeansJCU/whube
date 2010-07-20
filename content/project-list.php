@@ -50,7 +50,7 @@ while ( $row = $p->getNext() ) {
   
   
   if ( $project['private'] == 1 ) {
-    $private = "Yes";
+    $private = "Yep";
   } else {
     $private = "No";
   }

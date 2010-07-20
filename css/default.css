@@ -43,6 +43,7 @@ table {
 
 tr {
 	width:                100%;
+	cursor:               pointer;
 }
 
 .highlight {
