@@ -19,10 +19,9 @@ if (
 	isset ( $_POST['email']	) &&
 	isset ( $_POST['pass1']	)
 ) {
-	include( $app_root . "model/register.php" );
 	
-	$r = new register();
-	$u = new user();
+	$r = $USER_OBJECT;
+	$u = $USER_OBJECT;
 
 	// let's first verify email and password
 
