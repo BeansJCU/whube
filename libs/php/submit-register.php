@@ -9,6 +9,7 @@ session_start();
 
 $app_root        = dirname(  __FILE__ ) . "/../../";
 
+include( $app_root . "libs/php/globals.php" );
 include( $app_root . "conf/site.php" );
 include( $app_root . "model/user.php" );
 include( $app_root . "model/events.php" );
