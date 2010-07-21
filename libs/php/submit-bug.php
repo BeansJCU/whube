@@ -45,6 +45,49 @@ isset ( $_POST['descr']   )
 "descr"    => $descr
 			);
 			$id = $b->createNew( $fields );
+
+$person_queue = array();
+
+$USER_OBJECT->getAllByPK( $project['oID'] );
+$manager = $USER_OBJECT->getNext();
+
+$person_queue['reporter'] = $_SESSION['id'];
+$person_queue['manager']  = $manager['uID'];
+
+
+foreach( $person_queue as $key => $value ) {
+
+if ( $BUILTIN_EMAIL_ENABLE ) {
+
+	$USER_OBJECT->getAllByPK($value);
+	$person = $USER_OBJECT->getNext();
+
+	if ( isset ( $person['uID'] ) ) {
+
+$message =
+
+"Shalom, " . $person['real_name'] . "
+
+Someone just reported a bug against " . $project['project_name'] . "[1].
+This bug ( " . $fields['title'] . " ) will from henceforth be known as #" . $id . "[2].
+
+== Details below this point ==
+
+" . $fields['descr'] . "
+
+== Links below this point ==
+
+[1]: " . $SITE_PREFIX . "t/project/" . $project['project_name'] . "
+[2]: " . $SITE_PREFIX . "t/bug/" . $id . "
+
+" . $BUILTIN_EMAIL_SIG;
+
+$title = "New bug ( " . $fields['title'] . " ) against project " . $project['project_name'] . " ( bug #" . $id . " )";
+		 	   sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], $title, $message );
+			}
+	}
+}
+
 			$_SESSION['msg'] = "New bug created!";
 			header("Location: $SITE_PREFIX" . "t/bug/$id");
 			exit(0);
