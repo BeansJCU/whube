@@ -9,6 +9,22 @@
 	$PIWIK           = false;    // Piwik stats.  Check conf/piwik.php
 	$PAGE_MAX_COUNT  = 200;      // max bugs / projects per page.
 
+    $BUILTIN_EMAIL_SIG     =
+"
+
+--
+
+If you feel that you got this message in error, please
+both accept our deepest apologies, then look into a mirror
+and repeat after me:
+
+ \"I am an important and fantastic person.\"
+ \"I am just as creative as the person this email was meant for.\"
+ \"Life is good today.\"
+
+Send complaints to " . $SITE_PREFIX . ". Thanks!
+";
+
 	array_push( $SCRIPT, "jQuery.js");  // duh
 	array_push( $SCRIPT, "effects.js"); // fade out messages etc.
 ?>

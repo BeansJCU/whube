@@ -17,6 +17,9 @@
 	);
 
 	$DEBUG         =   true;
+	
+    $BUILTIN_EMAIL_ENABLE  =   true;
+    $BUILTIN_EMAIL_ADDR    =   "bugs@whube.com";
 
 	include( dirname(__FILE__) . "/add-salt.php" ); // add salt to taste
 ?>

@@ -22,6 +22,11 @@ function useScript( $id ) {
 	}
 }
 
+function sendEmail( $from, $to, $subject, $message ) {
+    $headers = 'From: ' . $from . "\r\n";
+    mail($ADMIN_EMAIL, $subject, $message, $headers);
+}
+
 function clean( $ret ) {
 	if ( isset( $ret ) ) {
 		return htmlentities( $ret, ENT_QUOTES);

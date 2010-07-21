@@ -70,7 +70,27 @@ if (
 			"timezone"  => $_POST['timezone'],
 			"password"  => md5($_POST['pass1']) // too plain, not enough salt. :(
 		);
-		$newuser = $r->createNew( $fields );	  
+		$newuser = $r->createNew( $fields );
+		
+		if ( $BUILTIN_EMAIL_ENABLE ) {
+
+$message =
+
+"Hey there!
+
+Welcome to Whube, " . $fields['realname'] . "!
+
+You're a fantastic person, and this email is to just
+to assure you that the administrators over at " . $SITE_PREFIX . "
+love you very much.
+
+Thanks for wanting to help out, and welcome to the community!
+
+" . $BUILTIN_EMAIL_SIG;
+		    sendMail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
+		}
+		
+		
 		$_SESSION['msg'] = "There you go, now you just need to log in ;D";
 		header("Location: $SITE_PREFIX" . "t/login");
 		exit(0);

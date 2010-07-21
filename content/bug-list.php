@@ -12,7 +12,7 @@ if ( isset( $argv[2] ) ) {
 }
 
 
-$b = new bug();
+$b = $BUG_OBJECT;
 $b->getAll();
 
 $u = new user();
