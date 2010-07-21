@@ -37,7 +37,7 @@ There are " . $booboos . " bugs in the tracker on this package (" . $bugCount . 
         $CONTENT .= "<h1>Version Control Details</h1>\n";
 
         $CONTENT .= "This project uses <b>" . $VCS_TYPE . "</b>.<br /><br />\n";
-        $CONTENT .= "Feel free to checkout the project with the command: <a href = '" . $VCS_SITE_PREFIX . $row['project_name'] . $VCS_SITE_POSTFIX . "' ><span class = 'code-snip' >" . $VCS_CHECKOUT_CMD . " " . $VCS_CHECKOUT_PATH . "</span></a><br />";
+        $CONTENT .= "Feel free to checkout the project with the command: <a href = '" . $VCS_SITE_PREFIX . $row['project_name'] . $VCS_SITE_POSTFIX . "' ><span class = 'code-snip' >" . $VCS_CHECKOUT_CMD . " " . $VCS_CHECKOUT_PATH . $row['project_name'] . $VCS_SITE_POSTFIX . "</span></a><br />";
         $CONTENT .= "";
     }  
 
