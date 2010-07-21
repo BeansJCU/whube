@@ -71,6 +71,9 @@ $message =
 Someone just reported a bug against " . $project['project_name'] . "[1].
 This bug ( " . $fields['title'] . " ) will from henceforth be known as #" . $id . "[2].
 
+
+You're recieving this bug because you are a " . $key . " on this project.
+
 == Details below this point ==
 
 " . $fields['descr'] . "
