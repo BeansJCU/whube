@@ -79,7 +79,7 @@ $message =
 
 "Hey there!
 
-Welcome to Whube, " . $fields['realname'] . "!
+Welcome to Whube, " . $fields['real_name'] . "!
 
 You're a fantastic person, and this email is to just
 to assure you that the administrators over at " . $SITE_PREFIX . "
