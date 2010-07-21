@@ -48,7 +48,7 @@ isset ( $_POST['descr']   )
 
 $person_queue = array();
 
-$USER_OBJECT->getAllByPK( $project['oID'] );
+$USER_OBJECT->getAllByPK( $project['owner'] );
 $manager = $USER_OBJECT->getNext();
 
 $person_queue['reporter'] = $_SESSION['id'];
@@ -72,7 +72,7 @@ Someone just reported a bug against " . $project['project_name'] . "[1].
 This bug ( " . $fields['title'] . " ) will from henceforth be known as #" . $id . "[2].
 
 
-You're recieving this bug because you are a " . $key . " on this project.
+You're recieving this bug because you are a " . $key . " on this bug.
 
 == Details below this point ==
 
