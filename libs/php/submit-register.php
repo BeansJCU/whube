@@ -87,7 +87,7 @@ love you very much.
 Thanks for wanting to help out, and welcome to the community!
 
 " . $BUILTIN_EMAIL_SIG;
-		    sendMail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
+		    sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
 		}
 		
 		
