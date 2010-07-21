@@ -51,11 +51,11 @@ $person_queue = array();
 $USER_OBJECT->getAllByPK( $project['owner'] );
 $manager = $USER_OBJECT->getNext();
 
-$person_queue['reporter'] = $_SESSION['id'];
-$person_queue['manager']  = $manager['uID'];
+$person_queue[$_SESSION['id']]  = 'reporter';
+$person_queue[$manager['uID']]  = 'manager';
 
 
-foreach( $person_queue as $key => $value ) {
+foreach( $person_queue as $value => $key ) {
 
 if ( $BUILTIN_EMAIL_ENABLE ) {
 
