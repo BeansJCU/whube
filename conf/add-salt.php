@@ -11,6 +11,9 @@
 
     $BUILTIN_EMAIL_SIG     =
 "
+Thanks!
+Whube Admins
+
 
 --
 
