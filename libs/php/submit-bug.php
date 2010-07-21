@@ -19,9 +19,9 @@ isset ( $_POST['project'] ) &&
 isset ( $_POST['title']   ) &&
 isset ( $_POST['descr']   )
 	) {
-		include( "model/user.php" );
-		include( "model/project.php" );
-		include( "model/bug.php" );
+		include( $app_root . "model/user.php" );
+		include( $app_root . "model/project.php" );
+		include( $app_root . "model/bug.php" );
 
 		$b = new bug();
 		$u = new user();
