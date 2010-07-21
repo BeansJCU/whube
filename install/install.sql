@@ -138,6 +138,28 @@ CREATE TABLE bugs (
 	PRIMARY KEY ( bID )
 );
 
+CREATE TABLE comment_classes (
+    cClassID       INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+    cClassAlias    VARCHAR(255),
+    cClassTable    VARCHAR(255),
+	startstamp     LONG,
+	trampstamp     LONG,
+	private        BOOL DEFAULT FALSE,
+    PRIMARY_KEY(cClassID)
+);
+
+CREATE TABLE comments (
+    cID            INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+    cClass         INTEGER NOT NULL, /* FK, comment_classes */
+    cClassID       INTEGER NOT NULL, /* FK, whatever table */
+    cOwner         INTEGER NOT NULL, /* FK, users */
+    cText          TEXT,
+	startstamp     LONG,
+	trampstamp     LONG,
+	private        BOOL DEFAULT FALSE,
+    PRIMARY_KEY(cClassID)    
+);
+
 CREATE TABLE cache (
 	cache_id           VARCHAR(25),
 	timestamp          LONG /* DONG */,
