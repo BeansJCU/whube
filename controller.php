@@ -16,6 +16,8 @@ $app_root        = dirname(  __FILE__ ) . "/";
 $controller      = basename( __FILE__ );
 
 include( $app_root . "conf/site.php" );
+include( $app_root . "conf/vcs.php" );
+
 include( $app_root . "libs/php/globals.php" );
 include( $app_root . "libs/php/easter.php" );
 include( $app_root . "libs/php/core.php" );
