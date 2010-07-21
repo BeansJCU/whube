@@ -83,7 +83,7 @@ This bug ( " . $fields['title'] . " ) will from henceforth be known as #" . $id 
 " . $BUILTIN_EMAIL_SIG;
 
 $title = "New bug ( " . $fields['title'] . " ) against project " . $project['project_name'] . " ( bug #" . $id . " )";
-		 	   sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], $title, $message );
+		 	   sendEmail( $BUILTIN_EMAIL_ADDR, $person['email'], $title, $message );
 			}
 	}
 }
