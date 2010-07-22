@@ -12,12 +12,12 @@ $app_root = dirname(  __FILE__ ) . "/../../";
 
 include( $app_root . "conf/site.php" );
 include( $app_root . "libs/php/globals.php" );
+include( $app_root . "libs/php/core.php" );
 include( $app_root . "model/user.php" );
 include( $app_root . "model/project.php" );
 include( $app_root . "model/bug.php" );
 
 // requireLocalIP();// external
-
 
 $hooks = array();
 
@@ -50,6 +50,10 @@ if ( isset ( $argv[0] ) && $argv[0] != "" ) {
 		$d = $hooks[$argv[0]]($argv);
 	}
 }
+
+
+$d['apiv']             = $API_VERSION;
+$d['api_major_number'] = $API_COMPATV;
 
 echo json_encode( $d );
 

@@ -11,6 +11,9 @@
 $VERSION         = "3.14";
 $VERSION_STRING  = "v$VERSION";
 
+$API_COMPATV     = 0x1;
+$API_VERSION     = 0x3;
+
 $WHUBE_PROJECT_LEAD   =  "Paul Tagliamonte";
 $WHUBE_PROJECT_URL    =  "http://whube.com/";
 
