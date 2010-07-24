@@ -23,9 +23,9 @@ isset ( $_POST['descr']   )
 		include( $app_root . "model/project.php" );
 		include( $app_root . "model/bug.php" );
 
-		$b = new bug();
-		$u = new user();
-		$p = new project();
+		$b = $BUG_OBJECT;
+		$u = $USER_OBJECT;
+		$p = $PROJECT_OBJECT;
 
 		// let's first verify the project.
 

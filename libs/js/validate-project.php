@@ -9,6 +9,15 @@ include( $js_root . "../../libs/php/globals.php" );
 header( "Content-type: text/javascript" );
 
 $PROJECT_FINDER = $SITE_PREFIX . "libs/php/validate-project.php";
+$REF = $_GET['r'];
+
+$posRef = strpos ( $REF, 'new-project' );
+if ( $posRef !== false ) {
+	$success = 'false';
+} else {
+	$success = 'true';
+}
+
 
 $SCRIPT= <<<EOF
 var projectLastPressed = new Date();
@@ -35,24 +44,24 @@ function projectValidate() {
 	$.getJSON("$PROJECT_FINDER?p=" + tex,function(data){
 EOF;
 
-$SCRIPT .= "
-		if ( data.success ) {
-			$('#project-ok').html('<img src = \"" . $SITE_PREFIX . "imgs/ok.png\" alt = \"\" />');
-			$('#project').removeClass(\"meh\");
-			$('#project').removeClass(\"shit\");
-			$('#project').addClass(\"ok\");
-			$('#project-descr').html( data.descr );
-		} else {
-			$('#project-ok').html('<img src = \"" . $SITE_PREFIX . "imgs/no.png\" alt = \"\" />');
-			$('#project').removeClass(\"ok\");
-			$('#project').removeClass(\"meh\");
-			$('#project').addClass(\"shit\");
-			if ( data.bestmatch ) {
-				$('#project-descr').html( \"Did you mean: \" + data.bestmatch + \"?\" );
+$SCRIPT .= " 
+			if ( data.success == " . $success . " ) {
+				$('#project-ok').html('<img src = \"" . $SITE_PREFIX . "imgs/ok.png\" alt = \"\" />');
+				$('#project').removeClass(\"meh\");
+				$('#project').removeClass(\"shit\");
+				$('#project').addClass(\"ok\");
+				$('#project-descr').html( data.descr );
 			} else {
-				$('#project-descr').html( \"I have no goddamn clue what you are talking about.\" );
+				$('#project-ok').html('<img src = \"" . $SITE_PREFIX . "imgs/no.png\" alt = \"\" />');
+				$('#project').removeClass(\"ok\");
+				$('#project').removeClass(\"meh\");
+				$('#project').addClass(\"shit\");
+				if ( data.bestmatch ) {
+					$('#project-descr').html( \"Did you mean: \" + data.bestmatch + \"?\" );
+				} else {
+					$('#project-descr').html( \"I have no goddamn clue what you are talking about.\" );
+				}
 			}
-		}
 	});
 }
 $(window).load( function() {

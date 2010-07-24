@@ -17,7 +17,10 @@ $JS_ROOT = $php_root . "../js/";
 
 function useScript( $id ) {
 	global $SCRIPT, $JS_ROOT;
-	if ( file_exists( $JS_ROOT . $id ) ) {
+	if ( strpos ( $id , '?' ) ) {
+		$explodey = explode ( '?', $id );
+	}
+	if ( file_exists( $JS_ROOT . $explodey[0] ) ) {
 		array_push( $SCRIPT, $id );
 	}
 }

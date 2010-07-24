@@ -1,7 +1,7 @@
 <?php
     /*
      *  License:     AGPLv3
-     *  Author:      Tenach M. <tenach@whube.com>
+     *  Author:      Thomas Martin <tenach@whube.com>
      *  Description:
      *    This is where you POST a new registration
      */

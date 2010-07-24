@@ -9,7 +9,7 @@
 
 requireLogin();
 
-useScript( "validate-project.php" );
+useScript( "validate-project.php?r=new-project" );
 
 preload( 32, 32, "no.png" );
 preload( 32, 32, "yes.png" );
