@@ -56,29 +56,30 @@ if (
 		
 		if ( $BUILTIN_EMAIL_ENABLE ) {
 
-$message =
+$message = '';
+
 
 "Hey there!
 
-Welcome to Whube, " . $fields['real_name'] . "!
+Thanks for registering " . $fields['project_name'] . "!
 
 You're a fantastic person, and this email is to just
 to assure you that the administrators over at " . $SITE_PREFIX . "
-love you very much.
+love you and your contributions very much.
 
-Thanks for wanting to help out, and welcome to the community!
+Thanks for feeding another project to the wolves!
 
-" . $BUILTIN_EMAIL_SIG;
-		    sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
+" . $BUILTIN_EMAIL_SIG; // Temporarily disabled below.
+		    //sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
 		}
 		
 		
-		$_SESSION['msg'] = "There you go, now you just need to log in ;D";
-		header("Location: $SITE_PREFIX" . "t/login");
+		$_SESSION['msg'] = "All registered! Don'tcha feel like a big kid now?";
+		header("Location: $SITE_PREFIX" . "t/project-list");
 		exit(0);
 	} else {
 		$_SESSION['err'] = "Please fill in all the forms!";
-		header("Location: $SITE_PREFIX" . "t/register");
+		header("Location: $SITE_PREFIX" . "t/new-project");
 		exit(0);
 	}
 }
