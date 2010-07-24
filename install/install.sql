@@ -145,7 +145,7 @@ CREATE TABLE comment_classes (
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
-    PRIMARY_KEY(cClassID)
+    PRIMARY KEY(cClassID)
 );
 
 CREATE TABLE comments (
@@ -157,7 +157,7 @@ CREATE TABLE comments (
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
-    PRIMARY_KEY(cClassID)    
+    PRIMARY KEY (cID)    
 );
 
 CREATE TABLE cache (
