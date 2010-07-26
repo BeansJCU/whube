@@ -64,11 +64,11 @@ if (
 	if( $vuser == TRUE ) {
 		$locale = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 		$fields = array(
-			"real_name" => $_POST['realname'],
-			"username"  => $_POST['username'],
-			"email"	 => $_POST['email'],
-			"locale"	=> $locale[1],
-			"timezone"  => $_POST['timezone'],
+			"real_name" => clean($_POST['realname']),
+			"username"  => clean($_POST['username']),
+			"email"     => clean($_POST['email']),
+			"locale"    => clean($locale[1]),
+			"timezone"  => clean($_POST['timezone']),
 			"password"  => md5($_POST['pass1']) // too plain, not enough salt. :(
 		);
 		$newuser = $r->createNew( $fields );
