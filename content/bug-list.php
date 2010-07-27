@@ -15,8 +15,8 @@ if ( isset( $argv[2] ) ) {
 $b = $BUG_OBJECT;
 $b->getAll();
 
-$u = new user();
-$p = new project();
+$u = $BUG_OBJECT;
+$p = $PROJECT_OBJECT;
 
 $TITLE = "Latest $Count bugs";
 
@@ -88,7 +88,7 @@ while ( $row = $b->getNext() ) {
 
 
 			if ( $status['critical'] ) {
-				$CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
+				$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
 					$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
 					"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
 					"</td><td>" . $owner['real_name'] . "</td><td>" .

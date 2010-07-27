@@ -12,8 +12,6 @@ if ( isset( $argv[2] ) ) {
 
 $TITLE = "Latest $Count projects";
 
-$i = 0;
-
 $CONTENT .= "<h1>Last $Count projects created</h1>";
 
 $CONTENT .= "
@@ -23,25 +21,31 @@ $CONTENT .= "
 	</tr>
 ";
 
-$p = new project();
-$u = new user();
-$b = new bug();
+$p = $PROJECT_OBJECT;
+$u = $USER_OBJECT;
+$b = $BUG_OBJECT;
 
 $p->getAll();
 $u->getAll();
 $b->getAll();
 
-while ( $row = $p->getNext() ) {
+$s = 0;
+
+$projects = $p->getAllProjects();
+$pCount = count($projects);
+
+while ( $s < $pCount ) {
+	$row = $projects[$s];
   $p->getAllByPK( $row['pID'] );
-  $u->getAllByPK( $row['uID'] );
-  $project = $p->getNext();  
-  $u->getByCol( 'uID', $project['owner'] );
+  $u->getAllByPK( $row['owner'] );
+
+  $u->getByCol( 'uID', $row['owner'] );
   $user = $u->getNext();
   
   $bugs = $b->numRows();
+
   $bugCount = 0;
   $i = 0;
-  
   while ( $i < $bugs ) {
     $bug = $b->getNext();   
     if ( $bug['bug_status'] != 8 ) $bugCount++;
@@ -49,16 +53,16 @@ while ( $row = $p->getNext() ) {
   }
   
   
-  if ( $project['private'] == 1 ) {
+  if ( $row['private'] == 1 ) {
     $private = "Yep";
   } else {
     $private = "No";
   }
 
-  $CONTENT .= "\t<tr onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "'\" ><td>" .
-  $project['project_name'] . "</td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
+  $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $row['project_name'] . "'\" ><td>" .
+  $row['project_name'] . "</td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
   \n\t</tr>\n";
-	$i++;
+	$s++;
 }
 
 $CONTENT .= "
