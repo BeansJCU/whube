@@ -16,8 +16,8 @@ include( $app_root . "model/project.php" );
 include( $app_root . "model/events.php" );
 
 if (
-	isset ( $_POST['project-name'] ) &&
-	isset ( $_POST['descr'] )
+	isset ( $_POST['newProject'] ) &&
+	isset ( $_POST['projDescr'] )
 ) {
 
 	$r = $PROJECT_OBJECT;
@@ -25,16 +25,19 @@ if (
 	
 	// Let's verify!
 
-	$pname	= htmlentities( $_POST['project-name'], ENT_QUOTES);
-	$descr  = htmlentities( $_POST['descr'], ENT_QUOTES);
+	$pname	= htmlentities( $_POST['newProject'], ENT_QUOTES);
+	$descr  = htmlentities( $_POST['projDescr'], ENT_QUOTES);
 	
+	$r->getByCol( "project_name", $argv[1] );
+	//$project = $r->getNext();
+	$projects = $r->getAllProjects();
 
 	$i=0;
-	$numProjects = count( $pname );
+	$numProjects = count( $projects );
 
 	$vproj = FALSE;
 	foreach( $projects as $project ) {
-		if( $_POST['project-name'] == $project['project_name'] ) {
+		if( $_POST['newProject'] == $project['project_name'] ) {
 			$_SESSION['err'] = "Hey hey, whaddya trying to pull? That project's already registered. :|";
 			header("Location: $SITE_PREFIX" . "t/new-project");
 		} else {
@@ -42,12 +45,12 @@ if (
 		}
 	}
 	
-	if( $vuser == TRUE ) {
+	if( $vproj == TRUE ) {
 		$locale = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 		$fields = array(
-			"project_name" => $_POST['project-name'],
-			"descr"  => $_POST['descr'],
-			"owner"	 => $_SESSION['id'],
+			"project_name" => clean($_POST['newProject']),
+			"descr"  => clean($_POST['projDescr']),
+			"owner"	 => clean($_SESSION['id']),
 			"active"	=> '1',
 			"startstamp"  => time(),
 			"trampstamp"  => time()
@@ -78,7 +81,7 @@ Thanks for feeding another project to the wolves!
 		header("Location: $SITE_PREFIX" . "t/project-list");
 		exit(0);
 	} else {
-		$_SESSION['err'] = "Please fill in all the forms!";
+		$_SESSION['err'] = "Please fill in all the fields!";
 		header("Location: $SITE_PREFIX" . "t/new-project");
 		exit(0);
 	}

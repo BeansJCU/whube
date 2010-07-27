@@ -9,7 +9,7 @@
 
 requireLogin();
 
-useScript( "validate-project.php?r=new-project" );
+useScript( "validate-project.php" );
 
 preload( 32, 32, "no.png" );
 preload( 32, 32, "yes.png" );
@@ -26,7 +26,7 @@ $CONTENT .= "
 <tr>
 	<td>What's the project called?</td>
 	<td><div id = 'project-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
-	<td><input type = 'text' id = 'project' name = 'project' size = '20' /></td>
+	<td><input type = 'text' id = 'project' name = 'newProject' size = '20' /></td>
 </tr>
 <tr>
 	<td></td>
@@ -36,7 +36,7 @@ $CONTENT .= "
 <tr>
 	<td>And a nice description</td>
 	<td></td>
-	<td><textarea rows = '20' cols = '50' name = 'descr' ></textarea></td>
+	<td><textarea rows = '20' cols = '50' name = 'projDescr' ></textarea></td>
 </tr>
 <tr>
 	<td></td>

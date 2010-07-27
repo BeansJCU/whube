@@ -39,10 +39,10 @@ isset ( $_POST['descr']   )
 
 		if ( $project != NULL && $project['pID'] > 0 ) {
 			$fields = array(
-"package"  => $project['pID'],
-"reporter" => $_SESSION['id'],
-"title"    => $title,
-"descr"    => $descr
+"package"  => clean($project['pID']),
+"reporter" => clean($_SESSION['id']),
+"title"    => clean($title),
+"descr"    => clean($descr)
 			);
 			$id = $b->createNew( $fields );
 
