@@ -36,6 +36,12 @@ if ($handle = opendir( $app_root . "model/" )) {
 
 header( "Wisdom-Turd: " . getQuip() );
 
+if ( file_exists( $app_root . "install/install.php" ) ) {
+	include( $app_root . "install/install.php" );
+	include( $app_root . "view/view.php" );
+	exit(0);
+}
+
 $p = htmlentities( $_GET['p'], ENT_QUOTES);
 $toks = explode( "/", $p );
 

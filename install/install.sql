@@ -10,7 +10,7 @@ CREATE TABLE users (
 	locale         VARCHAR(8),
 	timezone       VARCHAR(8),
 	password       VARCHAR(255), /* HASHED, DUH */
-	remotepw       VARCHAR(255), /* NOT HASHED! */
+	remotepw       VARCHAR(255), /* NOT HASHED! USED FOR INSECURE AUTH */
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
@@ -139,25 +139,25 @@ CREATE TABLE bugs (
 );
 
 CREATE TABLE comment_classes (
-    cClassID       INTEGER NOT NULL AUTO_INCREMENT, /* PK */
-    cClassAlias    VARCHAR(255),
-    cClassTable    VARCHAR(255),
+	cClassID       INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+	cClassAlias    VARCHAR(255),
+	cClassTable    VARCHAR(255),
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
-    PRIMARY KEY(cClassID)
+	PRIMARY KEY(cClassID)
 );
 
 CREATE TABLE comments (
-    cID            INTEGER NOT NULL AUTO_INCREMENT, /* PK */
-    cClass         INTEGER NOT NULL, /* FK, comment_classes */
-    cClassID       INTEGER NOT NULL, /* FK, whatever table */
-    cOwner         INTEGER NOT NULL, /* FK, users */
-    cText          TEXT,
+	cID            INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+	cClass         INTEGER NOT NULL, /* FK, comment_classes */
+	cClassID       INTEGER NOT NULL, /* FK, whatever table */
+	cOwner         INTEGER NOT NULL, /* FK, users */
+	cText          TEXT,
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
-    PRIMARY KEY (cID)    
+	PRIMARY KEY (cID)    
 );
 
 CREATE TABLE cache (

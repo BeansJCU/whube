@@ -62,6 +62,25 @@ tr {
 	width:                100%;
 }
 
+.nametag {
+	background-image:     url(../imgs/nametag.png);
+	width:                480px;
+	height:               315px;
+	text-align:           center;
+}
+
+.nametagfont {
+	padding-top:          160px;
+	padding-left:         10px;
+}
+
+.nametagfont input {
+	background-color:     #FFFFFF;
+	border:               0px solid #000000;
+	font-size:            50px;
+	border-bottom:        1px solid #000000;
+}
+
 .nobg {
 	background-image:     none;
 }
