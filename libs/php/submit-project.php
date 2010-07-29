@@ -72,11 +72,10 @@ love you and your contributions very much.
 
 Thanks for feeding another project to the wolves!
 
-" . $BUILTIN_EMAIL_SIG; // Temporarily disabled below.
-		    //sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
+" . $BUILTIN_EMAIL_SIG;
+		    sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
 		}
-		
-		
+
 		$_SESSION['msg'] = "All registered! Don'tcha feel like a big kid now?";
 		header("Location: $SITE_PREFIX" . "t/project-list");
 		exit(0);
