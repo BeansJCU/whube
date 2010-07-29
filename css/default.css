@@ -70,15 +70,16 @@ tr {
 }
 
 .nametagfont {
-	padding-top:          160px;
+	padding-top:          120px;
 	padding-left:         10px;
+	font-size:            20px;
 }
 
 .nametagfont input {
 	background-color:     #FFFFFF;
 	border:               0px solid #000000;
-	font-size:            50px;
 	border-bottom:        1px solid #000000;
+	font-size:            20px;
 }
 
 .nobg {
