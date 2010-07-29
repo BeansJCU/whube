@@ -18,8 +18,20 @@ class project extends dbobj {
 	function project() {
 		dbobj::dbobj("projects", "pID");
 	}
+	
+	function getAllProjects() {
+		global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "projects;" );
+		$ret = array();
+		while ( $row = $sql->getNextRow() ) {
+			array_push( $ret, $row );
+		}
+		return $ret;
+	}
 }
 }
+
 
 $PROJECT_OBJECT = new project();
 
