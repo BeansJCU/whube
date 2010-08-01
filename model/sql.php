@@ -1,10 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
-     *  Description:
-     *    MySQL interface class.
-     */
+/**
+ * SQL class file, All SQL model work lies herein
+ * 
+ * Super awesome SQL interface class
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 
 if ( ! class_exists ( "sql" ) ) {
 class sql {

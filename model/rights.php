@@ -1,10 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
-     *  Description:
-     *    User rights
-     */
+/**
+ * rights class file, All rights model work lies herein
+ * 
+ * Base rights class to do bug CRUD work.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 
 if ( ! class_exists ( "rights" ) ) {
 

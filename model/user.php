@@ -1,11 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
-     *  Description:
-     *    uzer class
-     */
-
+/**
+ * User class stuff, all the user class model stuff.
+ * 
+ * User class to do CRUD work.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 if ( ! class_exists ( "user" ) ) {
 
 if ( ! class_exists( "dbobj" ) ) {

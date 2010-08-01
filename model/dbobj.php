@@ -1,11 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
-     *  Description:
-     *    DB OBJ class
-     */
-
+/**
+ * Database Object stuff, handles all database mapping.
+ * 
+ * Base database interface class
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 if ( ! class_exists ( "dbobj" ) ) {
 
 $model_root = dirname(  __FILE__ ) . "/";

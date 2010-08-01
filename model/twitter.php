@@ -1,12 +1,14 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
-     *  Author:      Thomas Martin <tenach@whube.com>
-     *  Description:
-     *    Twitter Module
-     */
-
+/**
+ * Twitter class module, handles interface to twitter servers
+ * 
+ * Twitter class to do twitter babymaking.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @author   Thomas Martin <tenach@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
+ 
 if ( ! class_exists( "cacheobj" ) ) {
   // last ditch...
   $model_root = dirname(  __FILE__ ) . "/";
