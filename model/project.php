@@ -1,10 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
-     *  Description:
-     *    project class
-     */
+/**
+ * project class file, All project model work lies herein
+ * 
+ * Base project class to do bug CRUD work.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 
 if ( ! class_exists ( "project" ) ) {
 

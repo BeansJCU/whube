@@ -1,11 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
-     *  Description:
-     *    DB OBJ class
-     */
-
+/**
+ * Event model stuff, handles plugin push updating
+ * 
+ * Event class to update remote plugins.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 if ( ! class_exists ( "events" ) ) {
 
 class events {

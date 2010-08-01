@@ -1,10 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Thomas Martin <tenach@whube.com>
-     *  Description:
-     *    Cache OBJ class
-     */
+/**
+ * Cache class file, to handle the caching of remote data
+ * 
+ * Base cache superclass to do the cache babymaking.
+ * @author   Thomas Martin <tenach@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 
 if ( ! class_exists ( "cacheobj" ) ) {
 

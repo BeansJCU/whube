@@ -1,10 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@ubuntu.com>
-     *  Description:
-     *   bug class
-     */
+/**
+ * Bug class file, All bug model work lies herein
+ * 
+ * Base bug class to do bug CRUD work.
+ * @author   Paul Tagliamonte <paultag@whube.com>
+ * @version  1.0
+ * @license: AGPLv3
+ */
 
 if ( ! class_exists ( "bug" ) ) {
 

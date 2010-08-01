@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/97/trunk/doc/template
+END
+head.html
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/97/trunk/doc/template/head.html
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/97/trunk/doc/template/style.css
+END
+foot.html
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/97/trunk/doc/template/foot.html
+END
