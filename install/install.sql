@@ -17,20 +17,6 @@ CREATE TABLE users (
 	PRIMARY KEY( uID )
 );
 
-INSERT INTO users VALUES (
-	'',
-	'Paul Tagliamonte',
-	'paultag',
-	'paultag@gmail.com',
-	'EN',
-	'-0500',
-	'ae2b1fca515949e5d54fb22b8ed95575',
-	'foo',
-	1234567890,
-	1234567890,
-	FALSE
-);
-
 CREATE TABLE user_rights ( 
 	userID         INTEGER NOT NULL, /* FK, users */
 	admin          BOOL,
@@ -39,15 +25,6 @@ CREATE TABLE user_rights (
 	member         BOOL,
 	banned         BOOL,
 	PRIMARY KEY( userID )
-);
-
-INSERT INTO user_rights VALUES (
-	'1',
-	TRUE, /* ADMIN */
-	TRUE, /* STAFF */
-	TRUE, /* DONER */
-	TRUE, /* MEMBR */
-	FALSE /* BANNED */
 );
 
 CREATE TABLE projects ( 
@@ -62,17 +39,6 @@ CREATE TABLE projects (
 	PRIMARY KEY( pID )
 );
 
-INSERT INTO projects VALUES (
-	'',
-	'whube',
-	'Whube is this project right here!',
-	1,
-	TRUE,
-	1234567890,
-	1234567890,
-	FALSE
-);
-
 CREATE TABLE project_members (
 	membershipID   INTEGER NOT NULL AUTO_INCREMENT,
 	projectID      INTEGER NOT NULL,
@@ -81,15 +47,6 @@ CREATE TABLE project_members (
 	startstamp     LONG,
 	trampstamp     LONG,
 	PRIMARY KEY( membershipID )
-);
-
-INSERT INTO project_members VALUES (
-	'',
-	'1',
-	'1',
-	1234567890,
-	1234567890,
-	TRUE
 );
 
 CREATE TABLE status (
