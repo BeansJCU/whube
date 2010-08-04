@@ -45,6 +45,18 @@ class bug extends dbobj {
 		$p->getAllByPK( $row['package'] );
 		return $p->getNext();
 	}
+  
+  function getAllBugs() {
+		global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "bugs;" );
+		$ret = array();
+		while ( $row = $sql->getNextRow() ) {
+			array_push( $ret, $row );
+		}
+		return $ret;
+	}
+  
 }
 }
 

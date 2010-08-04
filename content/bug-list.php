@@ -8,15 +8,7 @@ $Count = $PAGE_MAX_COUNT;
 if ( isset( $argv[2] ) ) {
 	$class = htmlentities($argv[1], ENT_QUOTES);
 	$id    = htmlentities($argv[2], ENT_QUOTES);
-	// echo "Getting $id bugs filtering by $class";
 }
-
-
-$b = $BUG_OBJECT;
-$b->getAll();
-
-$u = $BUG_OBJECT;
-$p = $PROJECT_OBJECT;
 
 $TITLE = "Latest $Count bugs";
 
@@ -31,78 +23,69 @@ $CONTENT .= "
 	</tr>
 ";
 
-while ( $row = $b->getNext() ) {
+$p = $PROJECT_OBJECT;
+$u = $USER_OBJECT;
+$b = $BUG_OBJECT;
 
-	$u->getAllByPK( $row['owner'] );
-	$owner = $u->getNext();
+$p->getAll();
+$u->getAll();
+$b->getAll();
 
-	if ( $owner['uID'] <= 0 ) {
-		$owner['real_name'] = "Nobody";
-	}
+$s = 0;
 
-	$p->getAllByPK( $row['package'] );
-	$package = $p->getNext();
+$bugs = $b->getAllBugs();
+$bCount = count($bugs);
 
+while ( $s < $bCount ) {
+	$row = $bugs[$s];
+  $b->getAllByPK( $row['bID'] );
+  $u->getAllByPK( $row['owner'] );
 
-	if ( isset ( $_SESSION['id'] ) ) {
-		$id = $_SESSION['id'];
-	} else {
-		$id = -1; // NOT -10000!!!!!!
-	}
+  $u->getByCol( 'uID', $row['owner'] );
+  $user = $u->getNext();
+  
+  $p->getByCol( 'pID', $row['package'] );
+  $project = $p->getNext();
+  
+  if ( $user == '' ) {
+    $user = '-';
+  }
+  
+  if ( $row['private'] == 1 ) {
+    $private = "Yep";
+  } else {
+    $private = "No";
+  }
+  
+  
+  $status   = getStatus(   $row['bug_status']   );
+  $severity = getSeverity( $row['bug_severity'] );
 
-	$privacy = checkBugViewAuth( $row['bID'], $id );
+  $statusClass   = "goodthings";
+  $severityClass = "goodthings";
 
-	if ( $privacy[1] ) {
-		$picon = "<img src = '" . $SITE_PREFIX . "imgs/locked.png' alt = 'Private' />";
-	} else {
-		$picon = "<img src = '" . $SITE_PREFIX . "imgs/unlocked.png' alt = 'Public' />";
-	}
+  $overrideOne = False;
+  $overrideTwo = False;
 
-	if ( ! $privacy[0] ) {
+  if ( $status['critical'] ) {
+    $statusClass = "badthings";
+  }
 
-		if ( $i < $Count ) {
-			$CONTENT .= "\t<tr>\n<td>" .
-				$row['bID'] . "<td>Unknown</td><td>Unknown</td></td><td>Unknown</td><td>Private</td><td>" .
-				$picon  . "</td><td>Private</td>\n\t</tr>\n";
-		} else {
-			break;
-		}
-	} else {
-		if ( $i < $Count ) {
-			$status   = getStatus(   $row['bug_status']   );
-			$severity = getSeverity( $row['bug_severity'] );
-
-			$statusClass   = "goodthings";
-			$severityClass = "goodthings";
-
-			$overrideOne = False;
-			$overrideTwo = False;
-
-			if ( $status['critical'] ) {
-				$statusClass = "badthings";
-			}
-
-			if ( $severity['critical'] ) {
-				$severityClass = "badthings";
-			}
+  if ( $severity['critical'] ) {
+    $severityClass = "badthings";
+  }
 
 
-			if ( $status['critical'] ) {
-				$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
-					$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
-					"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
-					"</td><td>" . $owner['real_name'] . "</td><td>" .
-					$package['project_name'] .
-					"</td><td>" . $picon  .
-					"</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
-						. $row['bID'] . "' >" . $row['title'] .
-					"</a></td>\n\t</tr>\n";
-			}
-			$i++;
-		} else {
-			break;
-		}
-	}
+    $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
+      $row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
+      "</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
+      "</td><td>" . $user['real_name'] . "</td><td>" .
+      $project['project_name'] .
+      "</td><td>" . $private  .
+      "</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
+        . $row['bID'] . "' >" . $row['title'] .
+      "</a></td>\n\t</tr>\n";
+	$s++;
 }
 
 $CONTENT .= "
