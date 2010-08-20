@@ -27,6 +27,10 @@ echo "This is using the user \`root'"
 
 mysql -u root -p < install.sql
 
+echo "OK, let's set up a user"
+
+./addadmin.sh
+
 rm install.php
 
 echo -e "\n\n"
