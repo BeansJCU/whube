@@ -1,4 +1,8 @@
 <?php
+
+	// SET THIS TO YOUR INSTALL DOMAIN
+	$TLD = "whube.com"
+
 	// This is where you hit the site from outside the app.
 	// the HTML will be prefixed with this because of the badass
 	// arg system. This is the most critical bit of the conf file.
@@ -19,7 +23,7 @@
 	$DEBUG         =   true;
 	
 	$BUILTIN_EMAIL_ENABLE  =   true;
-	$BUILTIN_EMAIL_ADDR    =   "Automated Bugmail <bugs@whube.com>";
+	$BUILTIN_EMAIL_ADDR    =   "Automated Bugmail <bugs@$TLD>";
 
 	include( dirname(__FILE__) . "/add-salt.php" ); // add salt to taste
 ?>
