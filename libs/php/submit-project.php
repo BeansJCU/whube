@@ -17,31 +17,30 @@ include( $app_root . "model/events.php" );
 
 if (
 	isset ( $_POST['newProject'] ) &&
-	isset ( $_POST['projDescr'] )
+	isset ( $_POST['projDescr']  )
 ) {
 
 	$r = $PROJECT_OBJECT;
 	$u = $USER_OBJECT;
-	
+
 	// Let's verify!
 
 	$pname	= htmlentities( $_POST['newProject'], ENT_QUOTES);
-	$descr  = htmlentities( $_POST['projDescr'], ENT_QUOTES);
+	$descr  = htmlentities( $_POST['projDescr'],  ENT_QUOTES);
 	
-	$r->getByCol( "project_name", $argv[1] );
+	$r->getByCol( "project_name", $pname );
 	//$project = $r->getNext();
 	$projects = $r->getAllProjects();
 
 	$i=0;
 	$numProjects = count( $projects );
 
-	$vproj = FALSE;
+	$vproj = TRUE;
 	foreach( $projects as $project ) {
 		if( $_POST['newProject'] == $project['project_name'] ) {
 			$_SESSION['err'] = "Hey hey, whaddya trying to pull? That project's already registered. :|";
 			header("Location: $SITE_PREFIX" . "t/new-project");
-		} else {
-			$vproj = TRUE;
+			$vproj = FALSE;
 		}
 	}
 	
@@ -59,8 +58,7 @@ if (
 		
 		if ( $BUILTIN_EMAIL_ENABLE ) {
 
-$message = '';
-
+$message =
 
 "Hey there!
 

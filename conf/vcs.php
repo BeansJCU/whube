@@ -2,7 +2,7 @@
     /* VCS Metadata */
 
 
-    $VCS_SITE_ENABLE     = true;
+    $VCS_SITE_ENABLE     = false;
     $VCS_TYPE            = "git";
     $VCS_SITE_PREFIX     = "http://localhost/git/?a=summary&p=";
     $VCS_SITE_POSTFIX    = ".git";
