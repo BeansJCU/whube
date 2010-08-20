@@ -34,16 +34,22 @@ if ( isset ( $user["username"] ) ) {
 This here be " . $user['real_name'] . ".<br />
 There are " . $booboos . " bugs filed by " . $user['username'] . ". " . $critical . " are critical.<br />
 <br />
+
+" . ucwords($user['username']) ." is owner of " . $projects . " projects. These projects are: 
+<ul>" . $projectList . "</ul>
+";
+/*
+
+<br />
 " . $user_rights['admin'] . " - Admin<br />
 " . $user_rights['staff'] . " - Staff<br />
 " . $user_rights['doner'] . " - Doner<br />
 " . $user_rights['member'] . " - Member<br />
 " . $user_rights['banned'] . " - Banned<br />
-<br />
 
-" . ucwords($user['username']) ." is owner of " . $projects . " projects. These projects are: 
-<ul>" . $projectList . "</ul>
-";
+
+*/
+
 } else {
 	$_SESSION['err'] = "User " . $argv[1] . " does not exist!";
 	header( "Location: $SITE_PREFIX" . "t/home" );

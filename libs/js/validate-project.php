@@ -9,6 +9,11 @@ include( $js_root . "../../libs/php/globals.php" );
 header( "Content-type: text/javascript" );
 
 $PROJECT_FINDER = $SITE_PREFIX . "libs/php/validate-project.php";
+
+if ( ! isset( $_GET['r'] ) ) {
+	$_GET['r'] = "none";
+}
+
 $REF = $_GET['r'];
 
 $posRef = strpos ( $REF, 'new-project' );
@@ -17,6 +22,8 @@ if ( $posRef !== false ) {
 } else {
 	$success = 'true';
 }
+
+
 
 
 $SCRIPT= <<<EOF
