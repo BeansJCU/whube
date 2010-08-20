@@ -1,7 +1,7 @@
 <?php
 
 	// SET THIS TO YOUR INSTALL DOMAIN
-	$TLD = "whube.com"
+	$TLD = "whube.com";
 
 	// This is where you hit the site from outside the app.
 	// the HTML will be prefixed with this because of the badass
