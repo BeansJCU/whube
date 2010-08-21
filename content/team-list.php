@@ -23,7 +23,6 @@ $CONTENT .= "
 
 $t = $TEAM_OBJECT;
 $u = $USER_OBJECT;
-$b = $BUG_OBJECT;
 
 $t->getAll();
 $u->getAll();
