@@ -1,10 +1,5 @@
 <?php
 
-$app_root = dirname( __FILE__ ) . "/../";
-
-include( $app_root . "libs/php/markdown.php" );
-
-
 $p = $PROJECT_OBJECT;
 $b = $BUG_OBJECT;
 
@@ -31,7 +26,7 @@ if ( isset ( $row['pID'] ) ) {
 	$TITLE = $row['project_name'] . ", one of the fantastic projects on Whube";
 	$CONTENT = "
 <h1>" . $row['project_name'] . "</h1>
-" . Markdown($row['descr']) . "<br />
+" . $row['descr'] . "<br />
 <br />
 There are " . $booboos . " bugs in the tracker on this package (" . $bugCount . " listed, " . $bugsFixed . " fixed). " . $critical . " are critical.
 ";
