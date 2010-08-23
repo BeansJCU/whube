@@ -39,7 +39,7 @@ while ( $s < $tCount ) {
 
   $u->getByCol( 'uID', $row['owner'] );
   $user = $u->getNext();
-  
+  $owner = $user;
   $users = $u->numRows();
 
   $teamCount = 0;
@@ -58,7 +58,7 @@ while ( $s < $tCount ) {
   }
 
   $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/team/" . $row['team_name'] . "'\" ><td>" .
-  $row['team_name'] . "</td><td>" . $user['username'] . "</td><td>" . $teamMembers . "</td><td>" . $private . "</td>
+  $row['team_name'] . "</td><td>" . $owner['username'] . "</td><td>" . $teamCount . "</td><td>" . $private . "</td>
   \n\t</tr>\n";
 	$s++;
 }
