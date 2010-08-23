@@ -59,7 +59,7 @@ CREATE TABLE teams (
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
-	PRIMARY KEY( pID )
+	PRIMARY KEY( tID )
 );
 
 CREATE TABLE status (
