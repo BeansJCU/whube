@@ -4,7 +4,6 @@
    RewriteRule ^t/(.*+)      controller.php?p=$1       [NC]
    RewriteRule ^l/(.*+)      libs/php/$1.php           [NC]
 
-   RewriteRule ^photo/(.*+)  libs/php/crest.php?p=$1   [NC]
    RewriteRule ^api/(.*+)    libs/php/api.php?p=$1     [NC]
 
 </IfModule>
