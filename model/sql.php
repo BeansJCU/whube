@@ -14,10 +14,30 @@ class sql {
 	var $link;
 	var $result;
 
-	function __construct() {
-		$path = dirname(__FILE__) . "/";
-		include( $path . "../conf/sql.php" );
-		$this->connect( $mysql_host, $mysql_user, $mysql_pass, $mysql_data );
+	function __construct( $connect = true ) {
+		if ( $connect ) {
+			$path = dirname(__FILE__) . "/";
+			include( $path . "../conf/sql.php" );
+			$this->connect( $mysql_host, $mysql_user, $mysql_pass, $mysql_data );
+		}
+	}
+	function test() {
+                $path = dirname(__FILE__) . "/";
+                include( $path . "../conf/sql.php" );
+                return $this->test_auth( $mysql_host, $mysql_user, $mysql_pass, $mysql_data );
+	}
+	function test_fail() {
+		echo "\n\nConnection Failed! Bad auth! check conf/sql.php!\n\n";
+		$this->fail = true;
+	}
+	function test_auth(  $host, $name, $pass, $db ) {
+		$this->fail = false;
+                $link = mysql_connect(
+                        $host,
+                        $name,
+                        $pass
+                ) or $this->test_fail();
+		return ! $this->fail;
 	}
 	function __destruct() {
 		$this->destruct();
