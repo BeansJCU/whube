@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "OK, let's set up a user"
 echo "So, you're the admin, eh?"
 echo "Righto. It's on, baby."
 echo ""
@@ -24,5 +25,10 @@ echo "OK. Sending off to DB..."
 
 FROB="use whube;\n$QUERY"
 
-echo "$FROB" | mysql -u root -p
+echo "$FROB" > setup.sql
 
+RETURN=1
+while [ "x$RETURN" != "x0" ]; do
+	mysql -u root -p < setup.sql
+	RETURN="$?"
+done
