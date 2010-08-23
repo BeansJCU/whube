@@ -11,6 +11,7 @@ CREATE TABLE users (
 	timezone       VARCHAR(8),
 	password       VARCHAR(255), /* HASHED, DUH */
 	remotepw       VARCHAR(255), /* NOT HASHED! USED FOR INSECURE AUTH */
+	team					 INT(11),
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
@@ -47,6 +48,18 @@ CREATE TABLE project_members (
 	startstamp     LONG,
 	trampstamp     LONG,
 	PRIMARY KEY( membershipID )
+);
+
+CREATE TABLE teams ( 
+	tID            INTEGER NOT NULL AUTO_INCREMENT, /* PK */
+	team_name 	  VARCHAR(255) UNIQUE, /* like an alias */
+	descr          TEXT,
+	owner          INTEGER NOT NULL, /* FK, users */
+	active         BOOL,
+	startstamp     LONG,
+	trampstamp     LONG,
+	private        BOOL DEFAULT FALSE,
+	PRIMARY KEY( pID )
 );
 
 CREATE TABLE status (
