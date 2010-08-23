@@ -57,7 +57,13 @@ while ( $s < $tCount ) {
     $private = "No";
   }
 
-  $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/team/" . $row['team_name'] . "'\" ><td>" .
+if ( strpos ( $row['team_name'], ' ' ) ) {
+	$teamLink = str_replace ( ' ', '-', $row['team_name'] );
+} else {
+	$teamLink = $row['team_name'];
+}
+
+  $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/team/" . $teamLink . "'\" ><td>" .
   $row['team_name'] . "</td><td>" . $owner['username'] . "</td><td>" . $teamCount . "</td><td>" . $private . "</td>
   \n\t</tr>\n";
 	$s++;
