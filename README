@@ -66,6 +66,12 @@ What you will need:
      ( Can't have a bug tracker against no project. Dingus.         )
 
 ========================================================================
+===================           REVISIONS            =====================
+========================================================================
+
+08/23/2010 - Setup Wizard should now work with RPM / YUM packaging
+
+========================================================================
 ===================             SETUP              =====================
 ========================================================================
 
@@ -76,6 +82,11 @@ What you will need:
 #
 #   -- Paul
 #
+
+# Setup Wizard.
+cd install
+./install.sh
+
 # setup apache for rewrites
 sudo a2enmod rewrite # restart after this
 # Run the install/install.sql script against your MySQL server. 

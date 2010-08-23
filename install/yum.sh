@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ID=$(dpkg --version)
+ID=$(rpm --version)
 
 if [ "x$?" == "x0" ]; then
 	echo "You're running a dpkg system."
@@ -8,5 +8,5 @@ if [ "x$?" == "x0" ]; then
 	echo "install the stuff we need."
 	echo "This needs sudo rights."
 
-#	sudo apt-get install apache2 php5 php5-mysql mysql-server 
+	yum  install httpd php mysql mysql-server php-mysql php-xml
 fi
