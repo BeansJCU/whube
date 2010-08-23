@@ -16,6 +16,9 @@ $row = $t->getNext();
 $b->getByCol( "package", $row['pID'] ); // this is goddamn awesome
 $booboos = $b->numrows();
 
+$u->getByCol( "team", $row['tID'] );
+$members = $u->numrows();
+
 $bugCount = 0;
 $i = 0;
 
@@ -23,6 +26,15 @@ while ( $i < $booboos ) {
   $bug = $b->getNext();   
   if ( $bug['bug_status'] != 8 ) $bugCount++;
   $i++;
+}
+
+$i = 0;
+$memberList = '';
+
+while ( $i < $members ) {
+	$member = $u->getNext();
+	$memberList .= "<li><a href = '" . $SITE_PREFIX .  "/t/user/" . $member['username'] . "'> " . $member['username'] . "</a></li>";
+	$i++;
 }
 
 $bugsFixed = $booboos - $bugCount;
@@ -35,7 +47,12 @@ if ( isset ( $row['tID'] ) ) {
 <h1>" . $teamName . "</h1>
 " . $row['descr'] . "<br />
 <br /> " .
-$row['team_name'] . " is in charge of " . $booboos . " bugs ( " . $bugCount .  " left, " . $bugsFixed . " fixed, " . $critical . " are critical).";
+$row['team_name'] . " is in charge of " . $booboos . " bugs ( " . $bugCount .  " left, " . $bugsFixed . " fixed, " . $critical . " are critical).<br />
+<br />
+These fine people work in this team:
+<ul>" .
+$memberList .
+" </ul> ";
 
 /*
     if ( $VCS_SITE_ENABLE ) {

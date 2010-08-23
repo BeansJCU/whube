@@ -1,8 +1,9 @@
 <?php
 
-$p = new project();
-$b = new bug();
-$u = new user();
+$p = $PROJECT_OBJECT;
+$b = $BUG_OBJECT;
+$u = $USER_OBJECT;
+$t = $TEAM_OBJECT;
 
 $u->getByCol( "username", $argv[1] );
 $user = $u->getNext();
@@ -15,6 +16,23 @@ $projects = $p->numrows();
 
 $b->getByCol( "package", $user["uID"] ); // this is goddamn awesome
 $booboos = $b->numrows();
+
+$ofTeam = '';
+
+if ( $user['team'] != '' || $user['team'] != '0' ) {
+	$t->getByCol( "tID" , $user["team"] );
+	$team = $t->getNext();
+	$teamName = $team['team_name'];
+	
+	if ( strpos ( $teamName, ' ' ) ) {
+		$teamLink = str_replace ( ' ', '-', $teamName );
+	} else {
+		$teamLink = $teamName;
+	}
+	
+	
+	$ofTeam = " of <a href = '" . $SITE_PREFIX . "/t/team/" . $teamLink . "' >" . $teamName . "</a>";
+}
 
 $critical = 0; // doh // $b->specialSelect( "bug_status != 1" );
 
@@ -31,7 +49,8 @@ if ( isset ( $user["username"] ) ) {
 	$TITLE = $user["username"] . ", one of the fantastic users on Whube";
 	$CONTENT = "
 <h1>" . $user["username"] . "</h1>
-This here be " . $user['real_name'] . ".<br />
+This here be " . $user['real_name'] . $ofTeam . "<br />
+
 There are " . $booboos . " bugs filed by " . $user['username'] . ". " . $critical . " are critical.<br />
 <br />
 
