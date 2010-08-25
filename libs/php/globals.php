@@ -35,6 +35,14 @@ function clean( $ret ) {
 	}
 }
 
+function format( $ret ) {
+	if ( isset( $ret ) ) {
+		return html_entity_decode( $ret, ENT_QUOTES);
+	} else {
+		return NULL;
+	}
+}
+
 function preload( $l, $w, $src ) {
 	global $PRELOAD;
 	$payload = array();
