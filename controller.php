@@ -21,6 +21,7 @@ include( $app_root . "conf/vcs.php" );
 include( $app_root . "libs/php/globals.php" );
 include( $app_root . "libs/php/easter.php" );
 include( $app_root . "libs/php/core.php" );
+include( $app_root . "libs/php/format.php" );
 
 if ($handle = opendir( $app_root . "model/" )) {
 	while (false !== ($file = readdir($handle))) {
