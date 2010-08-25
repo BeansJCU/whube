@@ -1,7 +1,8 @@
 #!/bin/bash
 
-./apt-get.sh        #dpkg
-./yum.sh 						#rpm
+./apt-get.sh
+./yum.sh
+./jquery.sh
 ./configure.sh
 ./apacheconfig.sh
 ./installdb.sh
