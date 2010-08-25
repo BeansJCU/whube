@@ -31,7 +31,7 @@ $CONTENT .= "
 <tr>
 	<td></td>
 	<td></td>
-	<td><div id = 'project-name' >&nbsp;</div></td>
+	<td><div id = 'project-name' ></div></td>
 </tr>
 <tr>
 	<td>And a nice description</td>

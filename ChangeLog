@@ -1,23 +1,14 @@
+Changes on 1282767159
+
+  * fixing this crappy issue
+
+Paul Tagliamonte <paultag@ubuntu.com>
+
 Changes on 1282765963
 
   * modifying the yum shiznat
-
-Paul Tagliamonte <paultag@ubuntu.com>
-
-Changes on 1282765713
-
   * Fixing indents, adding some comments
-
-Paul Tagliamonte <paultag@ubuntu.com>
-
-Changes on 1282760847
-
   * removing the head space. It was annoying me
-
-Paul Tagliamonte <paultag@ubuntu.com>
-
-Changes on 1282760565
-
   * Revising the README file
 
 Paul Tagliamonte <paultag@ubuntu.com>
