@@ -14,7 +14,7 @@ class events {
 
 	function events() {
 		$model_root = dirname(  __FILE__ ) . "/";
-		$event_root = $model_root . "../events/";
+		$event_root = $model_root . "../events/"; // full of fifo
 		$this->folder_root = $event_root;
 	}
 
@@ -32,6 +32,17 @@ class events {
 				}
 			}
 		}
+	/*
+	 * OK what just went on was a bit confusing. Here's what it's doing:
+         *
+         * Find all files that match "*.hook" in ../events/ ( whube/events )
+         * For each file in events ( that maches ) 
+         *   - Write to the file
+         *
+	 * With a UNIX FIFO pipe, this Write will block until something
+	 * ( the plugin ) reads it.
+         *
+         */
 	}
 }
 

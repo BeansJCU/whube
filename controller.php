@@ -10,6 +10,10 @@ session_start();
 
 if ( ! isset ( $_SESSION['id'] ) ) {
 	$_SESSION['id'] = -1;
+	/*
+	 * This sets the id to -1 if the user
+	 * is not logged in
+	 */
 }
 
 $app_root        = dirname(  __FILE__ ) . "/";
@@ -22,47 +26,46 @@ include( $app_root . "libs/php/globals.php" );
 include( $app_root . "libs/php/easter.php" );
 include( $app_root . "libs/php/core.php" );
 
-if ($handle = opendir( $app_root . "model/" )) {
-	while (false !== ($file = readdir($handle))) {
-		// The "i" after the pattern delimiter indicates a case-insensitive search
-		if ( $file != "." && $file != ".." ) {
-			$ftest = $file;
+if ($handle = opendir( $app_root . "model/" )) { // open up the model directory
+	while (false !== ($file = readdir($handle))) { // for each file
+		if ( $file != "." && $file != ".." ) { // ignore . / ..
+			$ftest = $file;                // "backup" file
 			if (preg_match("/.*\.php$/i", $ftest)) {
-				include( $app_root . "model/" . $file );
+				include( $app_root . "model/" . $file ); // include all .php files
 			}
 		}
 	}
 }
 
-header( "Wisdom-Turd: " . getQuip() );
+header( "Wisdom-Turd: " . getQuip() ); // wisdom turds!
 
 if ( file_exists( $app_root . "install/install.php" ) ) {
-	include( $app_root . "install/install.php" );
-	include( $app_root . "view/view.php" );
-	exit(0);
+	include( $app_root . "install/install.php" ); // Disable access
+	include( $app_root . "view/view.php" );       // if we're not set up.
+	exit(0); // stop executing the controller code
 }
 
 $p = htmlentities( $_GET['p'], ENT_QUOTES);
 $toks = explode( "/", $p );
 
 $argv = $toks;
-$argc = sizeof( $toks );
+$argc = sizeof( $toks ); // these get passed to the view
 
 if (
 	isset ( $toks[0] ) &&
 	$toks[0] != ""
-) {
+) { // if there's a directive, use it.
 	$idz = $app_root . "content/" . basename( $toks[0] ) . ".php";
 	if ( file_exists( $idz ) ) {
-		include( $idz );
+		include( $idz );     // all good :)
 	} else {
-		include( $app_root . "content/default.php" );
+		include( $app_root . "content/default.php" ); // fake the err.
 	}
 } else {
-	header("Location: $SITE_PREFIX");
+	header("Location: $SITE_PREFIX"); // redirect to the app root
 }
 
-include( $app_root . "view/view.php" );
+include( $app_root . "view/view.php" ); // include the head/foot
 
 ?>
 

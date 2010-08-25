@@ -33,33 +33,29 @@ class cacheobj {
 	}
 	
 	function checkAge( $ID, $minutes = '' ) {
-	  $minute = 60;
-	  $ttl = $minute * $minutes;
-	  $curTime = time();
-    $this->getAllByID( $ID );
-    $cachePull = $this->sql->getNextRow();
-	  $refTime = clean( $cachePull["timestamp"] );
-	  $content = clean( $cachePull["cached_contents"] );
-	  $timeDifference = $curTime - $refTime;
-    
-    $ret = $ttl - $timeDifference;
-    
-    return $ret;
+		$minute = 60;
+		$ttl = $minute * $minutes;
+		$curTime = time();
+		$this->getAllByID( $ID );
+		$cachePull = $this->sql->getNextRow();
+		$refTime = clean( $cachePull["timestamp"] );
+		$content = clean( $cachePull["cached_contents"] );
+		$timeDifference = $curTime - $refTime;
+		$ret = $ttl - $timeDifference;
+		return $ret;
 	}
 	
 	function updateStamp( $ID ) {
-    $this->sql->query( "UPDATE " . $this->table . " SET timestamp=" . time() . " WHERE " . $this->c_field . "='" . $ID . "' ;" );
+		$this->sql->query( "UPDATE " . $this->table . " SET timestamp=" . time() . " WHERE " . $this->c_field . "='" . $ID . "' ;" );
 	}
 
-  function updateCached( $ID, $contents ) {
-    $this->sql->query( "UPDATE " . $this->table . " SET cached_contents='" . $contents . "' WHERE " . $this->c_field . "='" . $ID . "' ;" );
-  }
+	function updateCached( $ID, $contents ) {
+		$this->sql->query( "UPDATE " . $this->table . " SET cached_contents='" . $contents . "' WHERE " . $this->c_field . "='" . $ID . "' ;" );
+	}
 	
 	function getAllByID( $ID ) {
-    $this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $this->c_field . " = '" . $ID . "';" );
-	}	
-	
-	
+		$this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $this->c_field . " = '" . $ID . "';" );
+	}
 }
 
 }

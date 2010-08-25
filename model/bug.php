@@ -8,20 +8,19 @@
  * @license: AGPLv3
  */
 
-if ( ! class_exists ( "bug" ) ) {
+if ( ! class_exists ( "bug" ) ) { // if we've included twice
 
-if ( ! class_exists( "dbobj" ) ) {
-        // last ditch...
+if ( ! class_exists( "dbobj" ) ) { // ensure we have the superclass
         $model_root = dirname(  __FILE__ ) . "/";
         include( $model_root . "dbobj.php" );
 }
 
-include ( $model_root . "user.php" );
-include ( $model_root . "project.php" );
+include ( $model_root . "user.php" );     // we need the user
+include ( $model_root . "project.php" );  // and project models
 
 class bug extends dbobj {
 	function bug() {
-		dbobj::dbobj("bugs", "bID");
+		dbobj::dbobj("bugs", "bID"); // SQL table `bugs', PK `bID'
 	}
 	// Let's add in some functionallity for user stuff.
 	function getOwner( $bID ) {
@@ -29,24 +28,24 @@ class bug extends dbobj {
 		$row = $this->getNext();
 		$u = new user();
 		$u->getAllByPK( $row['owner'] );
-		return $u->getNext();
+		return $u->getNext(); // ( first row :P )
 	}
 	function getReporter( $bID ) {
 		$this->getAllByPK( $bID );
 		$row = $this->getNext();
 		$u = new user();
 		$u->getAllByPK( $row['reporter'] );
-		return $u->getNext();
+		return $u->getNext(); // ( first row :D )
 	}
 	function getProject( $pID ) {
 		$this->getAllByPK( $pID );
 		$row = $this->getNext();
 		$p = new project();
 		$p->getAllByPK( $row['package'] );
-		return $p->getNext();
+		return $p->getNext(); // ( first row :) )
 	}
   
-  function getAllBugs() {
+	function getAllBugs() {
 		global $TABLE_PREFIX;
 		$sql = new sql();
 		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "bugs;" );
