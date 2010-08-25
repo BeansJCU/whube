@@ -51,7 +51,7 @@ What you will need:
      ( Anything that supports the .htaccess file in the root, with
        rewrite rules.                                               )
 
-  * PHP ( WITH php-mail ) !!!php-mail 
+  * PHP
      ( Well, the whole thing is written in PHP. If you ported this
        chances are it's not Whube anymore. Ship of Theseus kinda 
        thing. Although this is not the forum for such talk          )
@@ -66,38 +66,12 @@ What you will need:
      ( Can't have a bug tracker against no project. Dingus.         )
 
 ========================================================================
-===================           REVISIONS            =====================
-========================================================================
-
-08/23/2010 - Setup Wizard should now work with RPM / YUM packaging
-
-========================================================================
 ===================             SETUP              =====================
 ========================================================================
-
-#
-# Setup should be easy enough. Feel free to copy paste, although
-# if you can't figure this out, chances are you should not be doing it
-#  :)
-#
-#   -- Paul
-#
 
 # Setup Wizard.
 cd install
 ./install.sh
-
-# setup apache for rewrites
-sudo a2enmod rewrite # restart after this
-# Run the install/install.sql script against your MySQL server. 
-cd install
-mysql -u root -p < ./install.sql # this runs as MySQL user 'root'.
-# configure the site
-cd ../conf/
-# Be sure to edit all the options to taste! SITE_PREFIX IS CRITICAL!
-vim site.php
-# All set :) Give it a test!
-
 
 ========================================================================
  .
