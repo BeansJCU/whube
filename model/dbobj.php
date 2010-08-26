@@ -104,12 +104,8 @@ class dbobj {
 	function getByCol( $cID, $id ) {
                 $this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $cID . " = '" . $id . "'; " );
 	}
-	function searchByKey( $cID, $id, $case='s' ) { # case: s=standard; i=case-insensitive (makes fields lowercase using LOWER() function)
-						if ( $case == 's' ) {
+	function searchByKey( $cID, $id ) { 
                 $this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $cID . " LIKE '%" . $id . "%'; " );
-						} else if ( $case == 'i' ) {
-                $this->sql->query( "SELECT * FROM " . $this->table . " WHERE LOWER( " . $cID . " ) LIKE '%" . $id . "%'; " );
-						}
 	}
 	function numRows() {
 		return $this->sql->numrows();

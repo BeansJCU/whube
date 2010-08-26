@@ -23,7 +23,7 @@ $d['message'] = "Unknown error";
 
 if ( isset ( $_GET['p'] ) ) {
 
-	$id = clean( strtolower( $_GET['p'] ) );
+	$id = clean( $_GET['p'] );
 
 	if ( $_GET['p'] != "" ) {
 
@@ -39,7 +39,7 @@ if ( isset ( $_GET['p'] ) ) {
 			$row = $p->getNext();
 			$d['message'] = "We have a result for " . $id . ".";
 			$d['bestmatch'] = $row['project_name'];
-			if ( $row['project_name'] == $id ) {
+			if ( strtolower( $row['project_name'] ) == strtolower( $id ) ) {	# convert both strings to lowercase to check equality without worrying about case
 				$d['success'] = true;
 				$d['descr'] = $row['descr'];
 			}
