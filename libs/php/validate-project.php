@@ -23,12 +23,12 @@ $d['message'] = "Unknown error";
 
 if ( isset ( $_GET['p'] ) ) {
 
-	$id = clean( $_GET['p'] );
+	$id = clean( strtolower( $_GET['p'] ) );
 
 	if ( $_GET['p'] != "" ) {
 
 		$p = new project();
-		$p->searchByKey( "project_name", $id );
+		$p->searchByKey( "project_name", $id, 'i' );
 		$d['message'] = "Query executed with success " . $id . ".";
 		$d['numrows'] = $p->numRows();
 		if ( $p->numRows() < 1 ) {

@@ -36,11 +36,11 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 
 		$CONTENT .=
 "
-		<tr>
+		<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >
 			<td>" . $row['bID'] . "</td>
 			<td>" . $row['package'] . "</td>
 			<td>" . $status['status_name'] . "</td>
-			<td>" . $severity['severity_name'] . "</td>
+			<td><a href = \"" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "\">" . $severity['severity_name'] . "</a></td>
 		</tr>
 ";
 	}
