@@ -28,6 +28,7 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 			<th>Project</th>
 			<th>Status</th>
 			<th>Severity</th>
+			<th>Bug Title</th>
 		</tr>
 ";
 	while ( $row = $BUG_OBJECT->getNext() ) {
@@ -40,7 +41,8 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 			<td>" . $row['bID'] . "</td>
 			<td>" . $row['package'] . "</td>
 			<td>" . $status['status_name'] . "</td>
-			<td><a href = \"" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "\">" . $severity['severity_name'] . "</a></td>
+			<td>" . $severity['severity_name'] . "</td>
+			<td><a href = \"" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "\">" . $row['title'] . "</a></td>
 		</tr>
 ";
 	}
