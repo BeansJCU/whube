@@ -31,8 +31,8 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 		</tr>
 ";
 	while ( $row = $BUG_OBJECT->getNext() ) {
-		$status = getStatus($row['bug_status']);
-		$severity = getSeverity($row['bug_severity']);
+		$status = getStatus( $row['bug_status'] );
+		$severity = getSeverity( $row['bug_severity'] );
 
 		$CONTENT .=
 "
