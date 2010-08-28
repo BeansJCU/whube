@@ -182,11 +182,11 @@ function loggedIn() {
 }
 
 function getProjectName( $pID ) {
-	executeGet( "projects", "pID", $pID );
+	return executeGet( "projects", "pID", $pID );
 }
 
 function getStatus( $status ) {
-	executeGet( "status", "statusID", $status );
+	return executeGet( "status", "statusID", $status );
 }
 
 function getAllStatus() {
@@ -194,7 +194,7 @@ function getAllStatus() {
 }
 
 function getSeverity( $severity ) {
-	executeGet( "severity", "severityID", $severity );
+	return executeGet( "severity", "severityID", $severity );
 }
 
 function getAllSeverity() {
@@ -202,7 +202,7 @@ function getAllSeverity() {
 }
 
 function getRights( $id ) {
-	executeGet( 'user_rights', 'userID', $id );
+	return executeGet( 'user_rights', 'userID', $id );
 }
 
 /*                          
