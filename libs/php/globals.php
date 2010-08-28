@@ -212,7 +212,7 @@ function executeGet( $table_name, $pkcol, $value ) {
 	if ( isset ( $value ) ) {
   	global $TABLE_PREFIX;
 		$sql = new sql();
-		$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . " WHERE " . $pkcol . " = " . $status . ";" );
+		$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . " WHERE " . $pkcol . " = " . $value . ";" );
 		$ret = $sql->getNextRow();
 		return $ret;
 	}
