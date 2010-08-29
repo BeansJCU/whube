@@ -39,7 +39,7 @@ class twitter extends cacheobj {
 		$cached = $this->sql->getNextRow();
 
 		$ret = $cached["cached_contents"];
-		return $ret;
+		return format ( $ret );
 	}
   
   	function gatherTweet() {

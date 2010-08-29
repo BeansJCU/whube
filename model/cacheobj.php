@@ -50,7 +50,7 @@ class cacheobj {
 	}
 
 	function updateCached( $ID, $contents ) {
-		$this->sql->query( "UPDATE " . $this->table . " SET cached_contents='" . $contents . "' WHERE " . $this->c_field . "='" . $ID . "' ;" );
+		$this->sql->query( "UPDATE " . $this->table . " SET cached_contents='" . clean ( $contents ) . "' WHERE " . $this->c_field . "='" . $ID . "' ;" );
 	}
 	
 	function getAllByID( $ID ) {
