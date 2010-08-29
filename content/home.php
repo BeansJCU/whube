@@ -34,8 +34,7 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 	while ( $row = $BUG_OBJECT->getNext() ) {
 		$status = getStatus( $row['bug_status'] );
 		$severity = getSeverity( $row['bug_severity'] );
-
-		if ( $status == 8 ) {
+		if ( $row['bug_status'] == 8 ) {
 			$CONTENT .= "";
 		} else {
 			$CONTENT .= " <tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >
