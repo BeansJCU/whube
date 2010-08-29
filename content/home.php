@@ -42,7 +42,7 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 			<td>" . $row['package'] . "</td>
 			<td>" . $status['status_name'] . "</td>
 			<td>" . $severity['severity_name'] . "</td>
-			<td><a href = \"" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "\">" . $row['title'] . "</a></td>
+			<td>" . $row['title'] . "</td>
 		</tr>
 ";
 	}
