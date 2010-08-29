@@ -35,16 +35,17 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 		$status = getStatus( $row['bug_status'] );
 		$severity = getSeverity( $row['bug_severity'] );
 
-		$CONTENT .=
-"
-		<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >
-			<td>" . $row['bID'] . "</td>
-			<td>" . $row['package'] . "</td>
-			<td>" . $status['status_name'] . "</td>
-			<td>" . $severity['severity_name'] . "</td>
-			<td>" . $row['title'] . "</td>
-		</tr>
-";
+		if ( $status == 8 ) {
+			$CONTENT .= "";
+		} else {
+			$CONTENT .= " <tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >
+					<td>" . $row['bID'] . "</td>
+					<td>" . $row['package'] . "</td>
+					<td>" . $status['status_name'] . "</td>
+					<td>" . $severity['severity_name'] . "</td>
+					<td>" . $row['title'] . "</td>
+				</tr>";
+		}
 	}
 
 	$CONTENT .=
