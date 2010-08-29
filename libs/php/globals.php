@@ -181,56 +181,52 @@ function loggedIn() {
 	}
 }
 
+function getProjectName( $pID ) {
+	return executeGet( "projects", "pID", $pID );
+}
+
 function getStatus( $status ) {
-	if ( isset ( $status ) ) {
-    global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "status WHERE statusID = " . $status );
-		$ret = $sql->getNextRow();
-		return $ret;
-	}
+	return executeGet( "status", "statusID", $status );
 }
 
 function getAllStatus() {
-  global $TABLE_PREFIX;
-	$sql = new sql();
-	$sql->query("SELECT * FROM " . $TABLE_PREFIX . "status;" );
-	$ret = array();
-	while ( $row = $sql->getNextRow() ) {
-		array_push( $ret, $row );
-	}
-	return $ret;
+	return executeGetAll( "status" );
 }
 
-function getSeverity( $status ) {
-	if ( isset ( $status ) ) {
-  global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "severity WHERE severityID = " . $status );
-		$ret = $sql->getNextRow();
-		return $ret;
-	}
+function getSeverity( $severity ) {
+	return executeGet( "severity", "severityID", $severity );
 }
 
 function getAllSeverity() {
+	return executeGetAll( "severity" );
+}
+
+function getRights( $id ) {
+	return executeGet( 'user_rights', 'userID', $id );
+}
+
+/*                          
+ * Base Retrieval Functions 
+ */
+function executeGet( $table_name, $pkcol, $value ) {
+	if ( isset ( $value ) ) {
+  	global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . " WHERE " . $pkcol . " = " . $value . ";" );
+		$ret = $sql->getNextRow();
+		return $ret;
+	}
+}
+
+function executeGetAll( $table_name ) {
   global $TABLE_PREFIX;
 	$sql = new sql();
-	$sql->query("SELECT * FROM " . $TABLE_PREFIX . "severity;" );
+	$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . ";" );
 	$ret = array();
 	while ( $row = $sql->getNextRow() ) {
 		array_push( $ret, $row );
 	}
 	return $ret;
-}
-
-function getRights( $id ) {
-	if ( isset ( $id ) ) {
-        global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "user_rights WHERE userID = " . $id );
-		$ret = $sql->getNextRow();
-		return $ret;
-	}
 }
 
 ?>
