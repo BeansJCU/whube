@@ -21,11 +21,18 @@ include ( $model_root . "project.php" );  // and project models
 class bug extends dbobj {
 	function bug() {
 		dbobj::dbobj("bugs", "bID"); // SQL table `bugs', PK `bID'
+		// this just calls the super-class's constructor
+		// this tells the dbobj sutff to use the the 
+		// `bugs' table, with a primary key of `bID'.
 	}
 	// Let's add in some functionallity for user stuff.
 	function getOwner( $bID ) {
-		$this->getAllByPK( $bID );
+		$this->getAllByPK( $bID );	// get everything
+						// that matches the PK
+						// being = to $bID
 		$row = $this->getNext();
+						// get the next (and hopefully
+						// only ) row
 		$u = new user();
 		$u->getAllByPK( $row['owner'] );
 		return $u->getNext(); // ( first row :P )
@@ -48,7 +55,7 @@ class bug extends dbobj {
 	function getAllBugs() {
 		global $TABLE_PREFIX;
 		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "bugs;" );
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "bugs ORDER BY bID DESC;" );
 		$ret = array();
 		while ( $row = $sql->getNextRow() ) {
 			array_push( $ret, $row );
