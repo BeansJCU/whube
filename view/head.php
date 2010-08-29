@@ -61,30 +61,7 @@ if ( isset ( $GUILT_ME ) && $GUILT_ME ) {
 <?php
 }
 ?>
-		<div class = "nav" >
-<a href = "<?php echo $SITE_PREFIX; ?>t/home"           >Home</a> | 
-<a href = "<?php echo $SITE_PREFIX; ?>t/bug-list"      >Bug List</a> | 
-<a href = "<?php echo $SITE_PREFIX; ?>t/team-list"  >Team List</a> | 
-<a href = "<?php echo $SITE_PREFIX; ?>t/project-list"  >Project List</a> | 
-<?php
-if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
-?>
-<!--	<a href = "<?php echo $SITE_PREFIX; ?>t/term" >Terminal</a> |  -->
-  <a href = "<?php echo $SITE_PREFIX; ?>t/new-project" >New Project</a> | 
-	<a href = "<?php echo $SITE_PREFIX; ?>t/new-bug" >New Bug</a> | 
-	<a href = "<?php echo $SITE_PREFIX; ?>t/logout" >Logout</a>
-    ( You're <span class = 'itsme' ><?php echo $_SESSION['real_name']; ?></span>, Right? )
-<?php
-} else {
-?>
-	<a href = "<?php echo $SITE_PREFIX; ?>t/register" >Register</a> | 
-	<a href = "<?php echo $SITE_PREFIX; ?>t/login" >Login</a>
-<?php
-}
-?>
-
-<!-- <a href = "<?php echo $SITE_PREFIX; ?>t/" ></a> |  -->
-		</div>
+		<?php echo whubeNav(); ?>
 		<div class = "splash" >
 			<div class = "eyecandy" >
 			</div>

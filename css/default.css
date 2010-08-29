@@ -147,6 +147,11 @@ a img {
 	height:               20px;
 }
 
+.foot .nav {
+	background-color:     transparent;
+	font-size:						1em;
+}
+
 .nav a {
 	color:                #FFFFFF;
 }
@@ -208,16 +213,7 @@ a img {
 	padding-top:          10px;
 	border-top:           1px solid #000000;
 	width:                100%;
-	background-position:  bottom right;
-	background-image:     url(../imgs/peace.png);
-	background-repeat:    no-repeat;
-}
-
-.shoe {
-	height:               200px;
-	width:                800px;
-	margin-left:          auto;
-	margin-right:         auto;
+	background-position:  center center;
 	background-image:     url(../imgs/shoe.png);
 	background-repeat:    repeat-x;
 }
