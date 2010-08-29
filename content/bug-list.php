@@ -46,46 +46,51 @@ while ( $s < $bCount ) {
   
   $p->getByCol( 'pID', $row['package'] );
   $project = $p->getNext();
-  
-  if ( $user == '' ) {
-    $user = '-';
-  }
-  
-  if ( $row['private'] == 1 ) {
-    $private = "Yep";
-  } else {
-    $private = "No";
-  }
-  
-  
-  $status   = getStatus(   $row['bug_status']   );
-  $severity = getSeverity( $row['bug_severity'] );
 
-  $statusClass   = "goodthings";
-  $severityClass = "goodthings";
+	if ( $row['bug_status'] == 8 ) {
+		$CONTENT .= "";
+		$s++;
+	} else {
 
-  $overrideOne = False;
-  $overrideTwo = False;
+		if ( $user == '' ) {
+			$user = '-';
+		}
 
-  if ( $status['critical'] ) {
-    $statusClass = "badthings";
-  }
-
-  if ( $severity['critical'] ) {
-    $severityClass = "badthings";
-  }
+		if ( $row['private'] == 1 ) {
+			$private = "Yep";
+		} else {
+			$private = "No";
+		}
 
 
-    $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
-      $row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
-      "</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
-      "</td><td>" . $user['real_name'] . "</td><td>" .
-      $project['project_name'] .
-      "</td><td>" . $private  .
-      "</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
-        . $row['bID'] . "' >" . $row['title'] .
-      "</a></td>\n\t</tr>\n";
-	$s++;
+		$status   = getStatus(   $row['bug_status']   );
+		$severity = getSeverity( $row['bug_severity'] );
+
+		$statusClass   = "goodthings";
+		$severityClass = "goodthings";
+
+		$overrideOne = False;
+		$overrideTwo = False;
+
+		if ( $status['critical'] ) {
+			$statusClass = "badthings";
+		}
+
+		if ( $severity['critical'] ) {
+			$severityClass = "badthings";
+		}
+
+		$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
+			$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
+			"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
+			"</td><td>" . $user['real_name'] . "</td><td>" .
+			$project['project_name'] .
+			"</td><td>" . $private  .
+			"</td><td><a href = '" . $SITE_PREFIX . "t/bug/"
+				. $row['bID'] . "' >" . $row['title'] .
+			"</a></td>\n\t</tr>\n";
+		$s++;
+	}
 }
 
 $CONTENT .= "
