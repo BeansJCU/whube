@@ -6,7 +6,7 @@ $b = $BUG_OBJECT;
 if ( strpos ( $argv[1], '-' ) ) {
 	$projectName = str_replace ( '-', ' ', $argv[1] );
 }
-print_r($projectName);
+
 $p->getByCol( "project_name", $projectName ); // this is goddamn awesome
 $row = $p->getNext();
 
