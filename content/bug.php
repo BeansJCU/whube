@@ -17,10 +17,10 @@ $app_root = dirname( __FILE__ ) . "/../";
 
 include( $app_root . "libs/php/markdown.php" );
 
-$b->getAllByPK( $bugName );
+$b->getAllByPK( $argv[1] );
 $row = $b->getNext();
 
-if ( $row['private'] && isset ( $bugName ) ) {
+if ( $row['private'] && isset ( $argv[1] ) ) {
 	// uh oh. let's make sure they are not punkassbitches
 
 	$reporter = $b->getReporter( $row['bID'] );
