@@ -38,8 +38,6 @@ function clean( $ret ) {
 function format( $ret ) {
 	if ( isset( $ret ) ) {
 		$ret = html_entity_decode( $ret, ENT_QUOTES);
-		// We could replace \0 with \4 before </a> to give just the domain name, much cleaner. --tenach
-		$ret = preg_replace( '/(http|ftp)+(s)?:(\/\/)((\w|\.)+)(\/)?(\S+)?/i', '<a href="\0">\0</a>', $ret );
 		return $ret;
 	} else {
 		return NULL;
