@@ -80,13 +80,19 @@ while ( $s < $bCount ) {
 			$severityClass = "badthings";
 		}
 
+		if ( strpos ( $row['title'], ' ' ) ) {
+			$bugLink = str_replace ( ' ', '-', $row['title'] );
+		} else {
+			$bugLink = $row['title'];
+		}
+
 		$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
 			$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
 			"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
-			"</td><td>" . $user['real_name'] . "</td><td>" .
-			$project['project_name'] .
-			"</td><td>" . $private  .
-			"</td><td>" . $row['title'] . "</td>\n\t</tr>\n";
+			"</td><td>" . $user['real_name'] . "</td>
+			<td>" . $project['project_name'] . "</td>
+			<td>" . $private  . "</td>
+			<td><a href='" . $SITE_PREFIX . "t/bug/" . $bugLink . "'>" . $row['title'] . "</a></td>\n\t</tr>\n";
 		$s++;
 	}
 }

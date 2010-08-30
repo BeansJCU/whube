@@ -59,7 +59,13 @@ while ( $s < $pCount ) {
     $private = "No";
   }
 
-  $CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $row['project_name'] . "'\" ><td>" .
+	if ( strpos ( $row['project_name'], ' ' ) ) {
+		$projectLink = str_replace ( ' ', '-', $row['project_name'] );
+	} else {
+		$projectLink = $row['project_name'];
+	}
+	
+	$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $projectLink . "'\" ><td>" .
   $row['project_name'] . "</td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
   \n\t</tr>\n";
 	$s++;

@@ -3,7 +3,11 @@
 $p = $PROJECT_OBJECT;
 $b = $BUG_OBJECT;
 
-$p->getByCol( "project_name", $argv[1] ); // this is goddamn awesome
+if ( strpos ( $argv[1], '-' ) ) {
+	$projectName = str_replace ( '-', ' ', $argv[1] );
+}
+print_r($projectName);
+$p->getByCol( "project_name", $projectName ); // this is goddamn awesome
 $row = $p->getNext();
 
 $b->getByCol( "package", $row['pID'] ); // this is goddamn awesome

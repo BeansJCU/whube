@@ -9,14 +9,18 @@ $b = $BUG_OBJECT;
 $u = $USER_OBJECT;
 $p = $PROJECT_OBJECT;
 
+if ( strpos ( $argv[1], '-' ) ) {
+	$bugName = str_replace ( '-', ' ', $argv[1] );
+}
+
 $app_root = dirname( __FILE__ ) . "/../";
 
 include( $app_root . "libs/php/markdown.php" );
 
-$b->getAllByPK( $argv[1] );
+$b->getAllByPK( $bugName );
 $row = $b->getNext();
 
-if ( $row['private'] && isset ( $row['bID'] ) ) {
+if ( $row['private'] && isset ( $bugName ) ) {
 	// uh oh. let's make sure they are not punkassbitches
 
 	$reporter = $b->getReporter( $row['bID'] );
