@@ -268,7 +268,21 @@ $descr = Markdown( $row['descr'] );
 $CONTENT .= "
 <h1>Bug Description</h1>
 " . $descr . "
+
+<h1>Comments</h1>
 ";
+
+$BUG_COMMENT_OBJECT->getByCol( "bugID", $row['bID'] );
+
+while ( $comment = $BUG_COMMENT_OBJECT->getNext() ) {
+	$USER_OBJECT->getAll( $comment['ownerID'] );
+	$comment_user = $USER_OBJECT->getNext();
+
+	$CONTENT .= $comment['blahblah'] . "<br />";
+	$CONTENT .= "  -- " . $comment_user['real_name'];
+
+}
+
 
 } else {
 	$_SESSION['err'] = "Bug #" . $argv[1] . " does not exist!";
