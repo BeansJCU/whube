@@ -61,8 +61,18 @@ if ( loggedIn() ) {
 <h1>" . $row['title'] . "</h1>
 <div class = 'shade' >
 <table class = 'center' >
-	<tr><td><img id = 'edit-bug-control' src = '" . $SITE_PREFIX . "imgs/edit.png' alt = 'edit' /></td></tr>
-	<tr><td>Edit this bug</td></tr>
+	<tr>
+		<td><img id = 'edit-bug-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   /></td>
+		<td>
+			<a href = '" . $SITE_PREFIX . "t/new-comment/" . $row['bID'] . "' >
+				<img id = 'comment-control'  src = '" . $SITE_PREFIX . "imgs/new.png' alt = 'design' />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td>Edit this bug</td>
+		<td>Add a comment</td>
+	</tr>
 </table>
 </div>
 
