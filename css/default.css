@@ -375,3 +375,25 @@ input, textarea {
 .holder {
 	min-height:           400px;
 }
+
+.comment {
+	background-image:     url(../imgs/bg-xp-b.png);
+	border:               1px solid #000000;
+	padding:              5px;
+}
+
+.comment_head a, .comment a {
+	color:                #FFFFFF;
+}
+
+.comment {
+	color:                #FFFFFF;
+}
+
+.comment_head {
+	background-image:     url(../imgs/bg-xp-b.png);
+	border:               1px solid #000000;
+	border-bottom:        0px solid #000000;
+	padding:              5px;
+}
+

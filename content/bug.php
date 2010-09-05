@@ -278,8 +278,12 @@ while ( $comment = $BUG_COMMENT_OBJECT->getNext() ) {
 	$USER_OBJECT->getAll( $comment['ownerID'] );
 	$comment_user = $USER_OBJECT->getNext();
 
+	$CONTENT .= "<div class = 'comment_head'>";
+	$CONTENT .= "Comment by the fantastic <a href = '" . $SITE_PREFIX . "t/user/" . $comment_user['username'] . "' >" . $comment_user['real_name'] . "</a>";
+	$CONTENT .= "</div>\n";
+	$CONTENT .= "<div class = 'comment' >";
 	$CONTENT .= $comment['blahblah'] . "<br />";
-	$CONTENT .= "  -- " . $comment_user['real_name'];
+	$CONTENT .= "</div>";
 
 }
 
