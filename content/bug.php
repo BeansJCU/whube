@@ -234,15 +234,15 @@ $statusIcon   = "";
 $severityIcon = "";
 
 if ( $status['critical'] ) {
-$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
+	$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
 } else {
-$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
+	$statusIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
 }
 
 if ( $severity['critical'] ) {
-$severityIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
+	$severityIcon   = "<img src = '" . $SITE_PREFIX . "imgs/warning.png' alt = 'Critical' />";
 } else {
-$severityIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
+	$severityIcon   = "<img src = '" . $SITE_PREFIX . "imgs/happy.png' alt = 'Non-Critical' />";
 }
 
 
@@ -282,9 +282,8 @@ while ( $comment = $BUG_COMMENT_OBJECT->getNext() ) {
 	$CONTENT .= "Comment by the fantastic <a href = '" . $SITE_PREFIX . "t/user/" . $comment_user['username'] . "' >" . $comment_user['real_name'] . "</a>";
 	$CONTENT .= "</div>\n";
 	$CONTENT .= "<div class = 'comment' >";
-	$CONTENT .= $comment['blahblah'] . "<br />";
+	$CONTENT .= Markdown($comment['blahblah']) . "<br />";
 	$CONTENT .= "</div>";
-
 }
 
 
