@@ -285,7 +285,7 @@ $CONTENT .= "
 $BUG_COMMENT_OBJECT->getByCol( "bugID", $row['bID'] );
 
 while ( $comment = $BUG_COMMENT_OBJECT->getNext() ) {
-	$USER_OBJECT->getAll( $comment['ownerID'] );
+	$USER_OBJECT->getAllByPK( $comment['ownerID'] );
 	$comment_user = $USER_OBJECT->getNext();
 
 	$CONTENT .= "<div class = 'comment_head'>";
