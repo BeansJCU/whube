@@ -92,7 +92,7 @@ while ( $s < $bCount ) {
 			"</td><td>" . $user['real_name'] . "</td>
 			<td>" . $project['project_name'] . "</td>
 			<td>" . $private  . "</td>
-			<td><a href='" . $SITE_PREFIX . "t/bug/" . $bugLink . "'>" . $row['title'] . "</a></td>\n\t</tr>\n";
+			<td><a href='" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "/" . $bugLink . "'>" . $row['title'] . "</a></td>\n\t</tr>\n";
 		$s++;
 	}
 }

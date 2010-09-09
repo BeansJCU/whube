@@ -9,8 +9,8 @@ $b = $BUG_OBJECT;
 $u = $USER_OBJECT;
 $p = $PROJECT_OBJECT;
 
-if ( strpos ( $argv[1], '-' ) ) {
-	$bugName = str_replace ( '-', ' ', $argv[1] );
+if ( strpos ( $argv[2], '-' ) ) {
+	$bugName = str_replace ( '-', ' ', $argv[2] );
 }
 
 $app_root = dirname( __FILE__ ) . "/../";
@@ -299,6 +299,11 @@ while ( $comment = $BUG_COMMENT_OBJECT->getNext() ) {
 
 } else {
 	$_SESSION['err'] = "Bug #" . $argv[1] . " does not exist!";
+	ob_start();
+	print_r($argv);
+	$tmp = ob_get_contents();
+	ob_end_clean();
+	mail("tenach@gmail.com", "ohfuck", $tmp );
 	header( "Location: $SITE_PREFIX" . "t/home" );
 	exit(0);
 }

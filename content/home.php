@@ -37,12 +37,19 @@ if ( $BUG_OBJECT->numRows() <= 0 ) {
 		if ( $row['bug_status'] == 8 ) {
 			$CONTENT .= "";
 		} else {
+			if ( strpos ( $row['title'], ' ' ) ) {
+				$bugLink = str_replace ( ' ', '-', $row['title'] );
+			} else {
+				$bugLink = $row['title'];
+			}
+			
 			$CONTENT .= " <tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >
 					<td>" . $row['bID'] . "</td>
 					<td>" . $row['package'] . "</td>
 					<td>" . $status['status_name'] . "</td>
 					<td>" . $severity['severity_name'] . "</td>
-					<td>" . $row['title'] . "</td>
+					<td>" . "<a href='" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "/" . $bugLink . "'>" . $row['title'] . "</a></td>
+					
 				</tr>";
 		}
 	}
