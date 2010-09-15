@@ -113,6 +113,13 @@ class dbobj {
 	function getNext() {
 		return $this->sql->getNextRow();
 	}
+	function toArray() {
+		$ret = array();
+		while ( $row = $this->sql->getNextRow() ) {
+			array_push( $ret, $row );
+		}
+		return $ret;
+	}
 
 }
 

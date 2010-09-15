@@ -1,12 +1,12 @@
 <?php
-    /*
-     *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
-     *  Description:
-     *    Global Routines
-     */
+  /*
+   *  License:   AGPLv3
+   *  Author:    Paul Tagliamonte <paultag@whube.com>
+   *  Description:
+   *    Global Routines
+   */
 
-$php_root = dirname(  __FILE__ ) . "/";
+$php_root = dirname(__FILE__ ) . "/";
 
 include( $php_root . "../../model/sql.php" );
 include( $php_root . "../../model/user.php" );
@@ -23,8 +23,8 @@ function useScript( $id ) {
 }
 
 function sendEmail( $from, $to, $subject, $message ) {
-    $headers = 'From: ' . $from . "\r\n";
-    mail($to, $subject, $message, $headers);
+	$headers = 'From: ' . $from . "\r\n";
+	mail($to, $subject, $message, $headers);
 }
 
 function clean( $ret ) {
@@ -220,12 +220,12 @@ function getRights( $id ) {
 	return executeGet( 'user_rights', 'userID', $id );
 }
 
-/*                          
+/*
  * Base Retrieval Functions 
  */
 function executeGet( $table_name, $pkcol, $value ) {
 	if ( isset ( $value ) ) {
-  	global $TABLE_PREFIX;
+		global $TABLE_PREFIX;
 		$sql = new sql();
 		$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . " WHERE " . $pkcol . " = " . $value . ";" );
 		$ret = $sql->getNextRow();
@@ -233,8 +233,104 @@ function executeGet( $table_name, $pkcol, $value ) {
 	}
 }
 
+function bugList( $count, $resource ) {
+	$ret = "";
+	$ret .= "
+<table class = 'sortable' >
+	<tr class = 'nobg' >
+		<th>ID</th> <th> Status </th> <th> Severity </th> <th>Owner</th> <th>Project</th> <th>Private</th> <th>Title</th>
+	</tr>
+";
+
+global $PROJECT_OBJECT;
+global $USER_OBJECT;
+global $BUG_OBJECT;
+global $SITE_PREFIX;
+
+$p = $PROJECT_OBJECT;
+$u = $USER_OBJECT;
+$b = $BUG_OBJECT;
+
+$p->getAll();
+$u->getAll();
+$b->getAll();
+
+$s = 0;
+
+$bugs = $resource;
+$bCount = count($bugs);
+
+while ( $s < $bCount ) {
+	$row = $bugs[$s];
+	$b->getAllByPK( $row['bID'] );
+	$u->getAllByPK( $row['owner'] );
+
+	$u->getByCol( 'uID', $row['owner'] );
+	$user = $u->getNext();
+
+	$p->getByCol( 'pID', $row['package'] );
+	$project = $p->getNext();
+
+	if ( $row['bug_status'] == 8 ) {
+		$ret .= "";
+		$s++;
+	} else {
+
+		if ( $user == '' ) {
+			$user = '-';
+		}
+
+		if ( $row['private'] == 1 ) {
+			$private = "Yep";
+		} else {
+			$private = "No";
+		}
+
+
+		$status   = getStatus(   $row['bug_status']   );
+		$severity = getSeverity( $row['bug_severity'] );
+
+		$statusClass   = "goodthings";
+		$severityClass = "goodthings";
+
+		$overrideOne = False;
+		$overrideTwo = False;
+
+		if ( $status['critical'] ) {
+			$statusClass = "badthings";
+		}
+
+		if ( $severity['critical'] ) {
+			$severityClass = "badthings";
+		}
+
+		if ( strpos ( $row['title'], ' ' ) ) {
+			$bugLink = str_replace ( ' ', '-', $row['title'] );
+		} else {
+			$bugLink = clean($row['title']);
+		}
+
+		$ret .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .
+			$row['bID'] . "</td><td class = '" . $statusClass . "' >" . $status['status_name'] .
+			"</td><td class = '" . $severityClass . "'>" . $severity['severity_name'] .
+			"</td><td>" . $user['real_name'] . "</td>
+			<td>" . $project['project_name'] . "</td>
+			<td>" . $private  . "</td>
+			<td><a href='" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "/" . $bugLink . "'>" . $row['title'] . "</a></td>\n\t</tr>\n";
+		$s++;
+	}
+}
+
+$ret .= "
+</table><br /><br />
+";
+
+return $ret;
+
+}
+
 function executeGetAll( $table_name ) {
-  global $TABLE_PREFIX;
+	global $TABLE_PREFIX;
 	$sql = new sql();
 	$sql->query( "SELECT * FROM " . $TABLE_PREFIX . $table_name . ";" );
 	$ret = array();
