@@ -29,6 +29,7 @@ function sendEmail( $from, $to, $subject, $message ) {
 
 function clean( $ret ) {
 	if ( isset( $ret ) ) {
+		$ret = addslashes( $ret );
 		return htmlentities( $ret, ENT_QUOTES);
 	} else {
 		return NULL;
@@ -37,6 +38,7 @@ function clean( $ret ) {
 
 function format( $ret ) {
 	if ( isset( $ret ) ) {
+		$ret = stripslashes( $ret );
 		$ret = html_entity_decode( $ret, ENT_QUOTES);
 		return $ret;
 	} else {
