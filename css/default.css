@@ -1,6 +1,10 @@
 body {
 	background-color:     #E9CC9D;
 	font-family:          "Ubuntu", "UbuntuBeta", "Lucida Grande", "Trebuchet MS", sans-serif;
+	/*
+	 * Padding and margin are set to zero
+	 * so that there are no ugly spaces.
+	 */
 	padding:              0px;
 	margin:               0px;
 }
@@ -14,8 +18,13 @@ a:visited {
 	background-color:     #000000;
 	color:                #FFFFFF;
 	padding:              10px;
+
 	-moz-border-radius:   5px;
 	-webkit-border-radius:5px;
+	/*
+	 * Remove the -moz and -webkit
+	 * stuff when CSS3 is working n' shit.
+	 */
 }
 
 a {
@@ -59,26 +68,6 @@ tr {
 
 .sortable tr {
 	width:                100%;
-}
-
-.nametag {
-	background-image:     url(../imgs/nametag.png);
-	width:                480px;
-	height:               315px;
-	text-align:           center;
-}
-
-.nametagfont {
-	padding-top:          120px;
-	padding-left:         10px;
-	font-size:            20px;
-}
-
-.nametagfont input {
-	background-color:     #FFFFFF;
-	border:               0px solid #000000;
-	border-bottom:        1px solid #000000;
-	font-size:            20px;
 }
 
 .nobg {
@@ -149,7 +138,7 @@ a img {
 
 .foot .nav {
 	background-color:     transparent;
-	font-size:						1em;
+	font-size:            1em;
 }
 
 .nav a {
