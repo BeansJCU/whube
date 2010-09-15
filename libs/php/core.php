@@ -24,7 +24,7 @@ $ABOUT_WHUBE = <<<EOF
 <b>Whube</b> is a hip bug tracker. Not hip in the way
 that old people use it, but hip as in I think multitouch
 and acceleromters are hip. It's a bit rough around the 
-edges and is really not stable enough for corprate use.
+edges and is really not stable enough for corporate use.
 Not to mention I don't think it will scale well. But that
 is neither here nor there. <br />
 <br />
