@@ -65,8 +65,8 @@ while ( $s < $pCount ) {
 		$projectLink = $row['project_name'];
 	}
 	
-	$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $projectLink . "'\" ><td>" .
-  $row['project_name'] . "</td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
+	$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/project/" . $projectLink . "'\" ><td>
+	<a href='" . $SITE_PREFIX . "t/project/" . $projectLink . "'>" .  $row['project_name'] . "</a></td><td>" . $user['username'] . "</td><td>" . $bugCount . "</td><td>" . $private . "</td>
   \n\t</tr>\n";
 	$s++;
 }

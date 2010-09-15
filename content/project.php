@@ -5,7 +5,10 @@ $b = $BUG_OBJECT;
 
 if ( strpos ( $argv[1], '-' ) ) {
 	$projectName = str_replace ( '-', ' ', $argv[1] );
+} else {
+	$projectName = $argv[1]; // Sorry paultag, I know I'm breakin' your balls.
 }
+
 
 $p->getByCol( "project_name", $projectName ); // this is goddamn awesome
 $row = $p->getNext();
@@ -45,7 +48,7 @@ There are " . $booboos . " bugs in the tracker on this package (" . $bugCount . 
         $CONTENT .= "";
     }  
 
-} else {
+} else {	
 	$_SESSION['err'] = "Project " . $argv[1] . " does not exist!";
 	header( "Location: $SITE_PREFIX" . "t/home" );
 	exit(0);
