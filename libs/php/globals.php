@@ -46,6 +46,18 @@ function format( $ret ) {
 	}
 }
 
+function excerpt( $ret, $numWords = 10, $trail = '...' ) {
+	if ( isset( $ret ) ) {
+		$words = explode( ' ', $ret );
+		
+		if ( count ( $words ) > $numWords && $numWords > 0 ) {
+			$ret = implode ( ' ', array_slice ( $words, 0, $numWords ) ) . '...';
+		}
+		
+		return $ret;
+	}
+}
+
 function preload( $l, $w, $src ) {
 	global $PRELOAD;
 	$payload = array();

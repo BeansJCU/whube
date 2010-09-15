@@ -41,7 +41,7 @@ if ( isset ( $_GET['p'] ) ) {
 			$d['bestmatch'] = $row['project_name'];
 			if ( strtolower( $row['project_name'] ) == strtolower( $id ) ) {	# convert both strings to lowercase to check equality without worrying about case
 				$d['success'] = true;
-				$d['descr'] = $row['descr'];
+				$d['descr'] = excerpt( $row['descr'] );
 			}
 		}
 	} else {
