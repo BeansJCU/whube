@@ -8,5 +8,5 @@ if [ "x$?" == "x0" ]; then
 	echo "install the stuff we need."
 	echo "This needs sudo rights."
 
-	sudo apt-get install apache2 php5 php5-mysql mysql-server 
+	sudo apt-get install apache2 php5 php5-mysql mysql-server php5-cli
 fi

@@ -13,17 +13,17 @@ $CONTENT  = "
 	<tr>
 		<td>Your Real Name ( First and Last, please )</td>
 		<td></td>
-		<td><input type = 'text' name = 'realname' id = 'realname' /></td>
-	</tr>
-	<tr>
-		<td>Password ( take one )</td>
-		<td></td>
-		<td><input type = 'password' name = 'pass0' id = 'pass0' /></td>
+		<td><input type = 'text' name = 'relaname' id = 'relaname' /></td>
 	</tr>
 	<tr>
 		<td>Email addy</td>
 		<td></td>
 		<td><input type = 'text' name = 'email' id = 'email' /></td>
+	</tr>
+	<tr>
+		<td>Password ( take one )</td>
+		<td></td>
+		<td><input type = 'password' name = 'pass0' id = 'pass0' /></td>
 	</tr>
 	<tr>
 		<td>Password ( take two )</td>
@@ -34,6 +34,7 @@ $CONTENT  = "
 		<td><input type = 'hidden' name = 'tz' id = 'tz' /></td>
 		<td></td>
 		<td><input type = 'submit' name = 'new-user' id = 'submit' value = 'will you remember me?' /></td>
+		<td><input type = 'text' name = 'firstname' id = 'firstname' /></td>
 	</tr>
 </table>
 </form>

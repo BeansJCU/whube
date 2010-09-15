@@ -83,7 +83,7 @@ while ( $s < $bCount ) {
 		if ( strpos ( $row['title'], ' ' ) ) {
 			$bugLink = str_replace ( ' ', '-', $row['title'] );
 		} else {
-			$bugLink = $row['title'];
+			$bugLink = clean($row['title']);
 		}
 
 		$CONTENT .= "\t<tr style=\"cursor:pointer\" onclick=\"document.location.href = '" . $SITE_PREFIX . "t/bug/" . $row['bID'] . "'\" >\n<td>" .

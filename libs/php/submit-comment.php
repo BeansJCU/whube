@@ -39,7 +39,7 @@ isset ( $_POST['descr'])
 			);
 			$id = $BUG_COMMENT_OBJECT->createNew( $fields );
 
-			$_SESSION['msg'] = "Comment!";
+			$_SESSION['msg'] = "Don'tcha wish your comment was hot like me?";
 			header("Location: $SITE_PREFIX" . "t/bug/$pname");
 			exit(0);
 		} else {

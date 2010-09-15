@@ -14,9 +14,13 @@ include( $app_root . "conf/site.php" );
 include( $app_root . "model/user.php" );
 include( $app_root . "model/events.php" );
 
+if ( isset ( $_POST['firstname'] ) ) { // hidden input for the win!
+	header ( "Location: $SITE_PREFIX" . "t/home" ); // Dump the scum without telling them why >:3
+}
+
 if (
 	isset ( $_POST['username'] ) &&
-	isset ( $_POST['realname'] ) &&
+	isset ( $_POST['relaname'] ) && // Mispelled on purpose for bot swatting!
 	isset ( $_POST['email']	) &&
 	isset ( $_POST['pass1']	)
 ) {
