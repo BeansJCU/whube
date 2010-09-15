@@ -9,7 +9,7 @@ $b = $BUG_OBJECT;
 $u = $USER_OBJECT;
 $p = $PROJECT_OBJECT;
 
-if ( strpos ( $argv[2], '-' ) ) {
+if ( sizeof($argv) > 2  &&  strpos ( $argv[2], '-' ) ) {
 	$bugName = str_replace ( '-', ' ', $argv[2] );
 }
 
