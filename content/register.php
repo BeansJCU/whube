@@ -16,14 +16,14 @@ $CONTENT  = "
 		<td><input type = 'text' name = 'realname' id = 'realname' /></td>
 	</tr>
 	<tr>
-		<td>Password ( take one )</td>
-		<td></td>
-		<td><input type = 'password' name = 'pass0' id = 'pass0' /></td>
-	</tr>
-	<tr>
 		<td>Email addy</td>
 		<td></td>
 		<td><input type = 'text' name = 'email' id = 'email' /></td>
+	</tr>
+	<tr>
+		<td>Password ( take one )</td>
+		<td></td>
+		<td><input type = 'password' name = 'pass0' id = 'pass0' /></td>
 	</tr>
 	<tr>
 		<td>Password ( take two )</td>
