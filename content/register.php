@@ -13,7 +13,7 @@ $CONTENT  = "
 	<tr>
 		<td>Your Real Name ( First and Last, please )</td>
 		<td></td>
-		<td><input type = 'text' name = 'realname' id = 'realname' /></td>
+		<td><input type = 'text' name = 'relaname' id = 'relaname' /></td>
 	</tr>
 	<tr>
 		<td>Email addy</td>
@@ -34,6 +34,7 @@ $CONTENT  = "
 		<td><input type = 'hidden' name = 'tz' id = 'tz' /></td>
 		<td></td>
 		<td><input type = 'submit' name = 'new-user' id = 'submit' value = 'will you remember me?' /></td>
+		<td><input type = 'text' name = 'firstname' id = 'firstname' /></td>
 	</tr>
 </table>
 </form>

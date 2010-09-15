@@ -387,3 +387,7 @@ input, textarea {
 	padding:              5px;
 }
 
+/* Om nom a nom nom nom */
+#firstname { /* Bogus shit bots usually fall for. */
+	display:none;
+}
