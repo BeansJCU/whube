@@ -2,9 +2,13 @@
 function whubeNav() {
 	global $SITE_PREFIX;
 	
-	$nav = "<div class = 'nav' >
-		<a href = '" . $SITE_PREFIX . "t/home' >Home</a> | 
-		<a href = '" . $SITE_PREFIX . "t/bug-list' >Bug List</a> | 
+	$nav = "<div class = 'nav' >";
+		if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
+			$nav .= "<a href = '" . $SITE_PREFIX . "t/home' >Home</a> | ";
+		} else {
+			$nav .= "<a href = '" . $SITE_PREFIX . "t/default' >Home</a> | ";
+		}
+	$nav .= "<a href = '" . $SITE_PREFIX . "t/bug-list' >Bug List</a> | 
 		<a href = '" . $SITE_PREFIX . "t/project-list' >Project List</a> | ";
 		if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
 			$nav .= "<a href = '" . $SITE_PREFIX . "t/new-project' >New Project</a> | 
