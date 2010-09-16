@@ -20,11 +20,8 @@ $BUG_OBJECT->getByCol( "owner", $_SESSION['id'] );
 $bugs = $BUG_OBJECT->toArray();
 
 if ( sizeof( $bugs ) <= 0 ) {
-
 	$CONTENT .= "Nothing here! Great job! You rule! Here's a kitty!<br /><br />";
 	$CONTENT .= "<img src = '" . $SITE_PREFIX . "imgs/kittah.jpg' alt = 'kittah' /><br /><br />";
-
-
 } else {
 
 	$CONTENT .= bugList( $Count, $bugs );

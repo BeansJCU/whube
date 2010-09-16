@@ -34,7 +34,7 @@ class project extends dbobj {
 			return $row['active'];
 		}
 	}
-	
+
 	function getAllProjects() {
 		global $TABLE_PREFIX;
 		$sql = new sql();

@@ -10,7 +10,7 @@ $bugnug = $BUG_OBJECT->getNext();
 $TITLE = "Blah blah Blah blah Blah blah Blah blah";
 $CONTENT .= "
 <h1>Bug description:</h1>
-" . $bugnug['descr'] . "
+" . Markdown($bugnug['descr']) . "
 <h1>Speak your mind, kid.</h1>
 <br />
 <br />
