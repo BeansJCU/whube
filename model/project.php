@@ -20,6 +20,20 @@ class project extends dbobj {
 	function project() {
 		dbobj::dbobj("projects", "pID");
 	}
+
+	function hasRights( $user, $project ) {
+		global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = \"$project\" AND userID = \"$user\";" );
+
+		$row = $sql->getNextRow();
+
+		if ( $row != NULL || $row['active'] == False ) {
+			return false;
+		} else {
+			return $row['active'];
+		}
+	}
 	
 	function getAllProjects() {
 		global $TABLE_PREFIX;
