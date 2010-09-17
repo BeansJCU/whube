@@ -4,9 +4,12 @@ $p = $PROJECT_OBJECT;
 $b = $BUG_OBJECT;
 
 if ( strpos ( $argv[1], '-' ) ) {
-	$projectName = str_replace ( '-', ' ', $argv[1] );
+	$projectName = str_replace ( '-', ' ', clean($argv[1]) );
 } else {
-	$projectName = $argv[1]; // Sorry paultag, I know I'm breakin' your balls.
+	$projectName = clean($argv[1]); // tenach, so help me god,
+	                                // the next time you let
+	                                // unclean input into the db
+	                                // I'm going to make you suffer
 }
 
 
