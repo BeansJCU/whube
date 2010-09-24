@@ -17,9 +17,8 @@ PWD="c21f969b5f03d33d43e04f8f136e7682" # default
 PSR="foo"
 
 echo "I'm setting your password to \"default\"."
-echo "I'm setting your remote password to \"$PSR\"."
 
-QUERY="INSERT INTO users ( real_name, username, email, password, remotepw, startstamp, trampstamp ) VALUES ('$REALNAME', '$USERNAME', '$EMAIL', '$PWD', '$PSR', $DATE, $DATE );"
+QUERY="INSERT INTO users ( real_name, username, email, password, startstamp, trampstamp ) VALUES ('$REALNAME', '$USERNAME', '$EMAIL', '$PWD', $DATE, $DATE );"
 
 echo "OK. Sending off to DB..."
 
