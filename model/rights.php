@@ -10,17 +10,17 @@
 
 if ( ! class_exists ( "rights" ) ) {
 
-if ( ! class_exists( "dbobj" ) ) {
-        // last ditch...
-        $model_root = dirname(  __FILE__ ) . "/";
-        include( $model_root . "dbobj.php" );
-}
-
-class rights extends dbobj {
-	function rights() {
-		dbobj::dbobj("user_rights", "userID");
+	if ( ! class_exists( "dbobj" ) ) {
+	        // last ditch...
+	        $model_root = dirname(  __FILE__ ) . "/";
+	        include( $model_root . "dbobj.php" );
 	}
-}
+
+	class rights extends dbobj {
+		function rights() {
+			dbobj::dbobj("user_rights", "userID");
+		}
+	}
 }
 
 $RIGHTS_OBJECT = new rights();
