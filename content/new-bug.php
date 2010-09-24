@@ -4,10 +4,6 @@ requireLogin();
 
 useScript( "validate-project.php" );
 
-preload( 32, 32, "no.png" );
-preload( 32, 32, "yes.png" );
-preload( 32, 32, "loading.png" );
-
 $TITLE = "Oh noes!";
 $CONTENT .= "
 <h1>So. You have a problem. Well whoopdie do. Don't we all</h1>

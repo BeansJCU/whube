@@ -49,23 +49,15 @@ function format( $ret ) {
 function excerpt( $ret, $numWords = 10, $trail = '...' ) {
 	if ( isset( $ret ) ) {
 		$words = explode( ' ', $ret );
-		
 		if ( count ( $words ) > $numWords && $numWords > 0 ) {
 			$ret = implode ( ' ', array_slice ( $words, 0, $numWords ) ) . '...';
 		}
-		
 		return $ret;
 	}
 }
 
 function preload( $l, $w, $src ) {
-	global $PRELOAD;
-	$payload = array();
-	$payload['w']   = $w;
-	$payload['h']   = $l;
-	$payload['src'] = $src;
-
-	array_push( $PRELOAD, $payload );
+	// XXX: Meh. Remove this post DD.
 }
 
 function breakUpLine( $line ) {
