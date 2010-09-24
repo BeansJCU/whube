@@ -10,61 +10,60 @@
 
 if ( ! class_exists ( "project" ) ) {
 
-if ( ! class_exists( "dbobj" ) ) {
-        // last ditch...
-        $model_root = dirname(  __FILE__ ) . "/";
-        include( $model_root . "dbobj.php" );
-}
-
-class project extends dbobj {
-	function project() {
-		dbobj::dbobj("projects", "pID");
+	if ( ! class_exists( "dbobj" ) ) {
+		// last ditch...
+		$model_root = dirname(  __FILE__ ) . "/";
+		include( $model_root . "dbobj.php" );
 	}
 
-	function hasRights( $user, $project ) {
-		global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = \"$project\" AND userID = \"$user\";" );
+	class project extends dbobj {
+		function project() {
+			dbobj::dbobj("projects", "pID");
+		}
 
-		$row = $sql->getNextRow();
+		function hasRights( $user, $project ) {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = \"$project\" AND userID = \"$user\";" );
 
-		if ( $row != NULL || $row['active'] == False ) {
-			return false;
-		} else {
-			return $row['active'];
+			$row = $sql->getNextRow();
+
+			if ( $row != NULL || $row['active'] == False ) {
+				return false;
+			} else {
+				return $row['active'];
+			}
+		}
+
+		function userMembership( $id ) {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = " . $id . ";" );
+			$ret = array();
+			while ( $row = $sql->getNextRow() ) {
+				array_push( $ret, $row );
+			}
+			return $ret;
+		}
+
+		function getName( $id ) {
+			$this->getAllByPK( $id );
+			$ret = $this->getNext();
+			return $ret;
+		}
+
+		function getAllProjects() {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$sql->query("SELECT * FROM " . $TABLE_PREFIX . "projects;" );
+			$ret = array();
+			while ( $row = $sql->getNextRow() ) {
+				array_push( $ret, $row );
+			}
+			return $ret;
 		}
 	}
-
-	function userMembership( $id ) {
-		global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = " . $id . ";" );
-		$ret = array();
-		while ( $row = $sql->getNextRow() ) {
-			array_push( $ret, $row );
-		}
-		return $ret;
-	}
-
-	function getName( $id ) {
-		$this->getAllByPK( $id );
-		$ret = $this->getNext();
-		return $ret;
-	}
-
-	function getAllProjects() {
-		global $TABLE_PREFIX;
-		$sql = new sql();
-		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "projects;" );
-		$ret = array();
-		while ( $row = $sql->getNextRow() ) {
-			array_push( $ret, $row );
-		}
-		return $ret;
-	}
 }
-}
-
 
 $PROJECT_OBJECT = new project();
 
