@@ -55,185 +55,181 @@ if ( isset ( $row['bID'] ) ) {
 
 	$TITLE = "Bug #" . $row['bID'] . " | " . format( $row['title'] );
 
-if ( loggedIn() ) {
+	if ( loggedIn() ) {
 
-	$CONTENT .= "
-<h1>" . $row['title'] . "</h1>
-<div class = 'shade' >
-<table class = 'center' >
-	<tr>
-		<td><img id = 'edit-bug-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   /></td>
-		<td>
-			<a href = '" . $SITE_PREFIX . "t/new-comment/" . $row['bID'] . "' >
-				<img id = 'comment-control'  src = '" . $SITE_PREFIX . "imgs/new.png' alt = 'design' />
-			</a>
-		</td>
-	</tr>
-	<tr>
-		<td>Edit this bug</td>
-		<td>Add a comment</td>
-	</tr>
-</table>
-</div>
+		$CONTENT .= "
+			<h1>" . $row['title'] . "</h1>
+			<div class = 'shade' >
+			<table class = 'center' >
+				<tr>
+					<td><img id = 'edit-bug-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   /></td>
+					<td>
+						<a href = '" . $SITE_PREFIX . "t/new-comment/" . $row['bID'] . "' >
+							<img id = 'comment-control'  src = '" . $SITE_PREFIX . "imgs/new.png' alt = 'design' />
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Edit this bug</td>
+					<td>Add a comment</td>
+				</tr>
+			</table>
+			</div>
 
-<div id = 'edit-bug' >
-<div class = 'lookatme' >
-	<div id = 'edit-interface' class = 'container' >
-		<div class = 'prompt' >
-			<div class = 'content' >
-<img id = 'edit-close' src = '" . $SITE_PREFIX . "imgs/close.png' alt = 'Close' />
-<h1>Edit this bug: </h1>
-	<form action = '" . $SITE_PREFIX . "l/bug-callback' method = 'post' >
-		<p><input type = 'hidden' value = '" . $row['bID'] . "' name = 'bID' /></p>
+			<div id = 'edit-bug' >
+			<div class = 'lookatme' >
+				<div id = 'edit-interface' class = 'container' >
+					<div class = 'prompt' >
+						<div class = 'content' >
+			<img id = 'edit-close' src = '" . $SITE_PREFIX . "imgs/close.png' alt = 'Close' />
+			<h1>Edit this bug: </h1>
+				<form action = '" . $SITE_PREFIX . "l/bug-callback' method = 'post' >
+					<p><input type = 'hidden' value = '" . $row['bID'] . "' name = 'bID' /></p>
 
-<table>
-	<tr>
-		<td>Project</td>
-		<td><div id = 'project-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
-		<td><input type = 'text' value = '" . $project['project_name'] . "' id = 'project' name = 'project' size = '20' /></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td><div id = 'project-descr' >&nbsp;</div></td>
-	</tr>
-	<tr>
-		<td>Private</td>
-		<td></td>
-		<td><input type = 'checkbox' value = 'true' name = 'private' ";
-
-
-	if ( $row['private'] ) {
-		$CONTENT .= " checked='true' ";
-	}
-
-$CONTENT .= "/></textarea></td>
-	</tr>
-
-	<tr>
-		<td>Title</td>
-		<td></td>
-		<td><input value = \"" . $row['title'] . "\" type = 'text' name = 'title' /></td>
-	</tr>
-	<tr>
-		<td>Status</td>
-		<td></td>
-		<td><select name = 'status' >
-";
-
-$status   = getAllStatus();
-foreach ( $status as $key ) {
-	$hook = "";
-	if ( $key['statusID'] == $row['bug_status'] ) {
-		$hook = ' selected = "selected" ';
-	}
-	$CONTENT .= "<option value = '" . $key['statusID'] . "' $hook >" . $key['status_name'] . "</option>\n";
-}
-
-$CONTENT .= "
-</select></td>
-	</tr>
-	<tr>
-		<td>Severity</td>
-		<td></td>
-		<td><select name = 'severity' >";
-
-$severity = getAllSeverity();
-foreach ( $severity as $key ) {
-	$hook = "";
-	if ( $key['severityID'] == $row['bug_severity'] ) {
-		$hook = ' selected = "selected" ';
-	}
-	$CONTENT .= "<option value = '" . $key['severityID'] . "' $hook >" . $key['severity_name'] . "</option>\n";
-}
-
-$CONTENT .= "</select></td>
-	</tr>
-	<tr>
-		<td>Don't Assign Anyone</td>
-		<td><input id = 'noassign' type = 'checkbox' value = 'true' name = 'noassign' ";
+			<table>
+				<tr>
+					<td>Project</td>
+					<td><div id = 'project-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
+					<td><input type = 'text' value = '" . $project['project_name'] . "' id = 'project' name = 'project' size = '20' /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><div id = 'project-descr' >&nbsp;</div></td>
+				</tr>
+				<tr>
+					<td>Private</td>
+					<td></td>
+					<td><input type = 'checkbox' value = 'true' name = 'private' ";
 
 
-	if ( isset( $owner['username'] ) ) {
-		$CONTENT .= " ";
-	} else {
-		$CONTENT .= " checked='true' ";
-	}
+		if ( $row['private'] ) {
+			$CONTENT .= " checked='true' ";
+		}
 
-$CONTENT .= "/></td>
-		<td>Currently Assigned: <div id = 'user-descr' >&nbsp;</div></td>
-	</tr>
-	<tr>
-		<td>Owner</td>
-		<td><div id = 'user-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
-		<td><input type = 'text' value = '" . $owner['username'] . "' id = 'user' name = 'owner' size = '20' /></td>
-	</tr>
-	<tr>
-		<td>Description</td>
-		<td></td>
-		<td><textarea name = 'descr' rows = '10' cols = '50' >" . $row['descr'] . "</textarea></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
-		<td><input type = 'submit' value = 'Make it so' /></td>
-	</tr>
-</table>
-	</form>
+		$CONTENT .= "/></textarea></td>
+			</tr>
+
+			<tr>
+				<td>Title</td>
+				<td></td>
+				<td><input value = \"" . $row['title'] . "\" type = 'text' name = 'title' /></td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td></td>
+				<td><select name = 'status' >
+		";
+
+		$status   = getAllStatus();
+		foreach ( $status as $key ) {
+			$hook = "";
+			if ( $key['statusID'] == $row['bug_status'] ) {
+				$hook = ' selected = "selected" ';
+			}
+			$CONTENT .= "<option value = '" . $key['statusID'] . "' $hook >" . $key['status_name'] . "</option>\n";
+		}
+
+		$CONTENT .= "
+			</select></td>
+				</tr>
+				<tr>
+					<td>Severity</td>
+					<td></td>
+					<td><select name = 'severity' >";
+
+		$severity = getAllSeverity();
+		foreach ( $severity as $key ) {
+			$hook = "";
+			if ( $key['severityID'] == $row['bug_severity'] ) {
+				$hook = ' selected = "selected" ';
+			}
+			$CONTENT .= "<option value = '" . $key['severityID'] . "' $hook >" . $key['severity_name'] . "</option>\n";
+		}
+
+		$CONTENT .= "</select></td>
+			</tr>
+			<tr>
+				<td>Don't Assign Anyone</td>
+				<td><input id = 'noassign' type = 'checkbox' value = 'true' name = 'noassign' ";
+
+
+		if ( isset( $owner['username'] ) ) {
+			$CONTENT .= " ";
+		} else {
+			$CONTENT .= " checked='true' ";
+		}
+
+		$CONTENT .= "/></td>
+					<td>Currently Assigned: <div id = 'user-descr' >&nbsp;</div></td>
+				</tr>
+				<tr>
+					<td>Owner</td>
+					<td><div id = 'user-ok' ><img src = '" . $SITE_PREFIX . "imgs/no.png' alt = '' /></div></td>
+					<td><input type = 'text' value = '" . $owner['username'] . "' id = 'user' name = 'owner' size = '20' /></td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td></td>
+					<td><textarea name = 'descr' rows = '10' cols = '50' >" . $row['descr'] . "</textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
+					<td><input type = 'submit' value = 'Make it so' /></td>
+				</tr>
+			</table>
+		</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div><br />
-<br />
-<br />
-";
+	</div><br />
+	<br />
+	<br />
+	";
 
-}
+	}
 
+	$CONTENT .= "
+	<table>
 
-$CONTENT .= "
-<table>
+		<tr>
+			<td>Project</td>
+			<td></td>
+			<td>" . $project['project_name'] . " ( <a href = '" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "' >" . $project['project_name'] . "</a> )</td>
+		</tr>
 
-	<tr>
-		<td>Project</td>
-		<td></td>
-		<td>" . $project['project_name'] . " ( <a href = '" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "' >" . $project['project_name'] . "</a> )</td>
-	</tr>
+		<tr>
+			<td>Reporter</td>
+			<td></td>
+			<td>" . $reporter['real_name'] . " ( <a href = '" . $SITE_PREFIX . "t/user/" . $reporter['username'] . "' >" . $reporter['username'] . "</a> )</td>
+		</tr>
+		<tr>
+			<td>Created</td>
+			<td></td>
+			<td>" . date( "F j, o", $row['startstamp'] ) . "</td>
+		</tr>
+		<tr>
+			<td>Last Modified</td>
+			<td></td>
+			<td>" . date( "F j, o", $row['trampstamp'] ) . "</td>
+		</tr>
 
-	<tr>
-		<td>Reporter</td>
-		<td></td>
-		<td>" . $reporter['real_name'] . " ( <a href = '" . $SITE_PREFIX . "t/user/" . $reporter['username'] . "' >" . $reporter['username'] . "</a> )</td>
-	</tr>
-	<tr>
-		<td>Created</td>
-		<td></td>
-		<td>" . date( "F j, o", $row['startstamp'] ) . "</td>
-	</tr>
-	<tr>
-		<td>Last Modified</td>
-		<td></td>
-		<td>" . date( "F j, o", $row['trampstamp'] ) . "</td>
-	</tr>
-
-	<tr>
-		<td>Owner</td>
-		<td></td>
-";
+		<tr>
+			<td>Owner</td>
+			<td></td>
+	";
 
 	if ( isset ( $owner['uID'] ) ) {
-		$CONTENT .= "
-		<td>" . $owner['real_name'] . " ( <a href = '" . $SITE_PREFIX . "t/user/" . $owner['username'] . "' >" . $owner['username'] . "</a> )</td>";
+		$CONTENT .= " <td>" . $owner['real_name'] . " ( <a href = '" .
+			$SITE_PREFIX . "t/user/" . $owner['username'] . "' >" . $owner['username'] . "</a> )</td>";
 	} else {
 		$CONTENT .= "
 		<td>No Owner</td>";
 	}
 
-
-
 $CONTENT .= "
-
 	</tr>
 ";
 
