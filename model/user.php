@@ -66,6 +66,17 @@ class user extends dbobj {
 	 }
 	return $isValid;
 	}
+
+	function teamMembership( $id ) {
+		global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE userID = " . $id . ";" );
+		$ret = array();
+		while ( $row = $sql->getNextRow() ) {
+			array_push( $ret, $row );
+		}
+		return $ret;
+	}
 	
 	function validate_password( $password, $min, $max ) {
 		$password = trim( $password );

@@ -23,9 +23,9 @@ $bugCount = 0;
 $i = 0;
 
 while ( $i < $booboos ) {
-  $bug = $b->getNext();   
-  if ( $bug['bug_status'] != 8 ) $bugCount++;
-  $i++;
+	$bug = $b->getNext();   
+	if ( $bug['bug_status'] != 8 ) $bugCount++;
+	$i++;
 }
 
 $bugsFixed = $booboos - $bugCount;

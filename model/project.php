@@ -35,6 +35,23 @@ class project extends dbobj {
 		}
 	}
 
+	function userMembership( $id ) {
+		global $TABLE_PREFIX;
+		$sql = new sql();
+		$sql->query("SELECT * FROM " . $TABLE_PREFIX . "project_members WHERE projectID = " . $id . ";" );
+		$ret = array();
+		while ( $row = $sql->getNextRow() ) {
+			array_push( $ret, $row );
+		}
+		return $ret;
+	}
+
+	function getName( $id ) {
+		$this->getAllByPK( $id );
+		$ret = $this->getNext();
+		return $ret;
+	}
+
 	function getAllProjects() {
 		global $TABLE_PREFIX;
 		$sql = new sql();

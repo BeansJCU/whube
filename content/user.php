@@ -10,24 +10,24 @@ $user = $u->getNext();
 $RIGHTS_OBJECT->getAllByPK( $user['uID'] );
 $user_rights = $RIGHTS_OBJECT->getNext();
 
-$p->getAll( "owner", $user['uID'] ); // this is goddamn awesome
-$projects = $p->numrows();
+$projects = $p->userMembership( $user['uID'] );
 
 $b->getByCol( "package", $user["uID"] ); // this is goddamn awesome
 $booboos = $b->numrows();
 
 
-$critical = 0; // doh // $b->specialSelect( "bug_status != 1" );
+$critical = -1; // doh // $b->specialSelect( "bug_status != 1" );
 
 if ( isset ( $user["username"] ) ) {
 
 	$projectList = "";
 
-  $i=0;
-  while( $row = $p->getNext() ) {
-    $projectList .= "<li><a href='../project/" . $row['project_name'] . "'>" . $row['project_name'] . "</a></li>";
-    $i++;
-  }
+	$i=0;
+	foreach ( $projects as $projectski ) {
+		$project = $p->getName( $projectski['projectID'] );
+		$projectList .= "<li><a href='" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "'>" . $project['project_name'] . "</a></li>";
+		$i++;
+	}
   
 	$TITLE = $user["username"] . ", one of the fantastic users on Whube";
 	$CONTENT = "
@@ -37,21 +37,9 @@ This here be " . $user['real_name'] . "<br />
 There are " . $booboos . " bugs filed by " . $user['username'] . ". " . $critical . " are critical.<br />
 <br />
 
-" . ucwords($user['username']) ." is owner of " . $projects . " projects. These projects are: 
+" . ucwords($user['username']) ." is a member of " . sizeof($projects) . " projects. These projects are: 
 <ul>" . $projectList . "</ul>
 ";
-/*
-
-<br />
-" . $user_rights['admin'] . " - Admin<br />
-" . $user_rights['staff'] . " - Staff<br />
-" . $user_rights['doner'] . " - Doner<br />
-" . $user_rights['member'] . " - Member<br />
-" . $user_rights['banned'] . " - Banned<br />
-
-
-*/
-
 } else {
 	$_SESSION['err'] = "User " . $argv[1] . " does not exist!";
 	header( "Location: $SITE_PREFIX" . "t/home" );
