@@ -1,3 +1,4 @@
+conf/
 install/setup.sql
-libs/js/jQuery.js
 install/install.php
+libs/js/jQuery.js
