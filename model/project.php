@@ -89,6 +89,15 @@ if ( ! class_exists ( "project" ) ) {
 			}
 			return $ret;
 		}
+		
+		function getAllTeams() {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$sql->query("SELECT DISTINCT * FROM " . $TABLE_PREFIX . "project_members;" );
+			$ret = array();
+			while ( $row = $sql->GetNextRow() );
+		}
+		
 	}
 }
 
