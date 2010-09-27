@@ -56,7 +56,7 @@ if ( isset ( $row['pID'] ) ) {
 			$USER_OBJECT->getAllByPK( $hacker['userID'] );
 			$person = $USER_OBJECT->getNext();
 			$CONTENT .= "
-				<a href = '" . $SITE_PREFIX . "t/user/" . $person['username'] . "' >" . $person['real_name'] . "</a>
+				<a href = '" . $SITE_PREFIX . "t/user/" . $person['username'] . "' >" . $person['real_name'] . "</a><br />
 			";
 		}
 
