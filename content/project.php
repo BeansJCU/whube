@@ -40,7 +40,27 @@ if ( isset ( $row['pID'] ) ) {
 		" . $row['descr'] . "<br />
 		<br />
 		There are " . $booboos . " bugs in the tracker on this package (" . $bugCount . " listed, " . $bugsFixed . " fixed). " . $critical . " are critical.
+		<br />
+		<br />
 	";
+
+	$hackers = $p->userMembership( $row['pID'] );
+
+	if ( sizeof( $hackers ) > 0 ) {
+
+		$CONTENT .= "
+			<h1>Hackers on this project</h1>
+		";
+
+		foreach ( $hackers as $hacker ) {
+			$USER_OBJECT->getAllByPK( $hacker['userID'] );
+			$person = $USER_OBJECT->getNext();
+			$CONTENT .= "
+				<a href = '" . $SITE_PREFIX . "t/user/" . $person['username'] . "' >" . $person['real_name'] . "</a>
+			";
+		}
+
+	}
 
 	if ( $VCS_SITE_ENABLE ) {    
         	$CONTENT .= "<br /><br />\n";

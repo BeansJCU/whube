@@ -33,9 +33,9 @@ isset ( $_POST['descr'])
 
 		if ( $bug != NULL && $bug['bID'] > 0 ) {
 			$fields = array(
-"bugID"    => clean($pname),
-"ownerID"  => clean($_SESSION['id']),
-"blahblah" => clean($descr)
+				"bugID"    => clean($pname),
+				"ownerID"  => clean($_SESSION['id']),
+				"blahblah" => clean($descr)
 			);
 			$id = $BUG_COMMENT_OBJECT->createNew( $fields );
 

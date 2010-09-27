@@ -30,7 +30,7 @@ if ( ! class_exists ( "user" ) ) {
 			}
 			return $ret;
 		}
-	
+
 		function validate_email( $email ) {
 			$isValid = true;
 			$atIndex = strrpos( $email, "@" );	

@@ -24,7 +24,7 @@ if (
 	isset ( $_POST['email']	) &&
 	isset ( $_POST['pass1']	)
 ) {
-	
+
 	$r = $USER_OBJECT;
 	$u = $USER_OBJECT;
 
