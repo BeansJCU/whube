@@ -1,6 +1,14 @@
 <?php
+
+if ( isset( $argv[1] ) ) {
+	// that's a redirect!
+	$TARGET_PAGE = clean( $argl );
+} else {
+	$TARGET_PAGE = "home";
+}
+
 if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0 ) {
-	header( "Location: " . $SITE_PREFIX . "t/home" );
+	header( "Location: " . $SITE_PREFIX . "t/" . $TARGET_PAGE );
 }
 
 useScript( "md5.js" );

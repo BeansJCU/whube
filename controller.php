@@ -51,6 +51,12 @@ $toks = explode( "/", $p );
 $argv = $toks;
 $argc = sizeof( $toks ); // these get passed to the view
 
+$argl = "";
+
+for ( $i = 1; $i < $argc; ++$i ) {
+	$argl = $argl .= $argv[$i] . "/";
+}
+
 if (
 	isset ( $toks[0] ) &&
 	$toks[0] != ""
