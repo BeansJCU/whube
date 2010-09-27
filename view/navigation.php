@@ -1,10 +1,12 @@
 <?php
 function whubeNav() {
 	global $SITE_PREFIX;
-	
 	$nav = "<div class = 'nav' >";
 		if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
 			$nav .= "<a href = '" . $SITE_PREFIX . "t/home' >Home</a> | ";
+			if ( isset ( $_SESSION['rights'] ) && $_SESSION['rights']['admin'] == 1 ) {
+				$nav .= "<a href = '" . $SITE_PREFIX . "t/admin' >Admin</a> | ";
+			}
 		} else {
 			$nav .= "<a href = '" . $SITE_PREFIX . "t/default' >Home</a> | ";
 		}
