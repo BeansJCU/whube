@@ -28,6 +28,12 @@ if ( isset( $_POST['login'] ) ) {
 		isset( $_POST['pass'] ) && $_POST['pass'] != ""
 	) {
 
+		if ( isset( $_POST['bounce'] ) && $_POST['bounce'] != "" ) {
+			$TARGET_PAGE = clean( $_POST['bounce'] );
+		} else {
+			$TARGET_PAGE = "home";
+		}
+
 		$_SESSION['key'] = $_SESSION['token'];
 		unset( $_SESSION['token'] );
 
@@ -61,17 +67,17 @@ if ( isset( $_POST['login'] ) ) {
 //
 
 				$_SESSION['msg'] = "Well done! Welcome in!";
-				header("Location: " . $SITE_PREFIX . "t/home");
+				header("Location: " . $SITE_PREFIX . "t/" . $TARGET_PAGE);
 				exit(0);
 			}
 		} else {
 			$_SESSION['err'] = "Login Failure. Check username and password.";
-			header("Location: " . $SITE_PREFIX . "t/login");
+			header("Location: " . $SITE_PREFIX . "t/login/" . $TARGET_PAGE);
 			exit(0);
 		}
 	} else {
 		$_SESSION['err'] = "Failed to submit the form completely";
-		header("Location: $SITE_PREFIX" . "t/login" );
+		header("Location: $SITE_PREFIX" . "t/login/" . $TARGET_PAGE );
 		exit(0);
 	}
 }

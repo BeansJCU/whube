@@ -31,7 +31,8 @@ $CONTENT = "
 	</script>
 	<form action = '" . $SITE_PREFIX . "l/gate' method = 'post' >
 	<p>
-		<input type = 'hidden' name = 'token' value = '" . $TOKEN . "' />
+		<input type = 'hidden' name = 'token'  value = '" . $TOKEN . "' />
+		<input type = 'hidden' name = 'bounce' value = '" . $TARGET_PAGE . "' />
 		<input type = 'hidden' name = 'pass' />
 	</p>
 	<table>
