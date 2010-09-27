@@ -54,7 +54,7 @@ $argc = sizeof( $toks ); // these get passed to the view
 $argl = "";
 
 for ( $i = 1; $i < $argc; ++$i ) {
-	$argl = $argl .= $argv[$i] . "/";
+	$argl .= $argv[$i] . "/";
 }
 
 if (

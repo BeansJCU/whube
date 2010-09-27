@@ -25,6 +25,8 @@ function useScript( $id ) {
 function sendEmail( $from, $to, $subject, $message ) {
 	$headers = 'From: ' . $from . "\r\n";
 	mail($to, $subject, $message, $headers);
+//	echo $to, $subject, $message, $headers;
+//	exit(0);
 }
 
 function clean( $ret ) {
@@ -79,8 +81,10 @@ function requireLogin() {
 	global $SITE_PREFIX;
 	global $argv;
 
+	$argl = "";
+
 	for ( $i = 0; $i < sizeof( $argv ); ++$i ) {
-		$argl = $argl .= $argv[$i] . "/";
+		$argl .= $argv[$i] . "/";
 	}
 
 	if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {

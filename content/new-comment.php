@@ -2,6 +2,9 @@
 
 requireLogin();
 
+$app_root = dirname(__FILE__) . "/../";
+include( $app_root . "libs/php/markdown.php" );
+
 if ( isset( $argv[1] ) ) {
 
 $BUG_OBJECT->getAllByPK( $argv[1] );

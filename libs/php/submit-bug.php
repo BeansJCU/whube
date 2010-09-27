@@ -51,6 +51,12 @@ $person_queue = array();
 $USER_OBJECT->getAllByPK( $project['owner'] );
 $manager = $USER_OBJECT->getNext();
 
+$hackers = $PROJECT_OBJECT->userMembership( $project['pID'] );
+
+foreach( $hackers as $hacker ) {
+	$person_queue[$hacker['uID']] = 'team member';
+}
+
 $person_queue[$_SESSION['id']]  = 'reporter';
 $person_queue[$manager['uID']]  = 'manager';
 

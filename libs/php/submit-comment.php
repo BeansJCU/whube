@@ -39,8 +39,54 @@ isset ( $_POST['descr'])
 			);
 			$id = $BUG_COMMENT_OBJECT->createNew( $fields );
 
+			if ( $BUILTIN_EMAIL_ENABLE ) {
+
+$person_queue = array();
+
+$USER_OBJECT->getAllByPK( $bug['reporter'] );
+$reporter = $USER_OBJECT->getNext();
+
+$PROJECT_OBJECT->getAllByPK( $bug['package'] );
+$package = $PROJECT_OBJECT->getNext();
+
+$hackers = $PROJECT_OBJECT->userMembership( $package['pID'] );
+
+foreach( $hackers as $hacker ) {
+	$person_queue[$hacker['userID']] = 'team member';
+}
+
+$person_queue[$package['owner']] = 'owner';
+$person_queue[$reporter['uID']]  = 'reporter';
+
+foreach( $person_queue as $value => $key ) {
+	$USER_OBJECT->getAllByPK($value);
+	$person = $USER_OBJECT->getNext();
+
+	if ( isset ( $person['uID'] ) ) {
+
+$message = "Shalom, " . $person['real_name'] . "
+
+Someone just filed a comment against " . $package['project_name'] . "[1].
+
+
+You're recieving this bug because you are a " . $key . " on this bug.
+
+
+== Links below this point ==
+
+[1]: " . $SITE_PREFIX . "t/project/" . $package['project_name'] . "
+[2]: " . $SITE_PREFIX . "t/bug/" . clean($pname) . "
+
+" . $BUILTIN_EMAIL_SIG;
+
+$title = "New comment against ( bug #" . clean($pname) . " )";
+
+	 	sendEmail( $BUILTIN_EMAIL_ADDR, $person['email'], $title, $message );
+	}
+}
+			}
 			$_SESSION['msg'] = "Don'tcha wish your comment was hot like me?";
-			header("Location: $SITE_PREFIX" . "t/bug/$pname");
+			header("Location: $SITE_PREFIX" . "t/bug/" . $pname);
 			exit(0);
 		} else {
 			$_SESSION['err'] = "That's not a real bug!!";

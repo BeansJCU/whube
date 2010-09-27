@@ -48,11 +48,11 @@ if (
 		$locale = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 		$fields = array(
 			"project_name" => clean($_POST['newProject']),
-			"descr"  => clean($_POST['projDescr']),
-			"owner"	 => clean($_SESSION['id']),
-			"active"	=> '1',
-			"startstamp"  => time(),
-			"trampstamp"  => time()
+			"descr"        => clean($_POST['projDescr']),
+			"owner"	       => clean($_SESSION['id']),
+			"active"       => '1',
+			"startstamp"   => time(),
+			"trampstamp"   => time()
 		);
 		$newproj = $r->createNew( $fields );
 		
