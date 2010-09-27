@@ -77,11 +77,17 @@ function breakUpLine( $line ) {
 
 function requireLogin() {
 	global $SITE_PREFIX;
+	global $argv;
+
+	for ( $i = 0; $i < sizeof( $argv ); ++$i ) {
+		$argl = $argl .= $argv[$i] . "/";
+	}
+
 	if ( isset ( $_SESSION['id'] ) && $_SESSION['id'] > 0) {
 		return true;
 	} else {
 		$_SESSION['err'] = "Login before you can hit that page!";
-		header("Location: " . $SITE_PREFIX . "t/login" );
+		header("Location: " . $SITE_PREFIX . "t/login/" . $argl );
 		exit(0);
 	}
 }

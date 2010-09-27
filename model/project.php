@@ -28,11 +28,10 @@ if ( ! class_exists ( "project" ) ) {
 
 			$row = $sql->getNextRow();
 
-			if ( $row != NULL || $row['active'] == False ) {
-				return false;
-			} else {
-				return $row['active'];
-			}
+			if ( $row == NULL )
+				return NULL;
+
+			return $row['active'];
 		}
 
 		function userMembership( $id ) {
@@ -45,6 +44,34 @@ if ( ! class_exists ( "project" ) ) {
 			}
 			return $ret;
 		}
+
+		function addToTeam( $user, $project ) {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$teamski = $this->hasRights( $user, $project );
+			if ( $teamski == NULL ) {
+				$sql->query( "INSERT INTO project_members VALUES ('"
+					. $user . "', '" . $project . "', TRUE, '"
+					. time() . "', '" . time() . "');"
+				);
+			}
+			if ( $teamski ) {
+				return;
+			} else {
+				$sql->query( "UPDATE project_members SET active = TRUE WHERE userID = '" . $user . "' AND projectID = '" . $project . "';" );
+			}
+		}
+
+		function removeFromTeam( $user, $project ) {
+			global $TABLE_PREFIX;
+			$sql = new sql();
+			$teamski = $this->hasRights( $user, $project );
+			if ( $teamski == NULL )
+				return;
+			if ( $teamski )
+				$sql->query( "UPDATE project_members SET active = FALSE WHERE userID = '" . $user . "' AND projectID = '" . $project . "';" );
+		}
+
 
 		function getName( $id ) {
 			$this->getAllByPK( $id );
