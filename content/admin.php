@@ -45,14 +45,8 @@ if( sizeof($argv) > 1 ) {
 		Timezone: " . $user['timezone'] ."<br />
 		Private: " . $private ."<br />
 		Password: " . $user['password'] ."<br />";
-		
-		if( $argv[2] == "create" ) {
-			$_SESSION['err'] = "You shouldn't specify a name in a URL when creating.";
-			header("Location: " . $SITE_PREFIX . "t/admin/" . $argv[1] . "/create" );
-			exit(0);
-		}	
 	}	else if( isset( $argv[1] ) ) {
-		$list = '';
+		$list = "<tr><td class = 'center' >Go kick some ass using the links above.</td></tr>";
 		
 		if( $argv[1] == "user" ) {
 			$numUsers = count( $users );
