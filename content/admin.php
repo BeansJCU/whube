@@ -33,49 +33,48 @@ if( sizeof($argv) > 1 ) {
 		if( $argv[1] == "user" ) {
 			$USER_OBJECT->getByCol("username", $argv[2]);
 			$user = $USER_OBJECT->getNext();
+			$TITLE = "User " . $user['real_name'];
 			$CONTENT = $adminMenu;
-			$CONTENT .= "<h1>" . $TITLE . "</h1>";
+			$CONTENT .= "<h1>" . $user['real_name'] . " (" . $user['username'] . ")" . "</h1>";
 			
 			if( $user['private'] == 0 ) $private = "No";
 			if( $user['private'] == 1 ) $private = "Yes";
 			
 			// Getting exposed like a naked monkey
 			// and tabled like a bad hand of cards
-			$CONTENT .= "User ID: " . $user['uID'] ."<br />
-			Real Name: " . $user['real_name'] ."<br />
-			Username: " . $user['username'] ."<br />
-			Email: " . $user['email'] ."<br /> 
-			Locale: " . $user['locale'] ."<br />
-			Timezone: " . $user['timezone'] ."<br />
-			Private: " . $private ."<br />
-			Password: " . $user['password'] ."<br />";
+			$CONTENT .= "User ID: " . $user['uID'] . "<br />
+			Real Name: " . $user['real_name'] . "<br />
+			Username: " . $user['username'] . "<br />
+			Email: " . $user['email'] . "<br /> 
+			Locale: " . $user['locale'] . "<br />
+			Timezone: " . $user['timezone'] . "<br />
+			Private: " . $private . "<br />
+			Password: " . $user['password'] . "<br />";
 		}
 		
-		if( $argv[1] == "project" ) {
-			$project = '';
+		if( $argv[1] == "project" || $argv[1] == "team" ) {
+			$projName = '';
 			if( strpos( $argv[2], '-' ) ) {
-				$project = str_replace ( '-', ' ', $argv[2] );
+				$projName = str_replace ( '-', ' ', $argv[2] );
 			}
-			$TITLE = "Project " . $project;
+			$PROJECT_OBJECT->getByCol("project_name", $projName);
+			$project = $PROJECT_OBJECT->getNext();
 			
-			$PROJECT_OBJECT->getByCol("project_name", $project);
+			$active = "Yes"; $private = "No";
+			if( $project['active'] == 0 ) $active = "No";
+			if( $project['private'] == 1 ) $private = "Yes";
 			
-			$CONTENT .= "<br /><h1>" . $project . "</h1><br />\n";
-			
-		}
-		
-		if( $argv[1] == "team" ) {
-			$team = '';
-			if( strpos( $argv[2], '-' ) ) {
-				$team = str_replace( '-', ' ', $argv[2] );
-			}
-			$TITLE = "Team " . $team;
-			
-			$PROJECT_OBJECT->getByCol("project_name", $team);
-			
-			$CONTENT .= "<br /><h1>" . $team . "</h1><br />\n";
-		}
-		
+			$USER_OBJECT->getByCol("uID", $project['owner']);
+			$owner = $USER_OBJECT->getNext();
+
+			$TITLE = "Project " . $projName;
+			$CONTENT .= "<br /><h1>" . $projName . "</h1><br />\n";
+			$CONTENT .= "Project Name: " . $project['project_name'] ."<br />
+			Description: " . $project['descr'] . "<br />
+			Owner: " . $owner['real_name'] . " (" . $owner['username'] . ")<br /> 
+			Active: " . $active . "<br />
+			Private: " . $private . "<br />";
+		}		
 	}	else if( isset( $argv[1] ) ) {
 		$list = "<tr><td class = 'center' >Go kick some ass using the links above.</td></tr>";
 		
