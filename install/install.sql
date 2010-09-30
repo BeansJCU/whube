@@ -35,6 +35,7 @@ CREATE TABLE projects (
 	startstamp     LONG,
 	trampstamp     LONG,
 	private        BOOL DEFAULT FALSE,
+	isTeam         BOOL DEFAULT FALSE,
 	PRIMARY KEY( pID )
 );
 
