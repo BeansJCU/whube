@@ -1,8 +1,21 @@
 <?php
 useScript('timezone.js');
-$TITLE    = "Register for Whube!";
-$CONTENT  = "
-<h1>So, you want an account, eh?</h1>
+
+if( isset( $_SESSION ) && $_SESSION['rights']['admin'] == 0 ) {
+	$_SESSION['err'] = "You are logged in!";
+	header( "Location: $SITE_PREFIX" . "t/welcome" );
+	exit(0);
+}
+
+$TITLE = "Register!";
+$CONTENT  = "<h1>So, you want an account, eh?</h1>";
+
+if( isset( $_SESSION ) && $_SESSION['rights']['admin'] == 1 ) {
+	$TITLE = "Register a new user!";
+	$CONTENT = "<h1>Register a new user</h1>";
+}
+
+$CONTENT .= "
 <form action = '" . $SITE_PREFIX . "l/submit-register' method = 'post' >
 <table>
 	<tr>

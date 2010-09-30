@@ -16,6 +16,11 @@ $adminMenu = "<table>
 		<td><h2><a href = '" . $SITE_PREFIX . "t/admin/project'>Project Administration</a></h2></td>
 		<td><h2><a href = '" . $SITE_PREFIX . "t/admin/team'>Team Administration</a></h2></td>
 	</tr>
+	<tr class = 'center'>
+		<td><a href = '" . $SITE_PREFIX . "t/register' >Add new user</a></td>
+		<td><a href = '" . $SITE_PREFIX . "t/new-project' >Add new project </a></td>
+		<td><a href = '" . $SITE_PREFIX . "t/new-team' >Add new team</a></td>
+	</tr>
 </table>";
 
 if( isset( $argv[1] ) ) {
