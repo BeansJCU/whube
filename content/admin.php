@@ -20,6 +20,19 @@ $adminMenu = "<table>
 
 $editButton = "<img id = 'edit-" . $argv[1] . "-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   />";
 
+$editForm = "<div id = 'edit-" . $argv[1] . " >
+<div class = 'lookatme' >
+	<div id = 'edit-interface' class = 'container' >
+		<div class = 'prompt' >
+			<div class = 'content' >
+				<img id = 'edit-close' src = '" . $SITE_PREFIX . "imgs/close.png' alt = 'Close' />
+				<h1>Edit this " . $argv[1] . "</h1>
+			</div>
+		</div>
+	</div>
+</div>
+</div>";
+
 $users = $USER_OBJECT->getAllUsers();
 
 $app_root = dirname(__FILE__) . "/../";
