@@ -19,6 +19,7 @@ PSR="foo"
 echo "I'm setting your password to \"default\"."
 
 QUERY="INSERT INTO users ( real_name, username, email, password, startstamp, trampstamp ) VALUES ('$REALNAME', '$USERNAME', '$EMAIL', '$PWD', $DATE, $DATE );"
+QUERY="$QUERY\nINSERT INTO user_rights VALUES ( '1', TRUE, TRUE, TRUE, TRUE, FALSE );"
 
 echo "OK. Sending off to DB..."
 
