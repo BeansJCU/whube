@@ -14,12 +14,10 @@ $adminMenu = "<table>
 	<tr class = 'center'>
 		<td><h2><a href = '" . $SITE_PREFIX . "t/admin/user'>User Administration</a></h2></td>
 		<td><h2><a href = '" . $SITE_PREFIX . "t/admin/project'>Project Administration</a></h2></td>
-		<td><h2><a href = '" . $SITE_PREFIX . "t/admin/team'>Team Administration</a></h2></td>
 	</tr>
 	<tr class = 'center'>
 		<td><a href = '" . $SITE_PREFIX . "t/register' >Add new user</a></td>
 		<td><a href = '" . $SITE_PREFIX . "t/new-project' >Add new project </a></td>
-		<td><a href = '" . $SITE_PREFIX . "t/new-team' >Add new team</a></td>
 	</tr>
 </table>";
 
@@ -66,7 +64,7 @@ if( sizeof($argv) > 1 ) {
 			Password: " . $user['password'] . "<br />";
 		}
 		
-		if( $argv[1] == "project" || $argv[1] == "team" ) {
+		if( $argv[1] == "project") {
 			$projName = '';
 			if( strpos( $argv[2], '-' ) ) {
 				$projName = str_replace ( '-', ' ', $argv[2] );
@@ -129,28 +127,6 @@ if( sizeof($argv) > 1 ) {
 				}
 				$i++;
 			}
-		}else 
-		if( $argv[1] == "team" ) {
-			$projects = $PROJECT_OBJECT->getAllProjects();
-			$numProjects = count( $projects );
-			$i = 0;
-			$list = '';
-			
-			while( $i < $numProjects ) {
-				if( $projects[$i]['isTeam'] == 1 ) {
-					$projectLink = $projects[$i]['project_name'];
-				
-					if ( strpos ( $projects[$i]['project_name'], ' ' ) ) {
-						$projectLink = str_replace ( ' ', '-', $projects[$i]['project_name'] );
-					}
-				
-					$list .= "<tr style = 'cursor:pointer' onclick=\"document.location.href = '" . $SITE_PREFIX . "t/admin/team/" . $projects[$i]['project_name'] . "'\">
-											<td><a href = '" . $SITE_PREFIX . "t/admin/team/" . $projectLink . "'>" . $projects[$i]['project_name'] ."</a></td> <td>" . $projects[$i]['descr'] ."</td>
-										</tr>";
-				}
-				$i++;
-			}
-			if( $list == '' ) $list = "<tr><td class = 'center' >No teams yet!</td></tr>";	
 		}
 		$CONTENT .= "<h1>" . $argv[1] . "</h1></br />";
 		$CONTENT .= "<table class = 'sortable' >";
