@@ -1,7 +1,7 @@
 <?php
     /*
      *  License:     AGPLv3
-     *  Author:      Tenach M. <tenach@whube.com>
+     *  Author:      Thomas Martin <tenach@whube.com>
      *  Description:
      *    This is where you POST a new registration
      */
@@ -31,11 +31,12 @@ if (
 	// let's first verify email and password
 
 	$email	= htmlentities( $_POST['email'], ENT_QUOTES);
+	
 	$password = htmlentities( $_POST['pass1'], ENT_QUOTES);
 	
 	$vemail = $r->validate_email( $email );
-	$vpass  = $r->validate_password( $password, 4, 20 ); 
-	
+	$vpass  = $r->validate_password( $password, 4, 32 ); 
+		
 	if ( $vemail == FALSE ) {
 		$_SESSION['err'] = "Your email address " . $email . " sucks ass, or is totally fake. Fix it.";
 		header("Location: $SITE_PREFIX" . "t/register");
@@ -58,25 +59,43 @@ if (
 	$vuser = FALSE;
 	foreach( $users as $user ) {
 		if( $_POST['username'] == $user['username'] ) {
-			$_SESSION['err'] = "Hey hey, someone already has that user name.";
-			header("Location: $SITE_PREFIX" . "t/register");
+			if( !isset( $_POST['update'] ) ) {
+				$_SESSION['err'] = "Hey hey, someone already has that user name.";
+				header("Location: $SITE_PREFIX" . "t/register");
+			}
 		} else {
 			$vuser = TRUE;
 		}
+	}
+
+	$USER_OBJECT->GetByCol('username', $_POST['username'] );
+	$updUser = $USER_OBJECT->getNext();
+	
+	if( isset( $_POST['update'] ) && $_POST['pass1'] == '' ) {
+		$password = $updUser['password'];
 	}
 	
 	if( $vuser == TRUE ) {
 		$locale = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 		$fields = array(
-			"real_name" => clean($_POST['realname']),
+			"real_name" => clean($_POST['relaname']),
 			"username"  => clean($_POST['username']),
 			"email"     => clean($_POST['email']),
 			"locale"    => clean($locale[1]),
 			"timezone"  => clean($_POST['timezone']),
-			"password"  => md5($_POST['pass1']) // too plain, not enough salt. :(
+			"password"  => $password, // too plain, not enough salt. :(
 		);
-		$newuser = $r->createNew( $fields );
 		
+		if( isset( $_POST['update'] ) ) {
+			$newuser = $r->UpdateByPK( $updUser['uID'], $fields );
+			
+			$_SESSION['msg'] = "User updated";
+			header( "Location: $SITE_PREFIX" . "t/admin" );
+			exit(0);
+		}
+		
+		$newuser = $r->createNew( $fields );
+
 		if ( $BUILTIN_EMAIL_ENABLE ) {
 
 $message =
@@ -92,10 +111,9 @@ love you very much.
 Thanks for wanting to help out, and welcome to the community!
 
 " . $BUILTIN_EMAIL_SIG;
-		    sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
-		}
-		
-		
+			sendEmail( $BUILTIN_EMAIL_ADDR, $fields['email'], "Welcome to Whube, " . $fields['username'] . "!", $message );
+		}	
+	}
 		$_SESSION['msg'] = "There you go, now you just need to log in ;D";
 		header("Location: $SITE_PREFIX" . "t/login");
 		exit(0);
@@ -104,7 +122,7 @@ Thanks for wanting to help out, and welcome to the community!
 		header("Location: $SITE_PREFIX" . "t/register");
 		exit(0);
 	}
-}
+
 
 ?>
 
