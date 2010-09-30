@@ -3,9 +3,11 @@
 include( "model/user.php" );
 include( "libs/php/core.php" );
 
-// !include("tablehover.js"); - Will make things look funny.
+// !useScript("tablehover.js"); - Will make things look funny.
 
 requireLogin();
+
+useScript( "edit-menu.js" );
 
 // Need to convert this to divs so that tablehover.js can be used. -Tenach
 $adminMenu = "<table>
@@ -16,7 +18,12 @@ $adminMenu = "<table>
 	</tr>
 </table>";
 
+$editButton = "<img id = 'edit-" . $argv[1] . "-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   />";
+
 $users = $USER_OBJECT->getAllUsers();
+
+$app_root = dirname(__FILE__) . "/../";
+include( $app_root . "libs/php/markdown.php" );
 
 if( sizeof($argv) > 1 ) {
 	$TITLE = ucwords( $argv[1] );
@@ -27,7 +34,7 @@ if( sizeof($argv) > 1 ) {
 		}
 	}
 	
-	$CONTENT = $adminMenu;
+	$CONTENT = $adminMenu;	
 	
 	if( isset( $argv[2] ) ) {
 		if( $argv[1] == "user" ) {
@@ -35,7 +42,7 @@ if( sizeof($argv) > 1 ) {
 			$user = $USER_OBJECT->getNext();
 			$TITLE = "User " . $user['real_name'];
 			$CONTENT = $adminMenu;
-			$CONTENT .= "<h1>" . $user['real_name'] . " (" . $user['username'] . ")" . "</h1>";
+			$CONTENT .= "<h1>" . $user['real_name'] . " (" . $user['username'] . ")" . " " . $editButton . "</h1>";
 			
 			if( $user['private'] == 0 ) $private = "No";
 			if( $user['private'] == 1 ) $private = "Yes";
@@ -68,7 +75,7 @@ if( sizeof($argv) > 1 ) {
 			$owner = $USER_OBJECT->getNext();
 
 			$TITLE = "Project " . $projName;
-			$CONTENT .= "<br /><h1>" . $projName . "</h1><br />\n";
+			$CONTENT .= "<h1>" . $projName . " " . $editButton . "</h1><br />\n";
 			$CONTENT .= "Project Name: " . $project['project_name'] ."<br />
 			Description: " . $project['descr'] . "<br />
 			Owner: " . $owner['real_name'] . " (" . $owner['username'] . ")<br /> 
