@@ -82,7 +82,7 @@ if( sizeof($argv) > 1 ) {
 			$owner = $USER_OBJECT->getNext();
 
 			$TITLE = "Project " . $projName;
-			$CONTENT .= "<h1>" . $projName . " <a href = '" . $SITE_PREFIX . "t/admin/" . $argv[1] . "/update' >" . $editButton . "</a></h1><br />\n";
+			$CONTENT .= "<h1>" . $projName . " <a href = '" . $SITE_PREFIX . "t/admin/" . $argv[1] . "/" . $argv[2] . "/update' >" . $editButton . "</a></h1><br />\n";
 			$CONTENT .= "Project Name: " . $project['project_name'] ."<br />
 			Description: " . $project['descr'] . "<br />
 			Owner: " . $owner['real_name'] . " (" . $owner['username'] . ")<br /> 
