@@ -24,20 +24,7 @@ $adminMenu = "<table>
 </table>";
 
 if( isset( $argv[1] ) ) {
-$editButton = "<img id = 'edit-" . $argv[1] . "-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   />";
-
-$editForm = "<div id = 'edit-" . $argv[1] . " >
-<div class = 'lookatme' >
-	<div id = 'edit-interface' class = 'container' >
-		<div class = 'prompt' >
-			<div class = 'content' >
-				<img id = 'edit-close' src = '" . $SITE_PREFIX . "imgs/close.png' alt = 'Close' />
-				<h1>Edit this " . $argv[1] . "</h1>
-			</div>
-		</div>
-	</div>
-</div>
-</div>";
+	$editButton = "<img id = 'edit-" . $argv[1] . "-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   />";
 }
 
 $users = $USER_OBJECT->getAllUsers();
@@ -62,7 +49,7 @@ if( sizeof($argv) > 1 ) {
 			$user = $USER_OBJECT->getNext();
 			$TITLE = "User " . $user['real_name'];
 			$CONTENT = $adminMenu;
-			$CONTENT .= "<h1>" . $user['real_name'] . " (" . $user['username'] . ")" . " " . $editButton . "</h1>";
+			$CONTENT .= "<h1>" . $user['real_name'] . " (" . $user['username'] . ")" . " <a href = '" . $SITE_PREFIX . "t/register/update/" . $argv[2] . "' >" . $editButton . "</a></h1>";
 			
 			if( $user['private'] == 0 ) $private = "No";
 			if( $user['private'] == 1 ) $private = "Yes";
@@ -95,7 +82,7 @@ if( sizeof($argv) > 1 ) {
 			$owner = $USER_OBJECT->getNext();
 
 			$TITLE = "Project " . $projName;
-			$CONTENT .= "<h1>" . $projName . " " . $editButton . "</h1><br />\n";
+			$CONTENT .= "<h1>" . $projName . " <a href = '" . $SITE_PREFIX . "t/admin/" . $argv[1] . "/update' >" . $editButton . "</a></h1><br />\n";
 			$CONTENT .= "Project Name: " . $project['project_name'] ."<br />
 			Description: " . $project['descr'] . "<br />
 			Owner: " . $owner['real_name'] . " (" . $owner['username'] . ")<br /> 
@@ -170,6 +157,42 @@ if( sizeof($argv) > 1 ) {
 		$CONTENT .= $list;
 		$CONTENT .="</table>";
 	}
+	
+	if( isset( $argv[3] ) && $argv[3] == "update" && $argv[1] == "project" || $argv[1] == "team" ) {		
+		$name = $argv[2];
+		if( strpos( $argv[2], '-' ) ) {
+			$name = str_replace( '-', ' ', $argv[2] );
+		}
+		
+		$PROJECT_OBJECT->getByCol('project_name', $name);
+		$project = $PROJECT_OBJECT->getNext();
+		
+		$TITLE = "Update " . $name;
+		$CONTENT = "<h1>Update " . $name . "</h1>";
+		$CONTENT .= " <form action = '" . $SITE_PREFIX . "l/submit-project' method = 'post' >
+		<table>
+	<tr>
+		<td>Project Name:</td>
+		<td><input type = 'text' id = 'project' name = 'newProject' size = '20' value = '" . $project['project_name'] . "' /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><div id = 'project-name'></div></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><textarea rows = '20' cols = '50' name = 'projDescr'>" . $project['descr'] ."</textarea>
+		<input type = 'hidden' name = 'update' id = 'update' value = '1' />
+		</td>
+	</tr>
+	<tr>
+		<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
+		<td><input type = 'submit' value = 'Look, I made this for you!' /></td>
+	</tr>
+		</table>
+	</form>";
+	}
+	
 } else {
 	$TITLE    = "Time to do the dirty!";
 

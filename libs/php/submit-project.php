@@ -37,23 +37,35 @@ if (
 
 	$vproj = TRUE;
 	foreach( $projects as $project ) {
-		if( $_POST['newProject'] == $project['project_name'] ) {
-			$_SESSION['err'] = "Hey hey, whaddya trying to pull? That project's already registered. :|";
-			header("Location: $SITE_PREFIX" . "t/new-project");
-			$vproj = FALSE;
+		if( !isset( $_POST['update'] ) ) {
+			if( $_POST['newProject'] == $project['project_name'] ) {
+				$_SESSION['err'] = "Hey hey, whaddya trying to pull? That project's already registered. :|";
+				header("Location: $SITE_PREFIX" . "t/new-project");
+				$vproj = FALSE;
+			}
+			$startstamp = $project['startstamp'];
 		}
 	}
 	
 	if( $vproj == TRUE ) {
+		$startstamp = time();
 		$locale = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 		$fields = array(
 			"project_name" => clean($_POST['newProject']),
 			"descr"        => clean($_POST['projDescr']),
 			"owner"	       => clean($_SESSION['id']),
 			"active"       => '1',
-			"startstamp"   => time(),
+			"startstamp"   => $startstamp,
 			"trampstamp"   => time()
 		);
+		if( isset( $_POST['update'] ) ) {
+			$r->getByCol("project_name", $_POST['newProject']);
+			$pid = $r->getNext();
+			$newproj = $r->updateByPK( $pid['pID'], $fields );
+			$_SESSION['msg'] = "All updated!";
+			header("Location: $SITE_PREFIX" . "t/admin");
+			exit(0);
+		}
 		$newproj = $r->createNew( $fields );
 		
 		if ( $BUILTIN_EMAIL_ENABLE ) {
