@@ -148,20 +148,24 @@ if( sizeof($argv) > 1 ) {
 		$CONTENT .= " <form action = '" . $SITE_PREFIX . "l/submit-project' method = 'post' >
 		<table>
 	<tr>
+		<td></td>
 		<td>Project Name:</td>
 		<td><input type = 'text' id = 'project' name = 'newProject' size = '20' value = '" . $project['project_name'] . "' /></td>
 	</tr>
 	<tr>
 		<td></td>
+		<td></td>
 		<td><div id = 'project-name'></div></td>
 	</tr>
 	<tr>
+		<td></td>
 		<td>Description:</td>
 		<td><textarea rows = '20' cols = '50' name = 'projDescr'>" . $project['descr'] ."</textarea>
 		<input type = 'hidden' name = 'update' id = 'update' value = '1' />
 		</td>
 	</tr>
 	<tr>
+		<td></td>
 		<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
 		<td><input type = 'submit' value = 'Look, I made this for you!' /></td>
 	</tr>
