@@ -6,10 +6,7 @@ $b = $BUG_OBJECT;
 if ( strpos ( $argv[1], '-' ) ) {
 	$projectName = str_replace ( '-', ' ', clean($argv[1]) );
 } else {
-	$projectName = clean($argv[1]); // tenach, so help me god,
-	                                // the next time you let
-	                                // unclean input into the db
-	                                // I'm going to make you suffer
+	$projectName = clean($argv[1]);
 }
 
 
@@ -30,7 +27,7 @@ while ( $i < $booboos ) {
 
 $bugsFixed = $booboos - $bugCount;
 
-$critical = -1; // doh // $b->specialSelect( "bug_status != 1" );
+$critical = $b->specialSelect( "bug_status != 1" );
 
 if ( isset ( $row['pID'] ) ) {
 	$TITLE = $row['project_name'] . ", one of the fantastic projects on Whube";

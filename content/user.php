@@ -15,7 +15,7 @@
 	$booboos = $b->numrows();
 
 
-	$critical = -1; // XXX: Fixme! doh // $b->specialSelect( "bug_status != 1" );
+	$critical = $b->specialSelect( "bug_status != 1" );
 
 	if ( isset ( $user["username"] ) ) {
 		$projectList = "";
