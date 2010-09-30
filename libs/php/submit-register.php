@@ -36,7 +36,8 @@ if (
 	
 	$vemail = $r->validate_email( $email );
 	$vpass  = $r->validate_password( $password, 4, 32 ); 
-		
+	$password = md5( $password );
+	
 	if ( $vemail == FALSE ) {
 		$_SESSION['err'] = "Your email address " . $email . " sucks ass, or is totally fake. Fix it.";
 		header("Location: $SITE_PREFIX" . "t/register");
