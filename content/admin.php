@@ -18,6 +18,7 @@ $adminMenu = "<table>
 	</tr>
 </table>";
 
+if( isset( $argv[1] ) ) {
 $editButton = "<img id = 'edit-" . $argv[1] . "-control' src = '" . $SITE_PREFIX . "imgs/edit.png'   alt = 'edit'   />";
 
 $editForm = "<div id = 'edit-" . $argv[1] . " >
@@ -32,6 +33,7 @@ $editForm = "<div id = 'edit-" . $argv[1] . " >
 	</div>
 </div>
 </div>";
+}
 
 $users = $USER_OBJECT->getAllUsers();
 
