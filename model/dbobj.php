@@ -98,8 +98,9 @@ if ( ! class_exists ( "dbobj" ) ) {
 			return $this->numrows();
 		}
 		
-		function customSelect( $selectFromHere, $query ) {
-			$yum = $this->sql->query( "SELECT " . $selectFromHere . " FROM " . $this->table . " WHERE " . $query . ";" );
+		function customSelect( $thisRow, $thisTable, $query ) {
+			global $TABLE_PREFIX;
+			$yum = $this->sql->query( "SELECT " . $thisRow . " FROM " . $TABLE_PREFIX.$thisTable . " WHERE " . $query . ";" );
 			
 			$yum = $this->toArray($yum);
 			return $yum;

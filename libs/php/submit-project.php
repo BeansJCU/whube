@@ -64,7 +64,8 @@ if (
 			if( isset( $_POST['addUsers'] ) ) {
 				foreach( $_POST['addUsers'] as $user ) {
 					$items = explode( "::", $user );
-					$r->addToTeam( $items[0], $items[1] );
+					//addToTeam(uID, pID)
+					$r->addToTeam( $items[1], $items[0] );
 				}
 				$_SESSION['msg'] .= "User(s) added!<br />\n";
 			}
@@ -79,7 +80,7 @@ if (
 
 			$updproj = $r->updateByPK( $pid['pID'], $fields );
 			$_SESSION['msg'] .= "All updated!";
-			header("Location: $SITE_PREFIX" . "t/admin");
+			header("Location: $SITE_PREFIX" . "t/admin/project");
 			exit(0);
 		}
 		$newproj = $r->createNew( $fields );

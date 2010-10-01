@@ -150,22 +150,35 @@ if( sizeof($argv) > 1 ) {
 		while( $p < $pc ) {
 			$USER_OBJECT->GetByCol( 'uID', $users[$p]['userID'] );
 			$member = $USER_OBJECT->getNext();
-			$memberList .= "<input type = 'checkbox' name = 'delUsers[]' value = '" . $project['pID'] . "::" . $member['uID'] . "' /> " . $member['real_name'] . " (<a href = '" . $SITE_PREFIX . "t/admin/user/" . $member['username'] . "'>" . $member['username'] . "</a>)<br />";
-			$memberID[] = $member['uID'];
+			if( $users[$p]['active'] == 1 ) {
+				$memberList .= "<input type = 'checkbox' name = 'delUsers[]' value = '" . $project['pID'] . "::" . $member['uID'] . "' /> " . $member['real_name'] . " (<a href = '" . $SITE_PREFIX . "t/admin/user/" . $member['username'] . "'>" . $member['username'] . "</a>)<br />";
+			}
 			$p++;
 		}
-		$memberID = implode(", ",$memberID);
-		$addUsers = $USER_OBJECT->customSelect( "uID", "uID NOT IN ( SELECT userID FROM " . $TABLE_PREFIX . "project_members WHERE projectID = ". $project['pID'] . ")" );
+		
+		$addUsers = $USER_OBJECT->customSelect( "*", "users", "uID NOT IN ( SELECT userID FROM " . $TABLE_PREFIX . "project_members WHERE projectID = ". $project['pID'] . ")" );
+		$inactive = $PROJECT_OBJECT->customSelect( "*", "project_members", "active = 0" );
 		$pc = count( $addUsers );
+		$pic = count( $inactive );
 		$p = 0;		
 		$addList = '';
 		
 		while( $p < $pc ) {
 			$USER_OBJECT->getByCol( 'uID', $addUsers[$p]['uID'] );
+			$PROJECT_OBJECT->getByCol( 'active', $addUsers[$p]['uID'] );
 			$upforgrabs = $USER_OBJECT->getNext();
 			$addList .= "<option value = '". $project['pID'] . "::" . $upforgrabs['uID'] . "'>" . $upforgrabs['real_name'] . "</option>\n";
 			$p++;
 		}
+		$p = 0;
+		while( $p < $pic ) {
+			$USER_OBJECT->getByCol( 'uID', $inactive[$p]['userID'] );
+			$PROJECT_OBJECT->getByCol( 'active', $inactive[$p]['userID'] );
+			$upforgrabs = $USER_OBJECT->getNext();
+			$addList .= "<option value = '". $project['pID'] . "::" . $upforgrabs['uID'] . "'>" . $upforgrabs['real_name'] . "</option>\n";
+			$p++;
+		}
+		
 		
 		$TITLE = "Update " . $name;
 		$CONTENT = "<h1>Update " . $name . "</h1>";
@@ -180,13 +193,15 @@ if( sizeof($argv) > 1 ) {
 			<td></td>
 			<td><div id = 'project-name'></div></td>
 			<td rowspan = '3' style = 'vertical-align:text-top;'>"
-			 . $memberList . 
-			 "<br /><br /><strong>Add user:</strong><br />
-			 Only select users if you wish to add them.<br />
-				<select name = 'addUsers[]' size = '3' multiple = 'multiple' >"
+			. $memberList;
+			if( $addList != '' ) {
+			$CONTENT .= "<br /><br /><strong>Add user:</strong><br />
+			Only select users if you wish to add them.<br />
+			<select name = 'addUsers[]' size = '3' multiple = 'multiple' >"
 				. $addList .
-				"</select>
-			</td>
+				"</select>";
+			}
+			$CONTENT .= "</td>
 		</tr>
 		<tr>
 			<td>Description:</td>
