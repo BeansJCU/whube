@@ -3,6 +3,12 @@
 include( "model/user.php" );
 include( "libs/php/core.php" );
 
+/* TODO: ( added by tenach )
+ * List memberships on projects
+ * List user involvements (bugs, projects)
+ */
+
+
 // !useScript("tablehover.js"); - Will make things look funny.
 
 requireLogin();
