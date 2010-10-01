@@ -93,9 +93,16 @@ if ( ! class_exists ( "dbobj" ) ) {
 			$this->updateRoutine( "update", $PK );
 		}
 	
-		function specialSelect($query ) {
+		function specialSelect( $query ) {
 			$this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $query . ";" );
 			return $this->numrows();
+		}
+		
+		function customSelect( $selectFromHere, $query ) {
+			$yum = $this->sql->query( "SELECT " . $selectFromHere . " FROM " . $this->table . " WHERE " . $query . ";" );
+			
+			$yum = $this->toArray($yum);
+			return $yum;
 		}
 
 		function getAllByPK( $pk ) {
@@ -113,9 +120,9 @@ if ( ! class_exists ( "dbobj" ) ) {
 		function getNext() {
 			return $this->sql->getNextRow();
 		}
-		function toArray() {
+		function toArray($me) {
 			$ret = array();
-			while ( $row = $this->sql->getNextRow() ) {
+			while ( $row = $this->getNext() ) {
 				array_push( $ret, $row );
 			}
 			return $ret;
