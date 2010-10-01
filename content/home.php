@@ -16,8 +16,9 @@ $CONTENT  = "<br /><h1>Heyya, " . $_SESSION['real_name'] . "</h1>Welcome Home.<b
 $CONTENT .= "<br /><h1>Queue Hitlist</h1>\n";
 $CONTENT .= "<br />\n";
 
-$BUG_OBJECT->getByCol( "owner", $_SESSION['id'] );
-$bugs = $BUG_OBJECT->toArray();
+$myBugs = $BUG_OBJECT->getByCol( "owner", $_SESSION['id'] );
+$bugs = $BUG_OBJECT->toArray($myBugs);
+
 
 if ( sizeof( $bugs ) <= 0 ) {
 	$CONTENT .= "Nothing here! Great job! You rule! Here's a kitty!<br /><br />";
