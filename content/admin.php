@@ -134,7 +134,7 @@ if( sizeof($argv) > 1 ) {
 		$CONTENT .="</table>";
 	}
 	
-	if( isset( $argv[3] ) && $argv[3] == "update" && $argv[1] == "project" || $argv[1] == "team" ) {		
+	if( isset( $argv[3] ) && $argv[3] == "update" && $argv[1] == "project" ) {		
 		$name = $argv[2];
 		if( strpos( $argv[2], '-' ) ) {
 			$name = str_replace( '-', ' ', $argv[2] );
@@ -150,7 +150,7 @@ if( sizeof($argv) > 1 ) {
 		while( $p < $pc ) {
 			$USER_OBJECT->GetByCol( 'uID', $users[$p]['userID'] );
 			$member = $USER_OBJECT->getNext();
-			$memberList .= "<a href = '" . $SITE_PREFIX . "t/admin/user/" . $member['username'] . "'>" . $member['real_name'] . "</a><br />";
+			$memberList .= "<input type = 'checkbox' name = 'delUsers[]' value = '" . $project['pID'] . "::" . $member['uID'] . "' /> " . $member['real_name'] . " (<a href = '" . $SITE_PREFIX . "t/admin/user/" . $member['username'] . "'>" . $member['username'] . "</a>)<br />";
 			$memberID[] = $member['uID'];
 			$p++;
 		}
@@ -174,7 +174,7 @@ if( sizeof($argv) > 1 ) {
 		<tr>
 			<td>Project Name:</td>
 			<td><input type = 'text' id = 'project' name = 'newProject' size = '20' value = '" . $project['project_name'] . "' /></td>
-			<td><strong>Project Members</strong></td>
+			<td><strong>Project Members</strong> (Check to remove)</td>
 		</tr>
 		<tr>
 			<td></td>

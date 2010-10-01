@@ -64,12 +64,20 @@ if (
 			if( isset( $_POST['addUsers'] ) ) {
 				foreach( $_POST['addUsers'] as $user ) {
 					$items = explode( "::", $user );
-					$PROJECT_OBJECT->addToTeam( $items[0], $items[1] );
-					$_SESSION['msg'] .= "user: ".$items[0];
+					$r->addToTeam( $items[0], $items[1] );
 				}
-				$_SESSION['msg'] .= "User added!<br />\n";
+				$_SESSION['msg'] .= "User(s) added!<br />\n";
 			}
-			$newproj = $r->updateByPK( $pid['pID'], $fields );
+
+			if( isset( $_POST['delUsers'] ) ) {
+				foreach( $_POST['delUsers'] as $user ) {
+					$items = explode( "::", $user );
+					$r->removeFromTeam( $items[1], $items[0] );
+				}
+				$_SESSION['msg'] .= "User(s) deleted!<br />\n";
+			}
+
+			$updproj = $r->updateByPK( $pid['pID'], $fields );
 			$_SESSION['msg'] .= "All updated!";
 			header("Location: $SITE_PREFIX" . "t/admin");
 			exit(0);

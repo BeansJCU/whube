@@ -65,10 +65,10 @@ if ( ! class_exists ( "project" ) ) {
 		function removeFromTeam( $user, $project ) {
 			global $TABLE_PREFIX;
 			$sql = new sql();
-			$teamski = $this->hasRights( $user, $project );
-			if ( $teamski == NULL )
-				return;
-			if ( $teamski )
+			//$teamski = $this->hasRights( $user, $project );
+			//if ( $teamski == NULL )
+			//	return;
+			//if ( $teamski )
 				$sql->query( "UPDATE project_members SET active = FALSE WHERE userID = '" . $user . "' AND projectID = '" . $project . "';" );
 		}
 
