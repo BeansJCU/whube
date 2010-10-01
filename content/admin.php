@@ -139,37 +139,66 @@ if( sizeof($argv) > 1 ) {
 		if( strpos( $argv[2], '-' ) ) {
 			$name = str_replace( '-', ' ', $argv[2] );
 		}
-		
+
 		$PROJECT_OBJECT->getByCol('project_name', $name);
 		$project = $PROJECT_OBJECT->getNext();
+		$users = $PROJECT_OBJECT->userMembership($project['pID']);
+		$memberList = '';
+		$memberID = array();
+		$p = 0;
+		$pc = count( $users );
+		while( $p < $pc ) {
+			$USER_OBJECT->GetByCol( 'uID', $users[$p]['userID'] );
+			$member = $USER_OBJECT->getNext();
+			$memberList .= "<a href = '" . $SITE_PREFIX . "t/admin/user/" . $member['username'] . "'>" . $member['real_name'] . "</a><br />";
+			$memberID[] = $member['uID'];
+			$p++;
+		}
+		$memberID = implode(", ",$memberID);
+		$addUsers = $USER_OBJECT->customSelect( "uID", "uID NOT IN ( SELECT userID FROM " . $TABLE_PREFIX . "project_members WHERE projectID = ". $project['pID'] . ")" );
+		$pc = count( $addUsers );
+		$p = 0;		
+		$addList = '';
+		
+		while( $p < $pc ) {
+			$USER_OBJECT->getByCol( 'uID', $addUsers[$p]['uID'] );
+			$upforgrabs = $USER_OBJECT->getNext();
+			$addList .= "<option value = '". $project['pID'] . "::" . $upforgrabs['uID'] . "'>" . $upforgrabs['real_name'] . "</option>\n";
+			$p++;
+		}
 		
 		$TITLE = "Update " . $name;
 		$CONTENT = "<h1>Update " . $name . "</h1>";
 		$CONTENT .= " <form action = '" . $SITE_PREFIX . "l/submit-project' method = 'post' >
-		<table>
-	<tr>
-		<td></td>
-		<td>Project Name:</td>
-		<td><input type = 'text' id = 'project' name = 'newProject' size = '20' value = '" . $project['project_name'] . "' /></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td><div id = 'project-name'></div></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>Description:</td>
-		<td><textarea rows = '20' cols = '50' name = 'projDescr'>" . $project['descr'] ."</textarea>
-		<input type = 'hidden' name = 'update' id = 'update' value = '1' />
-		</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
-		<td><input type = 'submit' value = 'Look, I made this for you!' /></td>
-	</tr>
-		</table>
+	<table>
+		<tr>
+			<td>Project Name:</td>
+			<td><input type = 'text' id = 'project' name = 'newProject' size = '20' value = '" . $project['project_name'] . "' /></td>
+			<td><strong>Project Members</strong></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><div id = 'project-name'></div></td>
+			<td rowspan = '3' style = 'vertical-align:text-top;'>"
+			 . $memberList . 
+			 "<br /><br /><strong>Add user:</strong><br />
+			 Only select users if you wish to add them.<br />
+				<select name = 'addUsers[]' size = '3' multiple = 'multiple' >"
+				. $addList .
+				"</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Description:</td>
+			<td><textarea rows = '20' cols = '50' name = 'projDescr'>" . $project['descr'] ."</textarea>
+			<input type = 'hidden' name = 'update' id = 'update' value = '1' />
+			</td>
+		</tr>
+		<tr>
+			<td><img src = '" . $SITE_PREFIX . "imgs/32_space.png' alt = '' /></td>
+			<td><input type = 'submit' value = 'Look, I made this for you!' /></td>
+		</tr>
+	</table>
 	</form>";
 	}
 	

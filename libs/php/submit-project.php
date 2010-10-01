@@ -29,7 +29,6 @@ if (
 	$descr  = htmlentities( $_POST['projDescr'],  ENT_QUOTES);
 	
 	$r->getByCol( "project_name", $pname );
-	//$project = $r->getNext();
 	$projects = $r->getAllProjects();
 
 	$i=0;
@@ -61,8 +60,17 @@ if (
 		if( isset( $_POST['update'] ) ) {
 			$r->getByCol("project_name", $_POST['newProject']);
 			$pid = $r->getNext();
+			
+			if( isset( $_POST['addUsers'] ) ) {
+				foreach( $_POST['addUsers'] as $user ) {
+					$items = explode( "::", $user );
+					$PROJECT_OBJECT->addToTeam( $items[0], $items[1] );
+					$_SESSION['msg'] .= "user: ".$items[0];
+				}
+				$_SESSION['msg'] .= "User added!<br />\n";
+			}
 			$newproj = $r->updateByPK( $pid['pID'], $fields );
-			$_SESSION['msg'] = "All updated!";
+			$_SESSION['msg'] .= "All updated!";
 			header("Location: $SITE_PREFIX" . "t/admin");
 			exit(0);
 		}
