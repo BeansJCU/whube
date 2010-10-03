@@ -106,11 +106,9 @@ CREATE TABLE bug_comments (
 );
 
 CREATE TABLE cache (
-	cache_id           VARCHAR(25),
-	timestamp          LONG /* DONG */,
-	cached_contents    TEXT,
-	PRIMARY KEY ( cache_id )
+	url        VARCHAR(255),
+	valueski   TEXT,
+	timeski    LONG,
+	PRIMARY KEY(url)
 );
-
-INSERT INTO cache VALUES ( 'tweeter', '', '' );
 

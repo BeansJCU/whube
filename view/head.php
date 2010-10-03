@@ -35,19 +35,17 @@ if ( isset ( $TWEETER ) && $TWEETER ) {
 
 $view_root        = dirname(  __FILE__ ) . "/";
 
-include( $view_root . "../model/twitter.php" );
-$twit = new twitter();
-$notices = $twit->showUpdates();
-$owner = explode(":", $notices);  // Messy but goody
-$owner = $owner[0].':';
+include ( $view_root . "../conf/twitter.php" );
+
+$cache = new rss( $TWITTER_FEED );
+$dent = json_decode( $cache->getValue() );
 
 ?>
 		<div class = "tweet-tweet" ><!-- I do love my tweeter -->
 			<div class = "tweet-text" >
 				<div class = "shim" >
 <?php
-	//echo ltrim( $notices[0]['descr'], $notices[0]['owner'] . ":" ); // hackasauris rex
-  echo ltrim($notices, $owner );
+	echo $dent->descr;
 ?>
 				</div>
 			</div>
