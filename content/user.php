@@ -5,6 +5,11 @@
 
 	$u->getByCol( "username", $argv[1] ); // get the /t/%s
 	$user = $u->getNext(); // get the first result.
+	if(!$user || $user == "") {
+		$_SESSION['err'] = $argv[1] . " isn't registered!";
+		header( "Location: $SITE_PREFIX" . "t/home" );
+		exit(0);
+	}
 
 	$RIGHTS_OBJECT->getAllByPK( $user['uID'] ); // get rights for the user
 	$user_rights = $RIGHTS_OBJECT->getNext();
