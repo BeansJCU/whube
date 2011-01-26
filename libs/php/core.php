@@ -8,8 +8,9 @@
      */
 
 
-$VERSION         = "3.14";
-$VERSION_STRING  = "v$VERSION";
+$VERSION         = "3.14.11";
+$VERSION_NAME	 = "Dopey Donut";
+$VERSION_STRING  = "v$VERSION '$VERSION_NAME'";
 
 $API_COMPATV     = 0x1;
 $API_VERSION     = 0x3;
@@ -41,6 +42,7 @@ to ensure there is no dumb stuff going on.<br />
 <br />
 Do you see the big red scary text above? No? w00t. That's a good thing.
 <br />
+Oh, by the way, this is Whube $VERSION_STRING;
 <br />
 <br />
 Peace, Love and PHP<br />
