@@ -22,7 +22,7 @@ function whubeNav() {
 			<a href = '" . $SITE_PREFIX . "t/login' >Login</a>";
 		}
 	$nav .= "</div>";
-	
+
 	return $nav;
 }
 ?>

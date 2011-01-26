@@ -95,7 +95,7 @@ a img {
 .tweet-tweet {
 	position:             absolute;
 
-	top:                  180px;
+	top:                  175px;
 	left:                 200px;
 
 	padding-left:         100px;
@@ -112,8 +112,10 @@ a img {
 
 .tweet-text {
 	height:               50px;
+	width:		      400px;
 	background-color:     #f6ef91;
 	color:                #000000;
+	font-size:	      80%;
 	vertical-align:       middle;
 	display:              table-cell;
 }

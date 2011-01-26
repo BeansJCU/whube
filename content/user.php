@@ -30,7 +30,7 @@
 			$projectList .= "<li><a href='" . $SITE_PREFIX . "t/project/" . $project['project_name'] . "'>" . $project['project_name'] . "</a></li>";
 			$i++;
 		}
-  
+
 		$TITLE = $user["username"] . ", one of the fantastic users on Whube";
 		$CONTENT = "
 			<h1>" . $user["username"] . "</h1>

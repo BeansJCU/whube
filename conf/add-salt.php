@@ -2,13 +2,13 @@
 	// OVERRIDE THE FOLLOWING IN CODE!
 	$CONTENT         = "";       // Default Content
 	$TITLE           = "Whube!"; // Default Title
+	$THEME		 = "whube";  // Default Theme
 	$SCRIPT          = array();  // Script var
 	$PRELOAD         = array();  // Preload vars
 	$GUILT_ME        = true;     // The donate banner. ( We're poor )
 	$TWEETER         = true;     // Twitter stuff. check conf/twitter.php
 	$PIWIK           = false;    // Piwik stats.  Check conf/piwik.php
 	$PAGE_MAX_COUNT  = 200;      // max bugs / projects per page.
-
 	$BUILTIN_EMAIL_SIG     =
 "
 Thanks!

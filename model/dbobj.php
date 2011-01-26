@@ -1,7 +1,7 @@
 <?php
 /**
  * Database Object stuff, handles all database mapping.
- * 
+ *
  * Base database interface class
  * @author   Paul Tagliamonte <paultag@whube.com>
  * @version  1.0
@@ -10,7 +10,7 @@
 if ( ! class_exists ( "dbobj" ) ) {
 
 	$model_root = dirname(  __FILE__ ) . "/";
-  
+ 
 	if ( ! class_exists( "sql" ) ) {
 		// last ditch...
 		include( $model_root . "sql.php" );
@@ -92,16 +92,15 @@ if ( ! class_exists ( "dbobj" ) ) {
 			$this->sql->query( $QUERY );
 			$this->updateRoutine( "update", $PK );
 		}
-	
+
 		function specialSelect( $query ) {
 			$this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $query . ";" );
 			return $this->numrows();
 		}
-		
+
 		function customSelect( $thisRow, $thisTable, $query ) {
 			global $TABLE_PREFIX;
 			$yum = $this->sql->query( "SELECT " . $thisRow . " FROM " . $TABLE_PREFIX.$thisTable . " WHERE " . $query . ";" );
-			
 			$yum = $this->toArray($yum);
 			return $yum;
 		}
@@ -112,7 +111,7 @@ if ( ! class_exists ( "dbobj" ) ) {
 		function getByCol( $cID, $id ) {
 	                $this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $cID . " = '" . $id . "'; " );
 		}
-		function searchByKey( $cID, $id ) { 
+		function searchByKey( $cID, $id ) {
 	                $this->sql->query( "SELECT * FROM " . $this->table . " WHERE " . $cID . " LIKE '%" . $id . "%'; " );
 		}
 		function numRows() {
