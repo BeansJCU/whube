@@ -47,7 +47,11 @@ $owner = $owner[0].':';
 				<div class = "shim" >
 <?php
 	//echo ltrim( $notices[0]['descr'], $notices[0]['owner'] . ":" ); // hackasauris rex
-  echo ltrim($notices, $owner );
+	// echo ltrim($notices, $owner ); // keeping for posterity.
+
+	$tweet = split(":", $notices,2);
+	$tweeter = '<a href="http://twitter.com/' . $tweet[0] . '">' . $tweet[0] . '</a>';
+	echo $tweeter . ": " . $tweet[1];
 ?>
 				</div>
 			</div>
