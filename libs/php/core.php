@@ -18,6 +18,13 @@ $API_VERSION     = 0x3;
 $WHUBE_PROJECT_LEAD   =  "Paul Tagliamonte";
 $WHUBE_PROJECT_URL    =  "http://whube.com/";
 
+$yell = "You should run install/install.sh or install/jquery.sh
+	to obtain the latest jQuery!";
+
+if( file_exists( $app_root . "libs/js/jQuery.js" ) ) {
+	$yell = "TURN ON JAVASCRIPT! Don't be such a lamer";
+}
+
 $ABOUT_WHUBE = <<<EOF
 
 <h1>Namaste, and Welcome. This is Whube</h1>
@@ -33,7 +40,7 @@ There is lots of AJAX and Javascript. To be sure, let me test
 to ensure there is no dumb stuff going on.<br />
 <div class = 'shit' id = 'remove-me' >
 	<div class = 'content' >
-		Dude! TURN ON JAVASCRIPT! Don't be such a lamer!
+		Dude! $yell;
 	</div>
 </div>
 <script type = 'text/javascript' >
