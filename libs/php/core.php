@@ -40,7 +40,7 @@ There is lots of AJAX and Javascript. To be sure, let me test
 to ensure there is no dumb stuff going on.<br />
 <div class = 'shit' id = 'remove-me' >
 	<div class = 'content' >
-		Dude! $yell;
+		Dude! YELLATMEOK
 	</div>
 </div>
 <script type = 'text/javascript' >
@@ -55,5 +55,6 @@ Oh, by the way, this is Whube $VERSION_STRING;
 Peace, Love and PHP<br />
 EOF;
 
+$ABOUT_WHUBE = str_replace("YELLATMEOK", $yell, $ABOUT_WHUBE);
 
 ?>
