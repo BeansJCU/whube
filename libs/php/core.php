@@ -2,7 +2,7 @@
 
     /*
      *  License:     AGPLv3
-     *  Author:      Paul Tagliamonte <paultag@whube.com>
+     *  Author:      Paul Tagliamonte <paultag@whube.com> 
      *  Description:
      *    Core app data
      */
@@ -18,15 +18,14 @@ $API_VERSION     = 0x3;
 $WHUBE_PROJECT_LEAD   =  "Paul Tagliamonte";
 $WHUBE_PROJECT_URL    =  "http://whube.com/";
 
-$yell = "You should run install/install.sh or install/jquery.sh
-	to obtain the latest jQuery!";
+$yell = "TURN ON JAVASCRIPT! Don't be such a lamer";
 
-if( file_exists( $app_root . "libs/js/jQuery.js" ) ) {
-	$yell = "TURN ON JAVASCRIPT! Don't be such a lamer";
+if( !file_exists( $app_root . "libs/js/jQuery.js" ) ) {
+	$yell = "You should run install/install.sh or install/jquery.sh
+		to obtain the latest jQuery!";
+	$jquery = "no";
 }
-
-$ABOUT_WHUBE = <<<EOF
-
+$ABOUT_WHUBE = "
 <h1>Namaste, and Welcome. This is Whube</h1>
 
 <b>Whube</b> is a hip bug tracker. Not hip in the way
@@ -40,21 +39,20 @@ There is lots of AJAX and Javascript. To be sure, let me test
 to ensure there is no dumb stuff going on.<br />
 <div class = 'shit' id = 'remove-me' >
 	<div class = 'content' >
-		Dude! YELLATMEOK
+		Dude! $yell
 	</div>
 </div>
-<script type = 'text/javascript' >
-	$('#remove-me').hide();
-</script>
+<script type = 'text/javascript' >";
+
+$showhide = 'hide';
+if($jquery == 'no') $showhide = 'show';
+$ABOUT_WHUBE .= '$("#remove-me").' . $showhide . '()';
+$ABOUT_WHUBE .= "</script>
 <br />
 Do you see the big red scary text above? No? w00t. That's a good thing.
 <br />
 Oh, by the way, this is Whube $VERSION_STRING;
 <br />
 <br />
-Peace, Love and PHP<br />
-EOF;
-
-$ABOUT_WHUBE = str_replace("YELLATMEOK", $yell, $ABOUT_WHUBE);
-
+Peace, Love and PHP<br />";
 ?>
