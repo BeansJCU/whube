@@ -38,8 +38,8 @@ $view_root        = dirname(  __FILE__ ) . "/";
 include( $view_root . "../model/twitter.php" );
 $twit = new twitter();
 $notices = $twit->showUpdates();
-$owner = explode(":", $notices);  // Messy but goody
-$owner = $owner[0].':';
+//$owner = explode(":", $notices);  // Messy but goody
+//$owner = $owner[0].':';	    // and not needed anymore.
 
 ?>
 		<div class = "tweet-tweet" ><!-- I do love my tweeter -->
