@@ -46,7 +46,7 @@
 	);
 
 	$DEBUG         =   true;
-	
+
 	$BUILTIN_EMAIL_ENABLE  =   true;
 	$BUILTIN_EMAIL_ADDR    =   "Automated Bugmail <bugs@$TLD>";
 
