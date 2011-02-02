@@ -35,7 +35,7 @@ if ( isset ( $TWEETER ) && $TWEETER ) {
 
 $view_root        = dirname(  __FILE__ ) . "/";
 
-include( $view_root . "../model/twitter.php" );
+include( $view_root . "../../model/twitter.php" );
 $twit = new twitter();
 $notices = $twit->showUpdates();
 <<<<<<< HEAD:view/whube/head.php
