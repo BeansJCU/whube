@@ -27,7 +27,7 @@ while ( $i < $booboos ) {
 
 $bugsFixed = $booboos - $bugCount;
 
-$critical = $b->specialSelect( "bug_status != 1" );
+$critical = $b->specialSelect( "package = $pID AND bug_status != 1" );
 
 if ( isset ( $row['pID'] ) ) {
 	$TITLE = $row['project_name'] . ", one of the fantastic projects on Whube";
