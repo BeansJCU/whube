@@ -38,8 +38,13 @@ $view_root        = dirname(  __FILE__ ) . "/";
 include( $view_root . "../model/twitter.php" );
 $twit = new twitter();
 $notices = $twit->showUpdates();
+<<<<<<< HEAD:view/whube/head.php
 //$owner = explode(":", $notices);  // Messy but goody
 //$owner = $owner[0].':';	    // and not needed anymore.
+=======
+$owner = explode(":", $notices);  // Messy but goody
+$owner = $owner[0].':';
+>>>>>>> 8fa5ad4... doing some nastyness:view/head.php
 
 ?>
 		<div class = "tweet-tweet" ><!-- I do love my tweeter -->
@@ -47,11 +52,15 @@ $notices = $twit->showUpdates();
 				<div class = "shim" >
 <?php
 	//echo ltrim( $notices[0]['descr'], $notices[0]['owner'] . ":" ); // hackasauris rex
+<<<<<<< HEAD:view/whube/head.php
 	// echo ltrim($notices, $owner ); // keeping for posterity.
 
 	$tweet = split(":", $notices,2);
 	$tweeter = '<a href="http://twitter.com/' . $tweet[0] . '">' . $tweet[0] . '</a>';
 	echo $tweeter . ": " . $tweet[1];
+=======
+  echo ltrim($notices, $owner );
+>>>>>>> 8fa5ad4... doing some nastyness:view/head.php
 ?>
 				</div>
 			</div>
